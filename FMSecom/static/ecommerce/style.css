@@ -145,6 +145,10 @@ dl, dt, dd, ol, ul, li {
 	overflow:hidden;
 }
 
+.footer-font{
+	font-size: 10px;
+}
+
 ::selection {
 	background: #1ABC9C;
 	color: #FFF;
@@ -8958,7 +8962,7 @@ body:not(.device-touch) .button {
 	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
 }
 
-.button.button-dark:hover { background-color: #1ABC9C; }
+.button.button-dark:hover { background-color: #c53030; }
 
 .button.button-mini {
 	padding: 4px 14px;
@@ -10900,7 +10904,7 @@ body:not(.device-touch) .social-icon i {
 .si-xing:hover,
 .si-colored.si-xing { background-color: #126567 !important; }
 .si-instagram:hover,
-.si-colored.si-instagram { background-color: #8A3AB9 !important; }
+.si-colored.si-instagram { background-color: #C13584 !important; }
 .si-quora:hover,
 .si-colored.si-quora { background-color: #A82400 !important; }
 .si-openid:hover,
@@ -16800,4 +16804,37 @@ label.checkbox { padding-left: 20px; }
 	animation-name: fadeOutUpSmall;
 }
 
+.sinPunto{
+	list-style-type: none;
+}
+
+.backgroundRed{
+	background-color: #c53030;
+	
+}
+
+.textoRojo{
+	color:#c53030;
+}
+
+.objetivos {
+	display: inline-block;
+	position: relative;
+	outline: none;
+	white-space: nowrap;
+	padding: 8px 22px;
+	line-height: 24px;
+	background-color:#000;
+	color:white;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	border: none;
+	text-shadow: 1px 1px 1px rgba(1,0,0,0);
+	width: 100%;
+	opacity: 0.5;
+}
+
+.objetivos:hover {
+	color:#F1F1F1;
+}
 
