@@ -1,0 +1,573 @@
+{% load static %}
+
+<!-- {% static 'ecommerce/' %} -->
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="SemiColonWeb" />
+
+	<!-- Stylesheets
+	============================================= -->
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
+		rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="{% static 'ecommerce/css/bootstrap.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'ecommerce/style.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'ecommerce/css/swiper.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'ecommerce/css/dark.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'ecommerce/css/font-icons.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'ecommerce/css/animate.css' %}" type="text/css" />
+	<link rel="stylesheet" href="{% static 'ecommerce/css/magnific-popup.css' %}" type="text/css" />
+
+	<link rel="stylesheet" href="{% static 'ecommerce/css/custom.css' %}" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+	<!-- Titulo Cabecera -->
+	<title> FMSecom </title>
+
+</head>
+
+<body class="stretched">
+
+	<!-- Document Wrapper -->
+	<div id="wrapper" class="clearfix">
+
+		<!-- Header -->
+		<header id="header" class="full-header transparent-header" data-sticky-class="not-dark">
+			<div id="header-wrap">
+				<div class="container">
+					<div class="header-row">
+
+						<!-- Logo -->
+						<div id="logo">
+							<a href="index.html" class="standard-logo"
+								data-dark-logo="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"
+									alt="Canvas Logo"></a>
+							<a href="index.html" class="retina-logo"
+								data-dark-logo="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"
+									alt="Canvas Logo"></a>
+						</div><!-- #logo end -->
+
+						<div class="header-misc">
+
+							<!-- LUPA DE ARRIBA -->
+							<div id="top-search" class="header-misc-icon">
+								<a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
+										class="icon-line-cross"></i></a>
+							</div><!-- #top-search end -->
+
+							<!-- CARRITO DE ARRIBA -->
+							<div id="top-cart" class="header-misc-icon d-none d-sm-block">
+								<a href="#" id="top-cart-trigger"><i class="icon-line-bag"></i><span
+										class="top-cart-number"> *Numero de productos* </span></a>
+								<div class="top-cart-content">
+
+									<div class="top-cart-title">
+										<h4> CESTA </h4>
+									</div>
+
+									<!-- CADA PRODUCTO DE LA CESTA -->
+									<div class="top-cart-items">
+										<div class="top-cart-item">
+
+											<!-- IMAGEN -->
+											<div class="top-cart-item-image">
+												<a href="#"><img src="{% static 'ecommerce/images/shop/small/1.jpg' %} "
+														alt="Blue Round-Neck Tshirt" /></a>
+											</div>
+
+											<!-- NOMBRE PRODUCTO + CANTIDAD + PRECIO -->
+											<div class="top-cart-item-desc">
+												<div class="top-cart-item-desc-title">
+													<a href="#"> *Nombre del producto* </a>
+													<span class="top-cart-item-price d-block"> *PRECIO PRODUCTO*
+														€</span>
+												</div>
+												<div class="top-cart-item-quantity">x 2</div>
+											</div>
+										</div>
+									</div>
+									<div class="top-cart-action">
+										<span class="top-checkout-price"> *PRECIO TOTAL* €</span>
+										<a href="#" class="button button-3d button-small m-0">Ver Cesta </a>
+									</div>
+								</div>
+							</div>
+							<!-- #FIN DEL CARRITO DE ARRIBA -->
+
+						</div>
+
+						<div id="primary-menu-trigger">
+							<svg class="svg-trigger" viewBox="0 0 100 100">
+								<path
+									d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+								</path>
+								<path d="m 30,50 h 40"></path>
+								<path
+									d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+								</path>
+							</svg>
+						</div>
+
+						<!-- NAVEGACION SUPERIOR -->
+						<nav class="primary-menu">
+							<ul class="menu-container">
+
+								<!-- INICIO-->
+								<li class="menu-item">
+									<a class="menu-link" href="index.html">
+										<div>Inicio</div>
+									</a>
+								</li>
+
+								<!-- PRODUCTOS-->
+								<li class="menu-item">
+									<a class="menu-link" href="#">
+										<div>Productos</div>
+									</a>
+									<ul class="sub-menu-container">
+										<li class="menu-item">
+											<a class="menu-link" href="#">
+												<div><i class="icon-stack"></i>Alarmas</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="#">
+												<div><i class="icon-stack"></i>Cámaras</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="#">
+												<div><i class="icon-stack"></i>Grabadores</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="#">
+												<div><i class="icon-stack"></i>Detección de incendios</div>
+											</a>
+										</li>
+										<li class="menu-item">
+											<a class="menu-link" href="#">
+												<div><i class="icon-stack"></i>Extintores</div>
+											</a>
+										</li>
+									</ul>
+								</li>
+
+								<!-- SERVICIO TECNICO -->
+								<li class="menu-item mega-menu">
+									<a class="menu-link" href="#">
+										<div>Servicio Técnico</div>
+									</a>
+									<div class="mega-menu-content mega-menu-style-2">
+										<div class="container">
+											<div class="row">
+												<ul class="sub-menu-container mega-menu-column col-lg-3">
+													<li class="menu-item mega-menu-title">
+														<a class="menu-link" href="#">
+															<div>Tutoriales</div>
+														</a>
+														<ul class="sub-menu-container">
+															<li class="menu-item">
+																<a class="menu-link" href="about.html">
+																	<div>AnyDesk</div>
+																</a>
+															</li>
+															<li class="menu-item">
+																<a class="menu-link" href="gdpr.html">
+																	<div>Ver Grabaciones</div>
+																</a>
+															</li>
+														</ul>
+													</li>
+												</ul>
+												<ul class="sub-menu-container mega-menu-column col-lg-3">
+													<li class="menu-item mega-menu-title">
+														<a class="menu-link" href="#">
+															<div>Manuales de Usuario</div>
+														</a>
+														<ul class="sub-menu-container">
+															<li class="menu-item">
+																<a class="menu-link" href="services.html">
+																	<div><i></i>Manual Alarma
+																	</div>
+																</a>
+															</li>
+															<li class="menu-item">
+																<a class="menu-link" href="services.html">
+																	<div><i></i>Manual Cámara
+																	</div>
+																</a>
+															</li>
+															<li class="menu-item">
+																<a class="menu-link" href="services.html">
+																	<div><i></i>Manual
+																		Grabador</div>
+																</a>
+															</li>
+														</ul>
+													</li>
+												</ul>
+												<ul class="sub-menu-container mega-menu-column col-lg-3">
+													<li class="menu-item mega-menu-title">
+														<a class="menu-link" href="#">
+															<div>Leyes</div>
+														</a>
+														<ul class="sub-menu-container">
+															<li class="menu-item">
+																<a class="menu-link" href="full-width.html">
+																	<div>Leyes sobre Alarmas</div>
+																</a>
+															</li>
+															<li class="menu-item">
+																<a class="menu-link" href="full-width.html">
+																	<div>Leyes sobre Videovigilancia</div>
+																</a>
+															</li>
+															<li class="menu-item">
+																<a class="menu-link" href="full-width.html">
+																	<div>Leyes sobre Detectores de Incendio</div>
+																</a>
+															</li>
+														</ul>
+													</li>
+												</ul>
+												<ul class="sub-menu-container mega-menu-column col-lg-3">
+													<li class="menu-item mega-menu-title">
+														<a class="menu-link" href="#">
+															<div>Servicios</div>
+														</a>
+														<ul class="sub-menu-container">
+															<li class="menu-item">
+																<a class="menu-link" href="full-width.html">
+																	<div>Nuestras instalaciones</div>
+																</a>
+															</li>
+															<li class="menu-item">
+																<a class="menu-link" href="full-width.html">
+																	<div>Servicio CRA (Receptora)</div>
+																</a>
+															</li>
+														</ul>
+													</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+								</li>
+
+								<!-- CONTACTO -->
+								<li class="menu-item">
+									<a class="menu-link" href="index.html">
+										<div>Contacto</div>
+									</a>
+								</li>
+
+								<!-- OFERTAS -->
+								<li class="menu-item">
+									<a class="menu-link" href="index.html">
+										<div>Ofertas</div>
+									</a>
+								</li>
+							</ul>
+
+						</nav><!-- FIN DE LA BARRA PRINCIPAL -->
+
+						<form class="top-search-form" action="search.html" method="get">
+							<input type="text" name="q" class="form-control" value="" placeholder="Buscar..."
+								autocomplete="off">
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="header-wrap-clone"></div>
+		</header>
+
+		<!-- FIN CABECERA -->
+
+		{% block contenido %}
+
+		<!-- SLIDER PRINCIPAL - IMAGENES CON SLOGAN -->
+		<section id="slider"
+			class="slider-element slider-parallax swiper_wrapper min-vh-60 min-vh-md-100 include-header">
+			<div class="slider-inner">
+				<div class="swiper-container swiper-parent">
+					<div class="swiper-wrapper">
+
+						<!-- PRIMER SLIDER -->
+						<div class="swiper-slide dark">
+							<div class="container">
+								<div class="slider-caption slider-caption-center">
+									<h2 data-animate="fadeInUp">Bienvenido a FMSecom</h2>
+									<p class="d-none d-sm-block textoRojo" data-animate="fadeInUp" data-delay="200" ><strong>Tu seguridad
+										está con nosotros</strong> </p>
+								</div>
+							</div>
+							<!-- IMAGEN GRANDE PRINCIPAL -->
+							<div class="swiper-slide-bg"
+								style="background-image: url('{% static 'ecommerce/images/slider/swiper/5.jpg' %}');">
+							</div>
+						</div>
+
+						<!-- SEGUNDO SLIDER -->
+						<div class="swiper-slide dark">
+							<div class="container">
+								<div class="slider-caption slider-caption-center">
+									<h2 data-animate="fadeInUp">FMSecom es una empresa que se dedica a ...</h2>
+									<p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200"> La
+										instalación de alarmas, grabadores, detectores de incendio y más con el fin de
+										ofrecerte seguridad </p>
+								</div>
+							</div>
+							<div class="swiper-slide-bg"
+								style="background-image: url({% static 'ecommerce/images/slider/swiper/10.jpg' %}); background-position: center top;">
+							</div>
+						</div>
+
+						<!-- TERCER SLIDER -->
+						<div class="swiper-slide">
+							<div class="container">
+								<div class="slider-caption">
+									<h2 data-animate="fadeInUp">Nuestros principales objetivos</h2>
+									<p class="d-none d-sm-block" data-animate="fadeInUp" data-delay="200">Satisfacción y
+										confianza de nuestros clientes, ofreciendo servicios altamente cualificados.
+										Atendiendo a todas sus necesidades con rapidez y eficacia.</p>
+								</div>
+							</div>
+							<div class="swiper-slide-bg"
+								style="background-image: url({% static 'ecommerce/images/slider/swiper/3.jpg' %}); background-position: center top;">
+							</div>
+						</div>
+					</div>
+
+					<div class="slider-arrow-left"><i class="icon-angle-left"></i></div>
+					<div class="slider-arrow-right"><i class="icon-angle-right"></i></div>
+				</div>
+				<a href="#" data-scrollto="#content" data-offset="100" class="one-page-arrow dark"><i
+						class="icon-angle-down infinite animated fadeInDown"></i></a>
+			</div>
+		</section>
+		
+
+		<!-- Contenido -->
+
+		<!-- Primera parte - Acerca de FMSecom -->
+		<section id="content">
+			<div class="content-wrap">
+				<div class="container">
+					<div class="row align-items-center">
+
+						<div class="col-lg-5">
+							<div class="heading-block">
+								<h1>Acerca de FMSecom<br>Sistemas de Seguridad.</h1>
+							</div>
+							<p class="lead">A todo aquel posible cliente, ya sea empresa, particular o profesional,
+								nuestra empresa de seguridad le realiza un
+								estudio personalizado con objeto de ofrecerle el servicio que más se ajuste a sus
+								necesidades.
+
+							</p>
+						</div>
+
+						<div class="col-lg-7 align-self-end">
+
+							<div class="position-relative overflow-hidden">
+								<img src="{% static 'ecommerce/images/ecommerce/imagenes/Camara1.png' %}"
+									data-animate="fadeInUp" data-delay="100" alt="Chrome">
+								<img src="{% static 'ecommerce/images/ecommerce/imagenes/Sirena1.png' %}"
+									style="top: 0; left: 0; max-width: 100%; max-height: 30%;" data-animate="fadeInUp"
+									data-delay="400" alt="iPhone" class="position-absolute">
+							</div>
+
+						</div>
+						<p class="lead center">
+							<br>
+							Nº de inscripción en el registro <strong>R.E.C.I. 23/70 R.I. 16798</strong>.
+							<br>
+							Homologación para la instalación y mantenimiento de aparatos, dispositivos y sistemas de
+							seguridad <strong>H.D.G.S. Nº3022 del 03.04.02</strong>
+						</p>
+
+					</div>
+				</div>
+
+				<!-- Segunda parte - Por definir -->
+				<p class="lead center">
+					Para el desempeño de nuestro trabajo contamos con personal cualificado, con habilitación expedida
+					por el <strong>Ministerio del Interior</strong> .
+					<br>
+					Éstos irán <strong>uniformados</strong> con distintivos propios de la empresa.
+				</p>
+				<hr>
+				<p class="lead center">
+					Instalación y mantenimiento de equipos electrónicos de grabación digital, cámaras, transmisión de
+					imágenes IP, videosensores y software de control para aplicaciones de seguridad en CCTV.
+					<br>
+					Sistema de alarma con posibilidad de sistemas de video para la vigilancia desde cualquier
+					dispositivo informático.
+					<br>
+					Instalaciones y mantenimientos de aparatos, dispositivos y sistemas de seguridad conectados a
+					centrales de alarmas.
+					<br>
+					Disponemos de la última tecnología en el mercado sobre CCTV cumpliendo con la normativa vigente en
+					todo momento y manejada por personal cualificado y titulado.
+					<br>
+
+				</p>
+
+
+
+
+				<!-- Tercera parte - Enlace a nuestras ofertas -->
+				<a href="oferta.html" class="button button-full button-dark center text-end bottommargin-lg">
+					<div class="container clearfix">
+						OFERTA 50% Dto. - KIT de Alarma con Cámara. <strong>Ver</strong> <i class="icon-caret-right"
+							style="top:4px;"></i>
+					</div>
+				</a>
+
+				<!-- Cuarta parte -->
+				<!-- Ubicacion - Google Maps -->
+				<div class="heading-block center">
+					<h1>¿Dónde nos encontramos?</h1>
+				</div>
+
+				<div class="heading-block border-bottom-0"
+					style="margin-bottom: 100px; margin-left: 15px; margin-right: 15px;">
+					<iframe
+						src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3140.040477379783!2d-3.645997785317115!3d38.09272160157697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6e9b4ac2d48d8d%3A0xe96fca6728ac1aee!2sDSM%20SEGURIDAD!5e0!3m2!1ses!2ses!4v1646411770876!5m2!1ses!2ses"
+						width="500" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+				</div>
+
+				<!-- Quinta parte - Logos de las empresas con las que colaboramos - receptora, safire... -->
+				<div class="container clearfix">
+					<div id="oc-clients" class="owl-carousel image-carousel carousel-widget" data-margin="60"
+						data-loop="true" data-nav="false" data-autoplay="800" data-pagi="false" data-items-sm="9">
+						<div class="oc-item" ><a href="#"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoIbercra.png' %}"
+									alt="Ibercra"></a></div>
+						<div class="oc-item"><a href="#"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoMinisterio.png' %}"
+									alt="Ministerio"></a></div>
+						<div class="oc-item"><a href="#"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoLOPD.png' %}"
+									alt="LOPD"></a></div>
+						<div class="oc-item"><a href="#"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoCTE.png' %}"
+									alt="CTE"></a></div>
+						<div class="oc-item"><a href="#"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoPolicia.png' %}"
+									alt="Policia"></a></div>
+						<div class="oc-item"><a href="#"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoSanyo.png' %}"
+									alt="Sanyo"></a></div>
+						<div class="oc-item"><a href="#"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoHoneywell.png' %}"
+									alt="Honeywell"></a></div>
+						<div class="oc-item"><a href="#"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoPanasonic.png' %}"
+									alt="Panasonic"></a></div>
+						<div class="oc-item"><a href="#"><img
+									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoSony.png' %}"
+									alt="Sony"></a></div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<!-- Fin del contenido - bloque -->
+
+		{% endblock %}
+		<footer id="footer" class="dark">
+			<!-- Copyrights
+			============================================= -->
+			<div id="copyrights">
+				<div class="container">
+
+					<div class="row justify-content-between col-mb-30">
+
+
+						<div class="col-lg-5 ">
+							Copyright ©
+							<address>
+								Calle Pintor Juan Gris 3<br>
+								23700 Linares, Jaén <br>
+								España
+
+							</address>
+						</div>
+						<div class="col-lg-5">
+							<abbr title="Phone Number"><strong>Teléfono: </strong></abbr>(+34) 953 60 15 75<br>
+							<abbr title="Email Address"><strong>Email: </strong></abbr>oficina@dsmseguridad.com
+							<br></br>
+							<a href="#" class="social-icon inline-block si-medium mb-10 si-facebook">
+								<i class="icon-facebook"></i>
+								<i class="icon-facebook"></i>
+							</a>
+							<a href="#" class="social-icon inline-block si-medium mb-10 si-instagram">
+								<i class="icon-instagram"></i>
+								<i class="icon-instagram"></i>
+							</a>
+						</div>
+						<div class="copyrights-menu copyright-links">
+							<a href="#">Inicio</a>/<a href="#">Contacto</a>/<a href="#">Ofertas</a>
+						</div>
+
+					</div>
+
+					<br></br>
+					<p class="footer-font">
+						Esta página Web puede contener referencias a marcas comerciales o marcas registradas de FMSecom.
+						Queda prohibido su uso sin el consentimiento previo y expreso de Domingo Sánchez
+						Marín. Todas las demás referencias a otras marcas comerciales o registradas pertenecen a sus
+						respectivos propietarios, sin que pueda entenderse que el acceso a la página Web atribuya
+						derecho alguno sobre las mismas.
+						FMSecom se reserva el derecho de modificar, en cualquier momento y sin necesidad
+						de previo aviso, la configuración y contenidos de la página Web.
+						Conforme a la Ley Orgánica 15/1999, de 13 de Diciembre, de Protección de Datos de Carácter
+						Personal, FMSecom se compromete a tratar los datos facilitados por los usuarios a
+						través de los formularios existentes en la página Web con total confidencialidad.
+						Conforme al artículo 5 de la citada Ley Orgánica, los usuarios pueden acceder a sus datos
+						personales, con derecho a modificación y cancelación mediante la oportuna solicitud por escrito
+						al titular de la página Web y el fichero a la dirección que consta en los datos del titular de
+						la página Web en los términos que suscribe la legislación vigente.
+					</p>
+				</div>
+			</div><!-- #copyrights end -->
+		</footer><!-- #footer end -->
+
+
+
+
+
+
+
+
+
+	</div><!-- #wrapper end -->
+
+
+	<!-- Go To Top
+	============================================= -->
+	<div id="gotoTop" class="icon-angle-up"></div>
+
+	<!-- JavaScripts
+	============================================= -->
+
+	<script src="{% static 'ecommerce/js/jquery.js' %}"></script>
+	<script src="{% static 'ecommerce/js/plugins.min.js' %}"></script>
+
+	<!-- Footer Scripts
+	============================================= -->
+	<script src="{% static 'ecommerce/js/functions.js' %}"></script>
+
+</body>
+
+</html>
