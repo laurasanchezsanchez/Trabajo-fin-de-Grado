@@ -1,0 +1,23 @@
+# Django #
+*.log
+*.pot
+*.pyc
+__pycache__
+db.sqlite3
+
+
+# Django  Migrations #
+**/migrations/**
+!**/migrations
+!**/migrations/__init__.py
+
+#idea
+/.idea/dataSources.xml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/WorkSpaceCompany.iml
+/.idea/.gitignore
+/.idea/inspectionProfiles/Project_Default.xml
+# util
+/Readme_util.md
