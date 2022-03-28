@@ -1,0 +1,27 @@
+{% extends "./index.html" %}
+{% load static %}
+
+{% block contenido %}
+<br>
+<br>
+<br>
+<div class="heading-block center" >
+    <h2 id="textoRojo">{{telefono.titulo_informacion}}</h2>
+    <h4 class="center">{{telefono.dato_1}}</h4>
+</div>
+
+<div class="heading-block center">
+    <h2 id="textoRojo">{{email.titulo_informacion}}</h2>
+    <h4 class="center">{{email.dato_1}}</h4>
+    <h4 class="center">{{email.dato_2}}</h4>
+    <h4 class="center">ivan@dsmseguridad.com</h4>
+</div>
+
+<div class="heading-block center">
+    <h2 id="textoRojo">{{redes_sociales.titulo_informacion}}</h2>
+    <h4 class="center">{{redes_sociales.dato_1}}</h4>
+    <h4 class="center">{{redes_sociales.dato_2}}</h4>
+</div>
+
+{% include './mapa.html' %}
+{% endblock %}
