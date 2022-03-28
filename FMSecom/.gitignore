@@ -10,8 +10,8 @@ db.sqlite3
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
-/noticias/__init__.py
-/noticias/migrations/__init__.py
+/ecommerce/__init__.py
+/ecommerce/migrations/__init__.py
 
 #idea
 /.idea/dataSources.xml

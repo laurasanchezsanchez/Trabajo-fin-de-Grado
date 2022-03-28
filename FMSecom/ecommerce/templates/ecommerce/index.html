@@ -288,9 +288,11 @@
 						<div class="swiper-slide">
 							<div class="container">
 								<div class="slider-caption slider-caption-center">
-									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">{{slider_1.titulo_informacion}}</h2>
-									<p class="d-none d-sm-block letraCliente"  data-animate="fadeInUp"
-										data-delay="200"><strong>{{slider_1.descripcion_informacion}}</strong> </p>
+									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
+										{{slider_1.titulo_informacion}}</h2>
+									<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
+										<strong>{{slider_1.descripcion_informacion}}</strong>
+									</p>
 								</div>
 							</div>
 							<!-- IMAGEN GRANDE PRINCIPAL -->
@@ -303,9 +305,11 @@
 						<div class="swiper-slide">
 							<div class="container">
 								<div class="slider-caption slider-caption-center">
-									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">{{slider_2.titulo_informacion}}</h2>
-									<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200" > {{slider_2.descripcion_informacion}}
-										 </p>
+									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
+										{{slider_2.titulo_informacion}}</h2>
+									<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
+										{{slider_2.descripcion_informacion}}
+									</p>
 								</div>
 							</div>
 							<div class="swiper-slide-bg"
@@ -317,9 +321,11 @@
 						<div class="swiper-slide">
 							<div class="container">
 								<div class="slider-caption">
-									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">{{slider_3.titulo_informacion}}</h2>
-									<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200"> {{slider_3.descripcion_informacion}}
-										</p>
+									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
+										{{slider_3.titulo_informacion}}</h2>
+									<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
+										{{slider_3.descripcion_informacion}}
+									</p>
 								</div>
 							</div>
 							<div class="swiper-slide-bg"
@@ -339,6 +345,7 @@
 
 		<!-- Contenido -->
 
+
 		<!-- Primera parte - Acerca de FMSecom -->
 		<section id="content">
 			<div class="content-wrap">
@@ -346,7 +353,7 @@
 					<div class="row align-items-center">
 
 						<div class="col-lg-5">
-							<div class="heading-block" >
+							<div class="heading-block">
 								<h1 id="textoRojo">{{acerca_de.titulo_informacion}}</h1>
 							</div>
 							<p class="lead">{{acerca_de.descripcion_informacion}}
@@ -370,12 +377,18 @@
 
 				<!-- Segunda parte - Salto de linea -->
 				<p class="lead center">
-					 {% autoescape off %} {{descripcion_del_personal.descripcion_informacion}} {% endautoescape %}
+					{% autoescape off %} {{descripcion_del_personal.descripcion_informacion}} {% endautoescape %}
 				</p>
 				<hr>
 				<p class="lead center">
-					
+
 					{% autoescape off %} {{descripcion_de_servicios.descripcion_informacion}} {% endautoescape %}
+					<br>
+					<br>
+
+					<!-- <img src="{{imagen_camara_publicitaria.imagen.url}}"></img> -->
+
+
 
 				</p>
 
@@ -397,39 +410,10 @@
 				<div class="container clearfix">
 					<div id="oc-clients" class="owl-carousel image-carousel carousel-widget" data-margin="60"
 						data-loop="true" data-nav="false" data-autoplay="800" data-pagi="false" data-items-sm="9">
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoIbercra.png' %}"
-									alt="Ibercra"></a></div>
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoHoneywell.png' %}"
-									alt="Honeywell"></a></div>
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoPanasonic.png' %}"
-									alt="Panasonic"></a></div>
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoSony.png' %}"
-									alt="Sony"></a></div>
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoSafire.png' %}"
-									alt="Safire"></a></div>
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoHikvision.png' %}"
-									alt="HikVision"></a></div>
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoDahua.jpg' %}"
-									alt="Dahua"></a></div>
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoXsecurity.jpg' %}"
-									alt="Xsecurity"></a></div>
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoVesta.png' %}"
-									alt="Vesta"></a></div>
-						<div class="oc-item"><a href="#"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/LogoParadox.jpg' %}"
-									alt="Paradox"></a></div>
-									<div class="oc-item"><a href="#"><img
-										src="{% static 'ecommerce/images/ecommerce/imagenes/LogoVideofied.jpg' %}"
-										alt="Videofied"></a></div>
+
+						{% for otra_empresa in otras_empresas.all %}
+							<div class="oc-item"><img src="{{otra_empresa.imagen.url}}"> </div>
+						{% endfor %}
 					</div>
 
 				</div>
@@ -477,8 +461,7 @@
 							</a>
 						</div>
 						<div class="copyrights-menu copyright-links">
-							<a href="/">Inicio</a>/<a href="contacto">Contacto</a>/<a
-								href="ofertas">Ofertas</a>
+							<a href="/">Inicio</a>/<a href="contacto">Contacto</a>/<a href="ofertas">Ofertas</a>
 						</div>
 
 					</div>

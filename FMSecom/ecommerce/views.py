@@ -8,6 +8,7 @@ from .models import Camara
 from .models import informacion_index
 from .models import informacion_empresa
 from .models import informacion_instalaciones
+from .models import otras_empresas
 
 
 #prueba
@@ -25,7 +26,8 @@ def index(request):
     telefono = informacion_empresa.objects.get(identificador="Numero de telefono")
     email = informacion_empresa.objects.get(identificador="Email")
     ubicacion = informacion_empresa.objects.get(identificador="Ubicacion")
-
+    imagen_camara_publicitaria = informacion_empresa.objects.get(identificador="Imagen camara publicitaria")
+    otras_empresas1 = otras_empresas.objects.all
 
     return render(request, 'ecommerce/index.html', 
     {'acerca_de': acerca_de, 
@@ -38,7 +40,9 @@ def index(request):
     'datos_obligatorios' : datos_obligatorios,
     'telefono' : telefono,
     'email' : email,
-    'ubicacion' : ubicacion
+    'ubicacion' : ubicacion,
+    'imagen_camara_publicitaria' : imagen_camara_publicitaria,
+    'otras_empresas' : otras_empresas1
     })
 
 def ofertas(request):
