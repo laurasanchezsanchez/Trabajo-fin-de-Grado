@@ -2,9 +2,8 @@
 {% load static %}
 
 {% block contenido %}
-<br>
-<br>
-<br>
+
+<div class="contacto">
 <div class="heading-block center" >
     <h2 id="textoRojo">{{telefono.titulo_informacion}}</h2>
     <h4 class="center">{{telefono.dato_1}}</h4>
@@ -21,6 +20,7 @@
     <h2 id="textoRojo">{{redes_sociales.titulo_informacion}}</h2>
     <h4 class="center">{{redes_sociales.dato_1}}</h4>
     <h4 class="center">{{redes_sociales.dato_2}}</h4>
+</div>
 </div>
 
 {% include './mapa.html' %}

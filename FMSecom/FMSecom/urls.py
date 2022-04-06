@@ -20,8 +20,9 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
-
+# Se añade a urlpatterns los parametros para buscar las imagenes correctamente
 urlpatterns = [
-    path('', include('ecommerce.urls')),
     path('admin/', admin.site.urls),
+    path('tienda/', include('tienda.urls')),
+    path('', include('ecommerce.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

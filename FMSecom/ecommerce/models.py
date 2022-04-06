@@ -1,17 +1,16 @@
 from django.db import models
 
-# Create your models here.
-class Camara(models.Model):
-    nombre_camara = models.CharField(max_length=200)
-    fecha_publicacion_camara = models.DateTimeField('date published')
-    descripcion_camara = models.TextField(null=True, blank=True)
+#añadidos - recortar
+from django.contrib.auth.models import User
+from django.urls import reverse
+from datetime import datetime, date
 
-    def __str__(self):
-        return self.nombre_camara
+import string, random
+from django.dispatch import receiver
+from django.db.models.signals import pre_save
 
-        
-
-class informacion_index(models.Model):
+    
+class Informacion_index(models.Model):
     identificador = models.CharField(max_length=1000)
     titulo_informacion = models.CharField(max_length=1000, null=True, blank=True)
     descripcion_informacion = models.TextField(null=True, blank=True)
@@ -20,7 +19,7 @@ class informacion_index(models.Model):
         return self.identificador
 
 
-class informacion_empresa(models.Model):
+class Informacion_empresa(models.Model):
     identificador = models.CharField(max_length=1000)
     titulo_informacion = models.CharField(max_length=1000, null=True, blank=True)
     dato_1 = models.TextField(null=True, blank=True)
@@ -30,14 +29,14 @@ class informacion_empresa(models.Model):
     def __str__(self):
         return self.identificador
 
-class otras_empresas(models.Model):
+class Empresas_apoyo(models.Model):
     identificador = models.CharField(max_length=1000)
     imagen = models.ImageField(null=True, blank=True, upload_to="images/")
     
     def __str__(self):
         return self.identificador
 
-class informacion_instalaciones(models.Model):
+class Informacion_instalaciones(models.Model):
     identificador = models.CharField(max_length=1000)
     titulo_informacion = models.CharField(max_length=500, null=True, blank=True)
     descripcion_informacion = models.TextField(null=True, blank=True)

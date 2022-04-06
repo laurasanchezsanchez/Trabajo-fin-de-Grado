@@ -36,6 +36,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'tienda.apps.TiendaConfig',
     'ecommerce.apps.EcommerceConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -123,8 +124,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-MEDIA_ROOT = '/media/'
 
+# Es la url publica
+# Cambiar por MEDIA_URL
+MEDIA_URL = '/media/'
+
+# Indicamos donde tiene que buscarlo
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 

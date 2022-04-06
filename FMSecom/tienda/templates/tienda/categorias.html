@@ -1,0 +1,12 @@
+{% extends "ecommerce/index.html" %}
+{% load static %}
+
+{% block contenido %}
+<br>
+{% for categoria in categorias %}
+<!-- nombre de la app:url -->
+<p><a href="{% url 'tienda:categoria' categoria.slug %}">{{categoria.nombre_categoria}}</a>
+</p>
+{% endfor %}
+
+{% endblock %}

@@ -26,6 +26,8 @@
 	<link rel="stylesheet" href="{% static 'ecommerce/css/custom.css' %}" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
+	<link rel="stylesheet" href="{% static 'ecommerce/css/components/ion.rangeslider.css' %}" type="text/css" />
+
 	<!-- Titulo Cabecera -->
 	<title> FMSecom </title>
 
@@ -115,135 +117,54 @@
 								</li>
 
 								<!-- INICIO-->
-								<li class="menu-item">
+								<li class="menu-item" >
 									<a class="menu-link" href="/">
 										<div class="fondoCabecera menuPrincipal">Inicio</div>
 									</a>
 								</li>
 
 								<!-- PRODUCTOS-->
+								
+								<li class="menu-item ">
+									<a class="menu-link" href="/tienda/">
+										<div class="fondoCabecera">Productos</div>
+									</a>
+									
+									
+								</li>
+
+
 								<li class="menu-item">
 									<a class="menu-link" href="#">
-										<div class="fondoCabecera">Productos</div>
+										<div class="fondoCabecera">Ayuda al usuario</div>
 									</a>
 									<ul class="sub-menu-container">
 										<li class="menu-item">
 											<a class="menu-link" href="#">
-												<div><i class="icon-stack"></i>Alarmas</div>
+												<div><i class="icon-stack"></i>Leyes</div>
 											</a>
 										</li>
 										<li class="menu-item">
 											<a class="menu-link" href="#">
-												<div><i class="icon-stack"></i>Cámaras</div>
+												<div><i class="icon-stack"></i>Manuales</div>
 											</a>
 										</li>
 										<li class="menu-item">
-											<a class="menu-link" href="#">
-												<div><i class="icon-stack"></i>Grabadores</div>
+											<a class="menu-link" href="/tutoriales">
+												<div><i class="icon-stack"></i>Tutoriales</div>
 											</a>
 										</li>
 										<li class="menu-item">
-											<a class="menu-link" href="#">
-												<div><i class="icon-stack"></i>Detección de incendios</div>
+											<a class="menu-link" href="/instalaciones/">
+												<div><i class="icon-stack"></i>Nuestras instalaciones</div>
 											</a>
 										</li>
 										<li class="menu-item">
-											<a class="menu-link" href="#">
-												<div><i class="icon-stack"></i>Extintores</div>
+											<a class="menu-link" href="/receptora">
+												<div><i class="icon-stack"></i>Servicio CRA (Receptora)</div>
 											</a>
 										</li>
 									</ul>
-								</li>
-
-								<!-- SERVICIO TECNICO -->
-								<li class="menu-item mega-menu">
-									<a class="menu-link" href="#">
-										<div class="fondoCabecera">Servicio Técnico</div>
-									</a>
-									<div class="mega-menu-content mega-menu-style-2">
-										<div class="container">
-											<div class="row">
-												<ul class="sub-menu-container mega-menu-column col-lg-3">
-													<li class="menu-item mega-menu-title">
-														<a class="menu-link" href="/tutoriales">
-															<div>Tutoriales</div>
-														</a>
-														<ul class="sub-menu-container">
-															<li class="menu-item">
-																<a class="menu-link" href="/tutoriales">
-																	<div>AnyDesk</div>
-																</a>
-															</li>
-														</ul>
-													</li>
-												</ul>
-												<ul class="sub-menu-container mega-menu-column col-lg-3">
-													<li class="menu-item mega-menu-title">
-														<a class="menu-link" href="#">
-															<div>Manuales de Usuario</div>
-														</a>
-														<ul class="sub-menu-container">
-															<li class="menu-item">
-																<a class="menu-link" href="services.html">
-																	<div><i></i>Manual Alarma
-																	</div>
-																</a>
-															</li>
-															<li class="menu-item">
-																<a class="menu-link" href="services.html">
-																	<div><i></i>Manual
-																		Grabador</div>
-																</a>
-															</li>
-														</ul>
-													</li>
-												</ul>
-												<ul class="sub-menu-container mega-menu-column col-lg-3">
-													<li class="menu-item mega-menu-title">
-														<a class="menu-link" href="#">
-															<div>Leyes</div>
-														</a>
-														<ul class="sub-menu-container">
-															<li class="menu-item">
-																<a class="menu-link" href="full-width.html">
-																	<div>Leyes sobre Alarmas</div>
-																</a>
-															</li>
-															<li class="menu-item">
-																<a class="menu-link" href="full-width.html">
-																	<div>Leyes de Incendio</div>
-																</a>
-															</li>
-															<li class="menu-item">
-																<a class="menu-link" href="full-width.html">
-																	<div>Ley del Consumidor</div>
-																</a>
-															</li>
-														</ul>
-													</li>
-												</ul>
-												<ul class="sub-menu-container mega-menu-column col-lg-3">
-													<li class="menu-item mega-menu-title">
-														<a class="menu-link" href="#">
-															<div>Servicios</div>
-														</a>
-														<ul class="sub-menu-container">
-															<li class="menu-item">
-																<a class="menu-link" href="/instalaciones">
-																	<div>Nuestras instalaciones</div>
-																</a>
-															</li>
-															<li class="menu-item">
-																<a class="menu-link" href="/receptora">
-																	<div>Servicio CRA (Receptora)</div>
-																</a>
-															</li>
-														</ul>
-													</li>
-												</ul>
-											</div>
-										</div>
-									</div>
 								</li>
 
 								<!-- CONTACTO -->
@@ -320,7 +241,7 @@
 						<!-- TERCER SLIDER -->
 						<div class="swiper-slide">
 							<div class="container">
-								<div class="slider-caption">
+								<div class="slider-caption slider-caption-center">
 									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
 										{{slider_3.titulo_informacion}}</h2>
 									<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
@@ -364,8 +285,8 @@
 						<div class="col-lg-7 align-self-end">
 
 							<div class="position-relative overflow-hidden">
-								<img src="{% static 'ecommerce/images/ecommerce/imagenes/Camara1.png' %}"
-									data-animate="fadeInUp" data-delay="100" alt="Chrome">
+								<img src="{{imagen_camara_publicitaria.imagen.url}}" data-animate="fadeInUp"
+									data-delay="100" alt="Chrome">
 
 							</div>
 
@@ -412,7 +333,7 @@
 						data-loop="true" data-nav="false" data-autoplay="800" data-pagi="false" data-items-sm="9">
 
 						{% for otra_empresa in otras_empresas.all %}
-							<div class="oc-item"><img src="{{otra_empresa.imagen.url}}"> </div>
+						<div class="oc-item"><img src="{{otra_empresa.imagen.url}}"> </div>
 						{% endfor %}
 					</div>
 
@@ -430,7 +351,7 @@
 		<!-- Fin del contenido - bloque -->
 
 		{% endblock %}
-		<footer id="footer" class="dark">
+		<footer id="footer" class="dark" style="background-image: url('{% static 'ecommerce/images/ecommerce/imagenes/footer.jpg' %}');">
 			<!-- Copyrights
 			============================================= -->
 			<div id="copyrights">
@@ -511,6 +432,9 @@
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="{% static 'ecommerce/js/functions.js' %}"></script>
+
+	<!-- Range Slider Plugin -->
+	<script src="{% static 'ecommerce/js/components/rangeslider.min.js' %}"></script>
 
 </body>
 
