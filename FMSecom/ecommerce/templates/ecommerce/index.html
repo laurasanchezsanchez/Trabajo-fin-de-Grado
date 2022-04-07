@@ -65,43 +65,14 @@
 							</div><!-- #top-search end -->
 
 							<!-- CARRITO DE ARRIBA -->
-							<div id="top-cart" class="header-misc-icon d-none d-sm-block">
-								<a href="#" id="top-cart-trigger"><i class="icon-line-bag"></i><span
-										class="top-cart-number"> *Numero de productos* </span></a>
-								<div class="top-cart-content">
+							{% include "carro/widget.html" %}
 
-									<div class="top-cart-title">
-										<h4> CESTA </h4>
-									</div>
-
-									<!-- CADA PRODUCTO DE LA CESTA -->
-									<div class="top-cart-items">
-										<div class="top-cart-item">
-
-											<!-- IMAGEN -->
-											<div class="top-cart-item-image">
-												<a href="#"><img src="{% static 'ecommerce/images/shop/small/1.jpg' %} "
-														alt="Blue Round-Neck Tshirt" /></a>
-											</div>
-
-											<!-- NOMBRE PRODUCTO + CANTIDAD + PRECIO -->
-											<div class="top-cart-item-desc">
-												<div class="top-cart-item-desc-title">
-													<a href="#"> *Nombre del producto* </a>
-													<span class="top-cart-item-price d-block"> *PRECIO PRODUCTO*
-														€</span>
-												</div>
-												<div class="top-cart-item-quantity">x 2</div>
-											</div>
-										</div>
-									</div>
-									<div class="top-cart-action">
-										<span class="top-checkout-price"> *PRECIO TOTAL* €</span>
-										<a href="#" class="button button-3d button-small m-0">Ver Cesta </a>
-									</div>
-								</div>
+							<!-- REGISTRARSE O INICIAR SESION -->
+							<div id="top-search" class="header-misc-icon">
+								<a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
+										class="icon-line-cross"></i></a>
 							</div>
-							<!-- #FIN DEL CARRITO DE ARRIBA -->
+							
 
 						</div>
 
@@ -109,7 +80,7 @@
 						<nav class="primary-menu">
 							<ul class="menu-container">
 
-								<!-- INICIO-->
+								<!-- TELEFONO-->
 								<li class="menu-item">
 									<a class="menu-link">
 										<h3 id="cabeceraTelf">📞 {{telefono.dato_1}}</h3>
@@ -188,7 +159,18 @@
 							<input type="text" name="q" class="form-control" value="" placeholder="Buscar..."
 								autocomplete="off">
 						</form>
+
+						
 					</div>
+					<br>
+					<p style="text-align: right; margin-right: 50px;">
+						{% if user.is_authenticated %}
+							Hola {{user.username}} <a href="{% url 'autenticacion:cerrar_sesion' %}">Cerrar sesion</a>
+							{% else %}
+							<a href="{% url 'autenticacion:login' %}">Login</a>
+							<a href="{% url 'autenticacion:autenticacion' %}">Registrate</a>
+							{% endif %}
+					</p>
 				</div>
 			</div>
 			<div class="header-wrap-clone"></div>

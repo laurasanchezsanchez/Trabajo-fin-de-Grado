@@ -1,0 +1,16 @@
+{% extends "ecommerce/index.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<form method="post" action="">
+
+    {% csrf_token %}
+
+    {{form}}
+
+    <button type="submit" class="btn btn-success">Login</button>
+
+</form>
+
+{% endblock %}

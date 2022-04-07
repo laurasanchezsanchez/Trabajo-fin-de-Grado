@@ -69,13 +69,8 @@
                             ============================================= -->
                             <form class="cart mb-0 d-flex justify-content-between align-items-center" method="post"
                                 enctype='multipart/form-data'>
-                                <div class="quantity clearfix">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="number" step="1" min="1" name="quantity" value="1" title="Qty"
-                                        class="qty" />
-                                    <input type="button" value="+" class="plus">
-                                </div>
-                                <button type="submit" class="add-to-cart button m-0">Añadir a la bolsa</button>
+                                
+                                <a type="submit" class="add-to-cart button m-0" href="{% url 'carro:agregar' producto.id %}">Añadir al carrito</a>
                             </form><!-- Product Single - Quantity & Cart Button End -->
 
                             <div class="line"></div>

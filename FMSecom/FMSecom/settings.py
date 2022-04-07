@@ -36,6 +36,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'autenticacion.apps.AutenticacionConfig',
+    'carro.apps.CarroConfig',
     'tienda.apps.TiendaConfig',
     'ecommerce.apps.EcommerceConfig',
     'django.contrib.admin',
@@ -69,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'carro.context_processor.importe_total_carro'
             ],
         },
     },
