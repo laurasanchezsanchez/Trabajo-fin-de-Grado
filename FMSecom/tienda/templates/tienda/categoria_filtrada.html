@@ -37,7 +37,7 @@
                         </div>
                         <div class="product-desc">
                             <div class="product-title">
-                                <h3><a href="{% url 'tienda:producto' producto.categoria_slug producto.nombre_slug %}">{{producto.nombre}}</a></h3>
+                                <h3><a href="{% url 'tienda:producto-detallado' producto.slug %}">{{producto.nombre}}</a></h3>
                             </div>
                             <div class="product-price">Producto: {{producto.precio_producto}} €</div>
                             <div class="product-price">Producto + servicio: {{producto.precio_producto_servicio}} €</div>

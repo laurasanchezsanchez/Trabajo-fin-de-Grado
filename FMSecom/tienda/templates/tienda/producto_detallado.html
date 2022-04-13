@@ -1,5 +1,6 @@
 {% extends "ecommerce/index.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block contenido %}
 <section id="page-title">
@@ -65,12 +66,27 @@
 
                             <div class="line"></div>
 
-                            <!-- BOTON SUMAR O RESTAR CANTIDAD A COMPRAR
-                            ============================================= -->
+                            
                             <form class="cart mb-0 d-flex justify-content-between align-items-center" method="post"
                                 enctype='multipart/form-data'>
+
+                                <!-- BOTON SUMAR O RESTAR CANTIDAD A COMPRAR
+                            ============================================= -->
+                                <div class="quantity clearfix">
+                                    <input type="button" value="-" class="minus">
+                                    <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="qty" />
+                                    <input type="button" value="+" class="plus">
+                                </div>
+
+                                <!-- Un usuario no registrado tambien puede agregar al carrito -->
+
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <button type='submit' class="btn btn-sm btn-primary buy-now">Add to Cart</button>
+                                </form>
                                 
-                                <a type="submit" class="add-to-cart button m-0" href="{% url 'carro:agregar' producto.id %}">Añadir al carrito</a>
+                                <a type="submit" class="add-to-cart button m-0" href="#">Añadir al carrito</a>
                             </form><!-- Product Single - Quantity & Cart Button End -->
 
                             <div class="line"></div>
@@ -195,7 +211,7 @@
             <div class="owl-carousel product-carousel carousel-widget" data-margin="30" data-pagi="false"
                 data-autoplay="5000" data-items-xs="1" data-items-md="2" data-items-lg="3" data-items-xl="4">
 
-                {% for product in productos_categoria %}
+                {% for producto in productos_categoria %}
                 <div class="oc-item">
                     <div class="product">
                         <div class="product-image">
@@ -204,9 +220,9 @@
                         </div>
                         <div class="product-desc center">
                             <div class="product-title">
-                                <h3><a href="#">{{product.nombre}}</a></h3>
+                                <h3><a href="{% url 'tienda:producto-detallado' producto.slug %}">{{producto.nombre}}</a></h3>
                             </div>
-                            <div class="product-price">{{product.precio_producto}} €</div>
+                            <div class="product-price">{{producto.precio_producto}} €</div>
                         </div>
                     </div>
                 </div>

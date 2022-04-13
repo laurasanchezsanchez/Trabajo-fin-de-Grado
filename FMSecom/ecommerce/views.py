@@ -10,6 +10,7 @@ from .models import Informacion_empresa
 from .models import Informacion_instalaciones
 from .models import Empresas_apoyo
 
+
 import importlib.util
 
 #necesita importar las categorias
@@ -23,6 +24,13 @@ from django.shortcuts import get_object_or_404
 
 #prueba
 from wsgiref.util import FileWrapper
+from .forms import ContactForm
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
+from django.shortcuts import render, reverse
+from django.urls import reverse_lazy
+
 
 
 class indexListView(generic.ListView):
@@ -76,18 +84,7 @@ def tutoriales(request):
     'ubicacion' : ubicacion
     })
 
-def contacto(request):
-    telefono = Informacion_empresa.objects.get(identificador="Numero de telefono")
-    email = Informacion_empresa.objects.get(identificador="Email")
-    ubicacion = Informacion_empresa.objects.get(identificador="Ubicacion")
-    redes_sociales = Informacion_empresa.objects.get(identificador="Redes sociales")
 
-    return render(request, 'ecommerce/contacto.html', 
-    {'telefono' : telefono,
-    'email' : email,
-    'ubicacion' : ubicacion,
-    'redes_sociales' : redes_sociales
-    })
 
 def instalaciones(request):
     telefono = Informacion_empresa.objects.get(identificador="Numero de telefono")
@@ -130,6 +127,61 @@ def receptora(request):
     'paso_3' : paso_3,
     'receptora' : receptora
     })
+
+
+def contacto(request):
+    telefono = Informacion_empresa.objects.get(identificador="Numero de telefono")
+    email = Informacion_empresa.objects.get(identificador="Email")
+    ubicacion = Informacion_empresa.objects.get(identificador="Ubicacion")
+    redes_sociales = Informacion_empresa.objects.get(identificador="Redes sociales")
+
+    return render(request, 'ecommerce/contacto.html', 
+    {'telefono' : telefono,
+    'email' : email,
+    'ubicacion' : ubicacion,
+    'redes_sociales' : redes_sociales
+    })
+
+# Para que un cliente nos pueda mandar un mensaje a traves de la web
+class ContactView(generic.FormView):
+    form_class=ContactForm
+    template_name='ecommerce/contacto.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ContactView, self).get_context_data(**kwargs)
+        context['telefono'] = Informacion_empresa.objects.get(identificador="Numero de telefono")
+        context['email'] = Informacion_empresa.objects.get(identificador="Email")
+        context['ubicacion'] = Informacion_empresa.objects.get(identificador="Ubicacion")
+        context['redes_sociales'] = Informacion_empresa.objects.get(identificador="Redes sociales")
+
+        return context
+
+    def get_success_url(self):
+        return reverse('ecommerce:contacto')
+
+    def form_valid(self, form):
+        messages.info(
+            self.request, "Gracias por su mensaje. Lo hemos recibido correctamente.")
+        
+        nombre = form.cleaned_data.get('nombre')
+        email = form.cleaned_data.get('email')
+        mensaje = form.cleaned_data.get('mensaje')
+
+        full_message = f"""
+            Mensaje recibibo de {nombre}, con el correo electronico: {email}
+            ___________________________________
+            Mensaje:
+
+
+            {mensaje}
+            """
+        send_mail(
+            subject="Mensaje recibido por un cliente.",
+            message=full_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[settings.NOTIFY_EMAIL]
+        )
+        return super(ContactView, self).form_valid(form)
 
 
 

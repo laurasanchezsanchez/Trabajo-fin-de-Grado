@@ -37,7 +37,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'autenticacion.apps.AutenticacionConfig',
-    'carro.apps.CarroConfig',
     'tienda.apps.TiendaConfig',
     'ecommerce.apps.EcommerceConfig',
     'django.contrib.admin',
@@ -46,8 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
 ]
-
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -71,7 +71,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'carro.context_processor.importe_total_carro'
             ],
         },
     },
@@ -142,3 +141,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+DEFAULT_FROM_EMAIL='laurasanchez13@correo.ugr.es'
+NOTIFY_EMAIL='laurasanchez13@correo.ugr.es'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

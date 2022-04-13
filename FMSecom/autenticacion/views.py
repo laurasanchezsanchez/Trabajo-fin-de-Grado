@@ -28,10 +28,10 @@ class VistaRegistro(View):
 
         if form.is_valid():
             # Con form.save guardo la informacion en la bd
-            usuario = form.save()
+            user = form.save()
 
             # Una vez registrado lo dejamos logeado
-            login(request, usuario)
+            login(request, user)
 
             return redirect('/')
 
@@ -58,17 +58,17 @@ def loguear(request):
         form = AuthenticationForm(request, data=request.POST)
 
         if form.is_valid():
-            nombre_usuario = form.cleaned_data.get("username")
+            nombre_user = form.cleaned_data.get("username")
             contra = form.cleaned_data.get("password")
 
-            # Si authenticate ve que no es correcto el usuario, no nos devuelve nada, por lo que haremos el proximo if
-            usuario = authenticate(username=nombre_usuario, password=contra)
+            # Si authenticate ve que no es correcto el user, no nos devuelve nada, por lo que haremos el proximo if
+            user = authenticate(username=nombre_user, password=contra)
 
-            if usuario is not None:
-                login(request,usuario)
+            if user is not None:
+                login(request,user)
                 return redirect('/')
             else:
-                messages.error(request, "Usuario no valido")
+                messages.error(request, "user no valido")
 
         else:
             messages.error(request, "Informacion incorrecta.")

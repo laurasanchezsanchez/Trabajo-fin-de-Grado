@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load carrito_template_tags %}
 <!-- {% static 'ecommerce/' %} -->
 
 <!DOCTYPE html>
@@ -65,13 +65,12 @@
 							</div><!-- #top-search end -->
 
 							<!-- CARRITO DE ARRIBA -->
-							{% include "carro/widget.html" %}
-
-							<!-- REGISTRARSE O INICIAR SESION -->
-							<div id="top-search" class="header-misc-icon">
-								<a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
-										class="icon-line-cross"></i></a>
+							<div id="top-cart" class="header-misc-icon d-none d-sm-block">
+								<a href="{% url 'tienda:resumen-carrito' %}"><i class="icon-line-bag"></i><span
+										class="top-cart-number">{{ request|count_items }}</span></a>
 							</div>
+
+							
 							
 
 						</div>

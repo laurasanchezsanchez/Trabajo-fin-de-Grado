@@ -1,16 +1,16 @@
 from django.urls import path
-
 from . import views
-from . views import categorias
-from django.template.defaultfilters import slugify
-
 
 app_name = 'tienda'
 
-#arreglar barra tutoriales
 urlpatterns = [
     path('', views.categorias, name='categorias'),
-    path('categoria/<slug:slug_categoria>/',views.categoria_filtrada, name='categoria'),
-    path('categoria/<slug:slug_categoria>/<slug:slug_producto>/',views.producto_detallado, name='producto'),
+    path('categoria/<slug>/', views.categoria_filtrada, name='categoria'),
+    path('producto/<slug>/', views.ProductDetailView.as_view(),
+         name='producto-detallado'),
+    path('carrito/', views.CarritoView.as_view(), name='resumen-carrito'),
+    path('incrementar-cantidad/<pk>/', views.IncrementarCantidadView.as_view(), name='incrementar-cantidad'),
+    path('decrementar-cantidad/<pk>/', views.DecrementarCantidadView.as_view(), name='decrementar-cantidad'),
+    path('eliminar-del-carrito/<pk>/', views.EliminarDelCarritoView.as_view(), name='eliminar-del-carrito'),
 
 ]
