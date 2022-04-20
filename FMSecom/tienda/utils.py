@@ -20,3 +20,10 @@ def get_or_set_order_session(request):
         pedido.user= request.user
         pedido.save()
     return pedido
+
+
+def get_pedidos_session(request):
+    cliente = request.user
+    pedidos = Pedido.objects.filter(user=cliente, realizado=True)
+
+    return pedidos

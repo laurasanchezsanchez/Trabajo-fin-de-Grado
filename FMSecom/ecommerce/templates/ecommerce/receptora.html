@@ -1,14 +1,16 @@
-{% extends "./index.html" %}
+{% extends "./base.html" %}
 {% load static %}
 
 {% block contenido %}
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;" >
+    <div class="container clearfix text-center" >
+        <h1>{{receptora.titulo_informacion}}</h1>
+    </div>
+</section>
 <br>
 <br>
-
-<div class="heading-block center">
-    <h2 id="textoRojo">{% autoescape off %} {{receptora.titulo_informacion}}{% endautoescape %}</h2>
-</div>
-
 <div id="wrapper" class="clearfix">
 
     <!-- Content

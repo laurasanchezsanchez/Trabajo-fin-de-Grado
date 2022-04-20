@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Categorias_productos, Productos, Pedido, ItemPedido
+from .models import Categorias_productos, Productos, Pedido, ItemPedido, Direccion
 
 class categoriasAdministrador(admin.ModelAdmin):
     # Orden en el que se muestran
@@ -23,10 +23,18 @@ class productosAdministrador(admin.ModelAdmin):
     search_fields = ['categoria', 'nombre', ]                            
     exclude = ('categoria_slug', 'slug', )  
 
-
+class direccionAdmin(admin.ModelAdmin):
+    list_display = [
+        'direccion_1',
+        'direccion_2',
+        'codigo_zip',
+        'ciudad',
+        'direccion_tipo'
+    ]
 
 admin.site.register(Categorias_productos, categoriasAdministrador)
 admin.site.register(Productos, productosAdministrador)
 
 admin.site.register(Pedido)
 admin.site.register(ItemPedido)
+admin.site.register(Direccion, direccionAdmin)

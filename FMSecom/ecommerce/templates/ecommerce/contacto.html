@@ -1,8 +1,17 @@
-{% extends "./index.html" %}
+{% extends "./base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
 
 {% block contenido %}
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;" >
+    <div class="container clearfix text-center" >
+        <h1>Contacto</h1>
+    </div>
+</section>
+<br>
+<br>
 
 {% if messages %}
     <ul class="alert alert-info center"  role="alert">

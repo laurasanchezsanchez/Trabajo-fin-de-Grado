@@ -12,5 +12,7 @@ urlpatterns = [
     path('incrementar-cantidad/<pk>/', views.IncrementarCantidadView.as_view(), name='incrementar-cantidad'),
     path('decrementar-cantidad/<pk>/', views.DecrementarCantidadView.as_view(), name='decrementar-cantidad'),
     path('eliminar-del-carrito/<pk>/', views.EliminarDelCarritoView.as_view(), name='eliminar-del-carrito'),
+    path('checkout/', views.CheckoutView.as_view(), name='checkout'),
+    path('mis-pedidos/', views.MisPedidosView.as_view(), name='mis-pedidos'),
 
 ]

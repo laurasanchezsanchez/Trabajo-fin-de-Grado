@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Categorias_productos, ItemPedido
-from .models import Productos
+from .models import Productos, Direccion
 
 from ecommerce.models import Informacion_index
 from ecommerce.models import Informacion_empresa
@@ -13,8 +13,9 @@ from pdb import post_mortem
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404, reverse, redirect
 from django.views import generic
-from .forms import AnadirAlCarrito
-from .utils import get_or_set_order_session
+from .forms import AnadirAlCarrito, DireccionForm
+from .utils import get_or_set_order_session, get_pedidos_session
+from django.contrib import messages
 
 
 # ------------------------------------------------------------------------
@@ -45,6 +46,7 @@ def categoria_filtrada(request, slug):
                       "ubicacion": Informacion_empresa.objects.get(identificador="Ubicacion"),
 
                       "Empresas_apoyo": Empresas_apoyo.objects.all,
+                      "categoria": Categorias_productos.objects.filter(slug=slug).first(),
                       "productos": Productos.objects.filter(categoria_slug=slug)
                   })
 
@@ -131,7 +133,7 @@ class IncrementarCantidadView(generic.View):
     def get(self, request, *args, **kwargs):
         order_item = get_object_or_404(ItemPedido, id=kwargs['pk'])
         order_item.cantidad += 1
-        order_item.save()
+        order_item.save(force_update=True, update_fields=['cantidad'])
         return redirect("tienda:resumen-carrito")
 
 
@@ -167,3 +169,80 @@ class EliminarDelCarritoView(generic.View):
 # ------------------------------------------------------------------------
 # Funcion de checkout
 # ------------------------------------------------------------------------
+
+class CheckoutView(generic.FormView):
+    template_name = 'tienda/checkout.html'
+    form_class = DireccionForm
+
+    # Si esta todo correcto, le da a pagar y nos dirige al html de pago
+    def get_success_url(self):
+        return reverse("tienda:resumen-carrito")
+
+
+    # D
+    def form_valid(self, form):
+
+        # Primero cogemos el pedido del cliente
+        order = get_or_set_order_session(self.request)
+        direccion_envio_seleccionada = form.cleaned_data.get('direccion_envio_seleccionada')
+        direccion_facturacion_seleccionada = form.cleaned_data.get('direccion_facturacion_seleccionada')
+
+        # Si el cliente ha podido seleccionar una de sus direcciones, la guardamos en el pedido
+        if direccion_envio_seleccionada:
+            order.direccion_envio = direccion_envio_seleccionada
+
+        # Si no tenia ninguna guardada, se crea una direccion asociada a él
+        else:
+            address = Direccion.objects.create(
+                direccion_tipo = 'E',
+                user = self.request.user,
+                direccion_1=form.cleaned_data['direccion_envio_1'],
+                direccion_2=form.cleaned_data['direccion_envio_2'],
+                codigo_zip=form.cleaned_data['codigo_zip_envio'],
+                ciudad=form.cleaned_data['ciudad_envio'],
+            )
+            order.direccion_envio = address
+
+        if direccion_facturacion_seleccionada:
+            order.direccion_facturacion = direccion_facturacion_seleccionada
+        else:
+            address = Direccion.objects.create(
+                direccion_tipo = 'F',
+                user = self.request.user,
+                direccion_1=form.cleaned_data['direccion_facturacion_1'],
+                direccion_2=form.cleaned_data['direccion_facturacion_2'],
+                codigo_zip=form.cleaned_data['codigo_zip_facturacion'],
+                ciudad=form.cleaned_data['ciudad_facturacion'],
+            )
+            order.direccion_facturacion = address
+
+        # Hacemos el save para cualquier opcion anterior
+        order.save()
+        messages.info(
+            self.request, "Usted ha rellenado todos los campos correctamente.")
+        return super(CheckoutView, self).form_valid(form)
+
+
+
+    # Le pasamos al html los datos necesarios
+    def get_context_data(self, **kwargs):
+        context = super(CheckoutView, self).get_context_data(**kwargs)
+        context['pedido'] = get_or_set_order_session(self.request)
+        return context
+
+    # Le pasamos al formulario el id del usuario
+    def get_form_kwargs(self):
+        kwargs = super(CheckoutView, self).get_form_kwargs()
+        kwargs["user_id"] = self.request.user.id
+        return kwargs
+
+
+    
+class MisPedidosView(generic.TemplateView):
+    template_name = "tienda/pedidos_cliente.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(MisPedidosView, self).get_context_data(**kwargs)
+        ped = get_pedidos_session(self.request)
+        context["pedidos"] = ped
+        return context

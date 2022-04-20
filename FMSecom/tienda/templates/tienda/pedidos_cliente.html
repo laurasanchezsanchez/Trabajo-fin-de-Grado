@@ -1,0 +1,18 @@
+{% extends "ecommerce/base.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;" >
+    <div class="container clearfix text-center" >
+        <h1>Mis pedidos</h1>
+    </div>
+</section>
+
+<br>
+
+    <p>{{pedidos.first.items}}</p>
+
+
+{% endblock %}

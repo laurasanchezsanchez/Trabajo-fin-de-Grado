@@ -109,10 +109,17 @@ class ItemPedido(models.Model):
     pedido = models.ForeignKey(
         Pedido, related_name='items', on_delete=models.CASCADE)
     producto = models.ForeignKey(Productos, on_delete=models.CASCADE)
+
+    # La cantidad no nos hará falta por ahora
     cantidad = models.PositiveIntegerField(default=1)
 
     def __str__(self):
+        return self.reference_number
+
+    @property
+    def reference_number(self):
         return f"{self.cantidad}    x   {self.producto.nombre}"
+        
 
     # Precio en centimos del producto * su cantidad
     def precio_bruto_producto(self):

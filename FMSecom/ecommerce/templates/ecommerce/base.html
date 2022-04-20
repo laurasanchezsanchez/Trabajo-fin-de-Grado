@@ -1,0 +1,287 @@
+{% load static %}
+{% load carrito_template_tags %}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+
+    <!-- Stylesheets
+	============================================= -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
+        rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'ecommerce/css/bootstrap.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'ecommerce/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'ecommerce/css/swiper.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'ecommerce/css/dark.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'ecommerce/css/font-icons.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'ecommerce/css/animate.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'ecommerce/css/magnific-popup.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'ecommerce/css/custom.css' %}" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'ecommerce/css/components/ion.rangeslider.css' %}" type="text/css" />
+
+    <!-- Titulo Cabecera -->
+    <title> FMSecom </title>
+
+</head>
+
+<body class="stretched">
+
+
+    <!-- Document Wrapper -->
+    <div id="wrapper" class="clearfix">
+        <!-- Header -->
+        <header id="header" class="full-header transparent-header" data-sticky-class="not-dark">
+
+            <div id="header-wrap">
+                <div class="container" style="margin:auto">
+                    <p style="text-align: left; margin:0px; margin-left:10px; margin-top:10px; padding:0%;">
+
+                        {% if user.is_authenticated %}
+
+                        Estamos encantados de tenerte como cliente, <strong>{{user.username}}</strong>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        
+                        <a href="{% url 'tienda:mis-pedidos' %}" style="padding:0%;">Mis pedidos</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'autenticacion:cerrar_sesion' %}" style="padding:0%;">Cerrar sesion</a>
+                        
+
+                        {% else %}
+
+                        <a href="{% url 'autenticacion:login' %}">Login</a>
+                         &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'autenticacion:autenticacion' %}">Registrate</a>
+
+                        {% endif %}
+                    </p>
+                    <hr>
+                    <div class="header-row">
+
+
+                        <!-- Logo superior izquierda-->
+                        <div id="logo" >
+                            <a href="/" class="standard-logo"
+                                data-dark-logo="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"><img
+                                    src="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"></a>
+                            <a href="/" class="retina-logo" 
+                                data-dark-logo="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"><img 
+                                    src="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"></a>
+                        </div>
+                        <!-- #logo end -->
+
+                        <div class="header-misc">
+                            <!-- LUPA DE ARRIBA -->
+                            <div id="top-search" class="header-misc-icon">
+                                <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
+                                        class="icon-line-cross"></i></a>
+                            </div>
+                            <!-- end lupa-->
+
+                            <!-- CARRITO DE ARRIBA -->
+                            <div id="top-cart" class="header-misc-icon d-none d-sm-block">
+                                <a href="{% url 'tienda:resumen-carrito' %}"><i class="icon-line-bag"></i><span
+                                        class="top-cart-number">{{ request|count_items }}</span></a>
+                            </div>
+                            <!-- end carrito -->
+                        </div>
+
+                        <!-- Para cuando se hace la ventana más pequeña -->
+                        <div id="primary-menu-trigger">
+							<svg class="svg-trigger" viewBox="0 0 100 100">
+								<path
+									d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+								</path>
+								<path d="m 30,50 h 40"></path>
+								<path
+									d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+								</path>
+							</svg>
+						</div>
+
+                        <!-- NAVEGACION SUPERIOR -->
+                        <nav class="primary-menu">
+                            <ul class="menu-container">
+
+                                <!-- TELEFONO-->
+                                <li class="menu-item">
+                                    <a class="menu-link">
+                                        <h3 id="cabeceraTelf">📞 {{telefono.dato_1}}</h3>
+                                    </a>
+                                </li>
+
+                                <!-- INICIO-->
+                                <li class="menu-item">
+                                    <a class="menu-link" href="/">
+                                        <div class="fondoCabecera menuPrincipal">Inicio</div>
+                                    </a>
+                                </li>
+
+                                <!-- PRODUCTOS-->
+                                <li class="menu-item ">
+                                    <a class="menu-link" href="/tienda/">
+                                        <div class="fondoCabecera">Productos</div>
+                                    </a>
+                                </li>
+
+                                <!-- AYUDA AL USUARIO-->
+                                <li class="menu-item">
+                                    <a class="menu-link" href="#">
+                                        <div class="fondoCabecera">Ayuda al usuario</div>
+                                    </a>
+                                    <ul class="sub-menu-container">
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <div><i class="icon-stack"></i>Leyes</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="#">
+                                                <div><i class="icon-stack"></i>Manuales</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{% url 'ecommerce:tutoriales' %}">
+                                                <div><i class="icon-stack"></i>Tutoriales</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{% url 'ecommerce:instalaciones' %}">
+                                                <div><i class="icon-stack"></i>Nuestras instalaciones</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{% url 'ecommerce:receptora' %}">
+                                                <div><i class="icon-stack"></i>Servicio CRA (Receptora)</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <!-- CONTACTO -->
+                                <li class="menu-item">
+                                    <a class="menu-link" href="{% url 'ecommerce:contacto' %}">
+                                        <div class="fondoCabecera">Contacto</div>
+                                    </a>
+                                </li>
+
+                                <!-- OFERTAS -->
+                                <li class="menu-item">
+                                    <a class="menu-link" href="{% url 'ecommerce:ofertas' %}">
+                                        <div class="fondoCabecera">Ofertas</div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </nav><!-- FIN DE LA BARRA PRINCIPAL -->
+
+                        <!-- Busqueda -->
+                        <form class="top-search-form" action="search.html" method="get">
+                            <input type="text" name="q" class="form-control" value="" placeholder="Buscar..."
+                                autocomplete="off">
+                        </form>
+
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="header-wrap-clone"></div>
+
+        </header>
+
+        <!-- FIN CABECERA -->
+
+        {% block contenido %}
+
+        {% endblock %}
+
+        <!-- FOOTER -->
+
+        <footer id="footer" class="dark"
+            style="background-image: url('{% static 'ecommerce/images/ecommerce/imagenes/footer.jpg' %}');">
+            <!-- Copyrights
+			============================================= -->
+            <div id="copyrights">
+                <div class="container">
+                    <div class="row justify-content-between col-mb-30">
+
+                        <div class="col-lg-5 ">
+                            Copyright ©
+                            <address>
+                                {% autoescape off %} {{ubicacion.dato_1}} {% endautoescape %}
+                            </address>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <abbr title="Teléfono"><strong>Teléfono: </strong></abbr>(+34) {{telefono.dato_1}}<br>
+                            <abbr title="Email"><strong>Email: </strong></abbr>{{email.dato_1}}
+
+                            <br></br>
+
+                            <a href="https://es-es.facebook.com/DSM-seguridad-390049028044888/"
+                                class="social-icon inline-block si-medium mb-10 si-facebook">
+                                <i class="icon-facebook"></i>
+                                <i class="icon-facebook"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/dsmseguridad/"
+                                class="social-icon inline-block si-medium mb-10 si-instagram">
+                                <i class="icon-instagram"></i>
+                                <i class="icon-instagram"></i>
+                            </a>
+                        </div>
+
+                        <div class="copyrights-menu copyright-links">
+                            <a href="{% url 'ecommerce:index' %}">Inicio</a>/<a
+                                href="{% url 'ecommerce:contacto' %}">Contacto</a>/<a
+                                href="{% url 'ecommerce:ofertas' %}">Ofertas</a>
+                        </div>
+
+                    </div>
+
+                    <br></br>
+                    <p class="footer-font">
+                        Esta página Web puede contener referencias a marcas comerciales o marcas registradas de FMSecom.
+                        Queda prohibido su uso sin el consentimiento previo y expreso de Domingo Sánchez
+                        Marín. Todas las demás referencias a otras marcas comerciales o registradas pertenecen a sus
+                        respectivos propietarios, sin que pueda entenderse que el acceso a la página Web atribuya
+                        derecho alguno sobre las mismas.
+                        FMSecom se reserva el derecho de modificar, en cualquier momento y sin necesidad
+                        de previo aviso, la configuración y contenidos de la página Web.
+                        Conforme a la Ley Orgánica 15/1999, de 13 de Diciembre, de Protección de Datos de Carácter
+                        Personal, FMSecom se compromete a tratar los datos facilitados por los usuarios a
+                        través de los formularios existentes en la página Web con total confidencialidad.
+                        Conforme al artículo 5 de la citada Ley Orgánica, los usuarios pueden acceder a sus datos
+                        personales, con derecho a modificación y cancelación mediante la oportuna solicitud por escrito
+                        al titular de la página Web y el fichero a la dirección que consta en los datos del titular de
+                        la página Web en los términos que suscribe la legislación vigente.
+                    </p>
+
+                </div>
+            </div><!-- #copyrights end -->
+        </footer><!-- #footer end -->
+    </div><!-- #wrapper end -->
+
+
+    <!-- Go To Top
+	============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- JavaScripts
+	============================================= -->
+    <script src="{% static 'ecommerce/js/jquery.js' %}"></script>
+    <script src="{% static 'ecommerce/js/plugins.min.js' %}"></script>
+
+    <!-- Footer Scripts
+	============================================= -->
+    <script src="{% static 'ecommerce/js/functions.js' %}"></script>
+
+    <!-- Range Slider Plugin -->
+    <script src="{% static 'ecommerce/js/components/rangeslider.min.js' %}"></script>
+
+</body>
+</html>

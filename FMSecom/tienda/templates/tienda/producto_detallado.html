@@ -1,14 +1,15 @@
-{% extends "ecommerce/index.html" %}
+{% extends "ecommerce/base.html" %}
 {% load static %}
 {% load crispy_forms_tags %}
 
 {% block contenido %}
-<section id="page-title">
-    <div class="container clearfix">
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;">
+    <div class="container clearfix text-center">
         <h1>{{producto.nombre}}</h1>
         <span>Compre sus productos deseados</span>
     </div>
-</section><!-- #page-title end -->
+</section>
 
 
 <section id="content">
@@ -28,20 +29,14 @@
                                     <div class="flexslider">
                                         <div class="slider-wrap" data-lightbox="gallery">
                                             <div class="slide" data-thumb="{{producto.imagen1.url}}"><a
-                                                    href="images/shop/dress/3.jpg"
-                                                    title="Pink Printed Dress - Front View"
-                                                    data-lightbox="gallery-item"><img src="{{producto.imagen1.url}}"
-                                                        alt="Pink Printed Dress"></a></div>
+                                                    href="images/shop/dress/3.jpg" data-lightbox="gallery-item"><img
+                                                        src="{{producto.imagen1.url}}"></a></div>
                                             <div class="slide" data-thumb={{producto.imagen2.url}}><a
-                                                    href="images/shop/dress/3-1.jpg"
-                                                    title="Pink Printed Dress - Side View"
-                                                    data-lightbox="gallery-item"><img src={{producto.imagen2.url}}
-                                                        alt="Pink Printed Dress"></a></div>
+                                                    href="images/shop/dress/3-1.jpg" data-lightbox="gallery-item"><img
+                                                        src={{producto.imagen2.url}}></a></div>
                                             <div class="slide" data-thumb={{producto.imagen3.url}}><a
-                                                    href="images/shop/dress/3-2.jpg"
-                                                    title="Pink Printed Dress - Back View"
-                                                    data-lightbox="gallery-item"><img src={{producto.imagen3.url}}
-                                                        alt="Pink Printed Dress"></a></div>
+                                                    href="images/shop/dress/3-2.jpg" data-lightbox="gallery-item"><img
+                                                        src={{producto.imagen3.url}}></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +52,8 @@
                                 <!-- Product Single - Price
                                 ============================================= -->
                                 <div class="product-price"> Producto y servicio: {{producto.precio_producto_servicio}} €
-                                    <br><ins> Producto: {{producto.precio_producto}} €</ins></div>
+                                    <br><ins> Producto: {{producto.precio_producto}} €</ins>
+                                </div>
                                 <!-- Product Single - Price End -->
 
 
@@ -66,27 +62,29 @@
 
                             <div class="line"></div>
 
-                            
+
                             <form class="cart mb-0 d-flex justify-content-between align-items-center" method="post"
                                 enctype='multipart/form-data'>
 
                                 <!-- BOTON SUMAR O RESTAR CANTIDAD A COMPRAR
-                            ============================================= -->
+                            
                                 <div class="quantity clearfix">
                                     <input type="button" value="-" class="minus">
-                                    <input type="number" step="1" min="1" name="quantity" value="1" title="Qty" class="qty" />
+                                    <input type="number" step="1" min="1" name="quantity" value="1" title="Qty"
+                                        class="qty" />
                                     <input type="button" value="+" class="plus">
                                 </div>
+                                ============================================= -->
 
                                 <!-- Un usuario no registrado tambien puede agregar al carrito -->
 
-                                <form method="POST">
+                                <form method="POST" >
                                     {% csrf_token %}
                                     {{ form|crispy }}
-                                    <button type='submit' class="btn btn-sm btn-primary buy-now">Add to Cart</button>
+                                    <button type='submit' class="add-to-cart button m-0">Añadir al carrito</button>
                                 </form>
-                                
-                                <a type="submit" class="add-to-cart button m-0" href="#">Añadir al carrito</a>
+
+                               
                             </form><!-- Product Single - Quantity & Cart Button End -->
 
                             <div class="line"></div>
@@ -103,7 +101,7 @@
                                     <span itemprop="productID" class="sku_wrapper">ID del producto: <span
                                             class="sku">{{producto.id}}</span></span>
                                     <br>
-                                    <span class="posted_in">Categoria: <a href="#"
+                                    <span class="posted_in">Categoria: <a href="{% url 'tienda:categoria' producto.categoria_slug %}"
                                             rel="tag">{{producto.categoria}}</a>.</span>
 
                                 </div>
@@ -220,7 +218,9 @@
                         </div>
                         <div class="product-desc center">
                             <div class="product-title">
-                                <h3><a href="{% url 'tienda:producto-detallado' producto.slug %}">{{producto.nombre}}</a></h3>
+                                <h3><a
+                                        href="{% url 'tienda:producto-detallado' producto.slug %}">{{producto.nombre}}</a>
+                                </h3>
                             </div>
                             <div class="product-price">{{producto.precio_producto}} €</div>
                         </div>

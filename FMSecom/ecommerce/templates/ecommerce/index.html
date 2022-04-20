@@ -1,422 +1,140 @@
+{% extends "./base.html" %}
 {% load static %}
-{% load carrito_template_tags %}
-<!-- {% static 'ecommerce/' %} -->
 
-<!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+{% block contenido %}
 
-<head>
+<!-- SLIDER PRINCIPAL - IMAGENES CON SLOGAN -->
+<section id="slider" class="slider-element slider-parallax swiper_wrapper min-vh-60 min-vh-md-100 include-header">
+	<div class="slider-inner">
+		<div class="swiper-container swiper-parent">
+			<div class="swiper-wrapper">
 
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="author" content="SemiColonWeb" />
-
-	<!-- Stylesheets
-	============================================= -->
-	<link
-		href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
-		rel="stylesheet" type="text/css" />
-	<link rel="stylesheet" href="{% static 'ecommerce/css/bootstrap.css' %}" type="text/css" />
-	<link rel="stylesheet" href="{% static 'ecommerce/style.css' %}" type="text/css" />
-	<link rel="stylesheet" href="{% static 'ecommerce/css/swiper.css' %}" type="text/css" />
-	<link rel="stylesheet" href="{% static 'ecommerce/css/dark.css' %}" type="text/css" />
-	<link rel="stylesheet" href="{% static 'ecommerce/css/font-icons.css' %}" type="text/css" />
-	<link rel="stylesheet" href="{% static 'ecommerce/css/animate.css' %}" type="text/css" />
-	<link rel="stylesheet" href="{% static 'ecommerce/css/magnific-popup.css' %}" type="text/css" />
-
-	<link rel="stylesheet" href="{% static 'ecommerce/css/custom.css' %}" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-	<link rel="stylesheet" href="{% static 'ecommerce/css/components/ion.rangeslider.css' %}" type="text/css" />
-
-	<!-- Titulo Cabecera -->
-	<title> FMSecom </title>
-
-</head>
-
-<body class="stretched">
-
-	<!-- Document Wrapper -->
-	<div id="wrapper" class="clearfix">
-
-		<!-- Header -->
-		<header id="header" class="full-header transparent-header" data-sticky-class="not-dark">
-			<div id="header-wrap">
-				<div class="container">
-					<div class="header-row">
-
-						<!-- Logo -->
-						<div id="logo">
-							<a href="/" class="standard-logo"
-								data-dark-logo="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"
-									alt="Canvas Logo"></a>
-							<a href="/" class="retina-logo"
-								data-dark-logo="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"><img
-									src="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"
-									alt="Canvas Logo"></a>
-						</div><!-- #logo end -->
-
-						<div class="header-misc">
-
-							<!-- LUPA DE ARRIBA -->
-							<div id="top-search" class="header-misc-icon">
-								<a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
-										class="icon-line-cross"></i></a>
-							</div><!-- #top-search end -->
-
-							<!-- CARRITO DE ARRIBA -->
-							<div id="top-cart" class="header-misc-icon d-none d-sm-block">
-								<a href="{% url 'tienda:resumen-carrito' %}"><i class="icon-line-bag"></i><span
-										class="top-cart-number">{{ request|count_items }}</span></a>
-							</div>
-
-							
-							
-
-						</div>
-
-						<!-- NAVEGACION SUPERIOR -->
-						<nav class="primary-menu">
-							<ul class="menu-container">
-
-								<!-- TELEFONO-->
-								<li class="menu-item">
-									<a class="menu-link">
-										<h3 id="cabeceraTelf">📞 {{telefono.dato_1}}</h3>
-									</a>
-								</li>
-
-								<!-- INICIO-->
-								<li class="menu-item" >
-									<a class="menu-link" href="/">
-										<div class="fondoCabecera menuPrincipal">Inicio</div>
-									</a>
-								</li>
-
-								<!-- PRODUCTOS-->
-								
-								<li class="menu-item ">
-									<a class="menu-link" href="/tienda/">
-										<div class="fondoCabecera">Productos</div>
-									</a>
-									
-									
-								</li>
-
-
-								<li class="menu-item">
-									<a class="menu-link" href="#">
-										<div class="fondoCabecera">Ayuda al usuario</div>
-									</a>
-									<ul class="sub-menu-container">
-										<li class="menu-item">
-											<a class="menu-link" href="#">
-												<div><i class="icon-stack"></i>Leyes</div>
-											</a>
-										</li>
-										<li class="menu-item">
-											<a class="menu-link" href="#">
-												<div><i class="icon-stack"></i>Manuales</div>
-											</a>
-										</li>
-										<li class="menu-item">
-											<a class="menu-link" href="/tutoriales">
-												<div><i class="icon-stack"></i>Tutoriales</div>
-											</a>
-										</li>
-										<li class="menu-item">
-											<a class="menu-link" href="/instalaciones/">
-												<div><i class="icon-stack"></i>Nuestras instalaciones</div>
-											</a>
-										</li>
-										<li class="menu-item">
-											<a class="menu-link" href="/receptora">
-												<div><i class="icon-stack"></i>Servicio CRA (Receptora)</div>
-											</a>
-										</li>
-									</ul>
-								</li>
-
-								<!-- CONTACTO -->
-								<li class="menu-item">
-									<a class="menu-link" href="/contacto">
-										<div class="fondoCabecera">Contacto</div>
-									</a>
-								</li>
-
-								<!-- OFERTAS -->
-								<li class="menu-item">
-									<a class="menu-link" href="/ofertas">
-										<div class="fondoCabecera">Ofertas</div>
-									</a>
-								</li>
-							</ul>
-
-						</nav><!-- FIN DE LA BARRA PRINCIPAL -->
-
-						<form class="top-search-form" action="search.html" method="get">
-							<input type="text" name="q" class="form-control" value="" placeholder="Buscar..."
-								autocomplete="off">
-						</form>
-
-						
-					</div>
-					<br>
-					<p style="text-align: right; margin-right: 50px;">
-						{% if user.is_authenticated %}
-							Hola {{user.username}} <a href="{% url 'autenticacion:cerrar_sesion' %}">Cerrar sesion</a>
-							{% else %}
-							<a href="{% url 'autenticacion:login' %}">Login</a>
-							<a href="{% url 'autenticacion:autenticacion' %}">Registrate</a>
-							{% endif %}
-					</p>
-				</div>
-			</div>
-			<div class="header-wrap-clone"></div>
-		</header>
-
-		<!-- FIN CABECERA -->
-
-		{% block contenido %}
-
-		<!-- SLIDER PRINCIPAL - IMAGENES CON SLOGAN -->
-		<section id="slider"
-			class="slider-element slider-parallax swiper_wrapper min-vh-60 min-vh-md-100 include-header">
-			<div class="slider-inner">
-				<div class="swiper-container swiper-parent">
-					<div class="swiper-wrapper">
-
-						<!-- PRIMER SLIDER -->
-						<div class="swiper-slide">
-							<div class="container">
-								<div class="slider-caption slider-caption-center">
-									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
-										{{slider_1.titulo_informacion}}</h2>
-									<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
-										<strong>{{slider_1.descripcion_informacion}}</strong>
-									</p>
-								</div>
-							</div>
-							<!-- IMAGEN GRANDE PRINCIPAL -->
-							<div class="swiper-slide-bg"
-								style="background-image: url('{% static 'ecommerce/images/slider/swiper/5.jpg' %}');">
-							</div>
-						</div>
-
-						<!-- SEGUNDO SLIDER -->
-						<div class="swiper-slide">
-							<div class="container">
-								<div class="slider-caption slider-caption-center">
-									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
-										{{slider_2.titulo_informacion}}</h2>
-									<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
-										{{slider_2.descripcion_informacion}}
-									</p>
-								</div>
-							</div>
-							<div class="swiper-slide-bg"
-								style="background-image: url({% static 'ecommerce/images/slider/swiper/10.jpg' %}); background-position: center top;">
-							</div>
-						</div>
-
-						<!-- TERCER SLIDER -->
-						<div class="swiper-slide">
-							<div class="container">
-								<div class="slider-caption slider-caption-center">
-									<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
-										{{slider_3.titulo_informacion}}</h2>
-									<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
-										{{slider_3.descripcion_informacion}}
-									</p>
-								</div>
-							</div>
-							<div class="swiper-slide-bg"
-								style="background-image: url({% static 'ecommerce/images/slider/swiper/3.jpg' %}); background-position: center top;">
-							</div>
-						</div>
-					</div>
-
-					<div class="slider-arrow-left"><i class="icon-angle-left"></i></div>
-					<div class="slider-arrow-right"><i class="icon-angle-right"></i></div>
-				</div>
-				<a href="#" data-scrollto="#content" data-offset="100" class="one-page-arrow dark"><i
-						class="icon-angle-down infinite animated fadeInDown"></i></a>
-			</div>
-		</section>
-
-
-		<!-- Contenido -->
-
-
-		<!-- Primera parte - Acerca de FMSecom -->
-		<section id="content">
-			<div class="content-wrap">
-				<div class="container">
-					<div class="row align-items-center">
-
-						<div class="col-lg-5">
-							<div class="heading-block">
-								<h1 id="textoRojo">{{acerca_de.titulo_informacion}}</h1>
-							</div>
-							<p class="lead">{{acerca_de.descripcion_informacion}}
-
+				<!-- PRIMER SLIDER -->
+				<div class="swiper-slide">
+					<div class="container">
+						<div class="slider-caption slider-caption-center">
+							<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
+								{{slider_1.titulo_informacion}}</h2>
+							<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
+								<strong>{{slider_1.descripcion_informacion}}</strong>
 							</p>
 						</div>
+					</div>
 
-						<div class="col-lg-7 align-self-end">
+					<!-- IMAGEN GRANDE PRINCIPAL -->
+					<div class="swiper-slide-bg"
+						style="background-image: url('{% static 'ecommerce/images/slider/swiper/5.jpg' %}');">
+					</div>
 
-							<div class="position-relative overflow-hidden">
-								<img src="{{imagen_camara_publicitaria.imagen.url}}" data-animate="fadeInUp"
-									data-delay="100" alt="Chrome">
+				</div>
 
-							</div>
-
+				<!-- SEGUNDO SLIDER -->
+				<div class="swiper-slide">
+					<div class="container">
+						<div class="slider-caption slider-caption-center">
+							<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
+								{{slider_2.titulo_informacion}}</h2>
+							<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
+								{{slider_2.descripcion_informacion}}
+							</p>
 						</div>
-
-
+					</div>
+					<div class="swiper-slide-bg"
+						style="background-image: url({% static 'ecommerce/images/slider/swiper/10.jpg' %}); background-position: center top;">
 					</div>
 				</div>
 
-				<!-- Segunda parte - Salto de linea -->
-				<p class="lead center">
-					{% autoescape off %} {{descripcion_del_personal.descripcion_informacion}} {% endautoescape %}
-				</p>
-				<hr>
-				<p class="lead center">
-
-					{% autoescape off %} {{descripcion_de_servicios.descripcion_informacion}} {% endautoescape %}
-					<br>
-					<br>
-
-					<!-- <img src="{{imagen_camara_publicitaria.imagen.url}}"></img> -->
-
-
-
-				</p>
-
-
-
-
-				<!-- Tercera parte - Enlace a nuestras ofertas -->
-				<a href="/ofertas" class="button button-full button-dark center text-end bottommargin-lg">
-					<div class="container clearfix">
-						{{titulo_de_oferta.descripcion_informacion}} <strong>Ver</strong> <i class="icon-caret-right"
-							style="top:4px;"></i>
+				<!-- TERCER SLIDER -->
+				<div class="swiper-slide">
+					<div class="container">
+						<div class="slider-caption slider-caption-center">
+							<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
+								{{slider_3.titulo_informacion}}</h2>
+							<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
+								{{slider_3.descripcion_informacion}}
+							</p>
+						</div>
 					</div>
-				</a>
-
-				<!-- Cuarta parte - Hay que poner el include para poder usar el mapa en otros html -->
-				{% include './mapa.html' %}
-
-				<!-- Quinta parte - Logos de las empresas con las que colaboramos - receptora, safire... -->
-				<div class="container clearfix">
-					<div id="oc-clients" class="owl-carousel image-carousel carousel-widget" data-margin="60"
-						data-loop="true" data-nav="false" data-autoplay="800" data-pagi="false" data-items-sm="9">
-
-						{% for otra_empresa in otras_empresas.all %}
-						<div class="oc-item"><img src="{{otra_empresa.imagen.url}}"> </div>
-						{% endfor %}
+					<div class="swiper-slide-bg"
+						style="background-image: url({% static 'ecommerce/images/slider/swiper/3.jpg' %}); background-position: center top;">
 					</div>
-
 				</div>
-				<p class="lead center">
-					<br>
-					<br>
-					{% autoescape off %} {{datos_obligatorios.descripcion_informacion}}{% endautoescape %}
-				</p>
 			</div>
-		</section>
+
+			<div class="slider-arrow-left"><i class="icon-angle-left"></i></div>
+			<div class="slider-arrow-right"><i class="icon-angle-right"></i></div>
+		</div>
+		<a href="#" data-scrollto="#content" data-offset="100" class="one-page-arrow dark"><i
+				class="icon-angle-down infinite animated fadeInDown"></i></a>
+	</div>
+</section>
 
 
+<!-- Contenido -->
 
-		<!-- Fin del contenido - bloque -->
-
-		{% endblock %}
-		<footer id="footer" class="dark" style="background-image: url('{% static 'ecommerce/images/ecommerce/imagenes/footer.jpg' %}');">
-			<!-- Copyrights
-			============================================= -->
-			<div id="copyrights">
-				<div class="container">
-
-					<div class="row justify-content-between col-mb-30">
-
-
-						<div class="col-lg-5 ">
-							Copyright ©
-							<address>
-								{% autoescape off %} {{ubicacion.dato_1}} {% endautoescape %}
-							</address>
-						</div>
-						<div class="col-lg-5">
-							<abbr title="Teléfono"><strong>Teléfono: </strong></abbr>(+34) {{telefono.dato_1}}<br>
-							<abbr title="Email"><strong>Email: </strong></abbr>{{email.dato_1}}
-							<br></br>
-							<a href="https://es-es.facebook.com/DSM-seguridad-390049028044888/"
-								class="social-icon inline-block si-medium mb-10 si-facebook">
-								<i class="icon-facebook"></i>
-								<i class="icon-facebook"></i>
-							</a>
-							<a href="https://www.instagram.com/dsmseguridad/"
-								class="social-icon inline-block si-medium mb-10 si-instagram">
-								<i class="icon-instagram"></i>
-								<i class="icon-instagram"></i>
-							</a>
-						</div>
-						<div class="copyrights-menu copyright-links">
-							<a href="/">Inicio</a>/<a href="contacto">Contacto</a>/<a href="ofertas">Ofertas</a>
-						</div>
-
+<!-- Primera parte - Acerca de FMSecom -->
+<section id="content">
+	<div class="content-wrap">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-5">
+					<div class="heading-block">
+						<h1 id="textoRojo">{{acerca_de.titulo_informacion}}</h1>
 					</div>
-
-					<br></br>
-					<p class="footer-font">
-						Esta página Web puede contener referencias a marcas comerciales o marcas registradas de FMSecom.
-						Queda prohibido su uso sin el consentimiento previo y expreso de Domingo Sánchez
-						Marín. Todas las demás referencias a otras marcas comerciales o registradas pertenecen a sus
-						respectivos propietarios, sin que pueda entenderse que el acceso a la página Web atribuya
-						derecho alguno sobre las mismas.
-						FMSecom se reserva el derecho de modificar, en cualquier momento y sin necesidad
-						de previo aviso, la configuración y contenidos de la página Web.
-						Conforme a la Ley Orgánica 15/1999, de 13 de Diciembre, de Protección de Datos de Carácter
-						Personal, FMSecom se compromete a tratar los datos facilitados por los usuarios a
-						través de los formularios existentes en la página Web con total confidencialidad.
-						Conforme al artículo 5 de la citada Ley Orgánica, los usuarios pueden acceder a sus datos
-						personales, con derecho a modificación y cancelación mediante la oportuna solicitud por escrito
-						al titular de la página Web y el fichero a la dirección que consta en los datos del titular de
-						la página Web en los términos que suscribe la legislación vigente.
+					<p class="lead">{{acerca_de.descripcion_informacion}}
 					</p>
 				</div>
-			</div><!-- #copyrights end -->
-		</footer><!-- #footer end -->
 
+				<div class="col-lg-7 align-self-end">
+					<div class="position-relative overflow-hidden">
+						<img src="{{imagen_camara_publicitaria.imagen.url}}" data-animate="fadeInUp" data-delay="100"
+							>
+					</div>
+				</div>
+			</div>
+		</div>
 
+		<!-- Segunda parte - Salto de linea -->
+		<p class="lead center">
+			{% autoescape off %} {{descripcion_del_personal.descripcion_informacion}} {% endautoescape %}
+		</p>
+		<hr>
+		<p class="lead center">
+			{% autoescape off %} {{descripcion_de_servicios.descripcion_informacion}} {% endautoescape %}
+	
+			<br>
+			<br>
+		</p>
 
+		<!-- Tercera parte - Enlace a nuestras ofertas -->
+		<a href="/ofertas" class="button button-full button-dark center text-end bottommargin-lg">
+			<div class="container clearfix">
+				{{titulo_de_oferta.descripcion_informacion}} <strong>Ver</strong> <i class="icon-caret-right"
+					style="top:4px;"></i>
+			</div>
+		</a>
 
+		<!-- Cuarta parte - Hay que poner el include para poder usar el mapa en otros html -->
+		{% include './mapa.html' %}
 
+		<!-- Quinta parte - Logos de las empresas con las que colaboramos - receptora, safire... -->
+		<div class="container clearfix">
+			<div id="oc-clients" class="owl-carousel image-carousel carousel-widget" data-margin="60" data-loop="true"
+				data-nav="false" data-autoplay="800" data-pagi="false" data-items-sm="9">
 
+				{% for otra_empresa in otras_empresas.all %}
+				<div class="oc-item"><img src="{{otra_empresa.imagen.url}}"> </div>
+				{% endfor %}
+			</div>
+		</div>
 
+		<p class="lead center">
+			<br>
+			<br>
+			{% autoescape off %} {{datos_obligatorios.descripcion_informacion}}{% endautoescape %}
+		</p>
+	</div>
+</section>
 
-
-	</div><!-- #wrapper end -->
-
-
-	<!-- Go To Top
-	============================================= -->
-	<div id="gotoTop" class="icon-angle-up"></div>
-
-	<!-- JavaScripts
-	============================================= -->
-
-	<script src="{% static 'ecommerce/js/jquery.js' %}"></script>
-	<script src="{% static 'ecommerce/js/plugins.min.js' %}"></script>
-
-	<!-- Footer Scripts
-	============================================= -->
-	<script src="{% static 'ecommerce/js/functions.js' %}"></script>
-
-	<!-- Range Slider Plugin -->
-	<script src="{% static 'ecommerce/js/components/rangeslider.min.js' %}"></script>
-
-</body>
-
-</html>
+<!-- Fin del contenido - bloque -->
+{% endblock %}

@@ -1,14 +1,23 @@
-{% extends "ecommerce/index.html" %}
+{% extends "ecommerce/base.html" %}
 {% load static %}
 
 {% block contenido %}
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;" >
+    <div class="container clearfix text-center" >
+        <h1>Categorías</h1>
+    </div>
+</section>
+
 <br>
-
-
 {% for categoria in categorias %}
-<!-- nombre de la app:url -->
-<p><a href="{% url 'tienda:categoria' categoria.slug %}">{{categoria.nombre_categoria}}</a>
-</p>
+<section id="page-title">
+    <div class="container clearfix text-center">
+        <h3><a href="{% url 'tienda:categoria' categoria.slug %}">{{categoria.nombre_categoria}}</a>
+        </h3>
+    </div>
+</section>
 {% endfor %}
 
 {% endblock %}
