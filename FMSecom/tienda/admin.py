@@ -32,9 +32,22 @@ class direccionAdmin(admin.ModelAdmin):
         'direccion_tipo'
     ]
 
+
+class pedidoAdmin(admin.ModelAdmin):
+    list_display = [
+        'reference_number',
+        'user',
+        'start_date',
+        'direccion_facturacion',
+        'direccion_envio',
+        'get_subtotal',
+        'realizado'
+        
+    ]
+
 admin.site.register(Categorias_productos, categoriasAdministrador)
 admin.site.register(Productos, productosAdministrador)
 
-admin.site.register(Pedido)
+admin.site.register(Pedido, pedidoAdmin)
 admin.site.register(ItemPedido)
 admin.site.register(Direccion, direccionAdmin)

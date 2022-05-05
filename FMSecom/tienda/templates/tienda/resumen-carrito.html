@@ -1,5 +1,6 @@
 {% extends "ecommerce/base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block contenido %}
 <br>
@@ -44,6 +45,7 @@
                         <td class="cart-product-price">{{ item.producto.get_precio }} €</td>
                         <td class="cart-product-quantity">
 
+                           
                             <div class="qty text-center">
                                 {{ item.cantidad }}
                             </div>
@@ -129,5 +131,6 @@
 
     </div>
 </section><!-- #content end -->
+
 
 {% endblock %}

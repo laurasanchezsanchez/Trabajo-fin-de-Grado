@@ -24,7 +24,9 @@
                     <div class="grid-inner">
                         <div class="product-image">
                             <a href="#"><img src="{{producto.imagen1.url}}" ></a>
-                            <a href="#"><img src="{{producto.imagen2.url}}"></a>
+                            {% if producto.imagen2 %}
+                                <a href="#"><img src="{{producto.imagen2.url}}"></a>
+                            {% endif %}
                             <div class="bg-overlay">
                                 <div class="bg-overlay-content align-items-end justify-content-between"
                                     data-hover-animate="fadeIn" data-hover-speed="400">

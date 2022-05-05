@@ -47,9 +47,7 @@ class indexListView(generic.ListView):
         context['descripcion_de_servicios'] = Informacion_index.objects.get(identificador="Descripcion de servicios")
         context['titulo_de_oferta'] = Informacion_index.objects.get(identificador="Titulo de oferta")
         context['datos_obligatorios'] = Informacion_index.objects.get(identificador="Datos obligatorios")
-        context['telefono'] = Informacion_empresa.objects.get(identificador="Numero de telefono")
-        context['email'] = Informacion_empresa.objects.get(identificador="Email")
-        context['ubicacion'] = Informacion_empresa.objects.get(identificador="Ubicacion")
+        
         context['imagen_camara_publicitaria'] = Informacion_empresa.objects.get(identificador="Imagen camara publicitaria")
         context['Empresas_apoyo'] = Empresas_apoyo.objects.all
         return context
@@ -60,36 +58,19 @@ class indexListView(generic.ListView):
 
 
 def ofertas(request):
-    
-    telefono = Informacion_empresa.objects.get(identificador="Numero de telefono")
-    email = Informacion_empresa.objects.get(identificador="Email")
-    ubicacion = Informacion_empresa.objects.get(identificador="Ubicacion")
 
-    return render(request, 'ecommerce/ofertas.html', 
-    {'telefono' : telefono,
-    'email' : email,
-    'ubicacion' : ubicacion
-    })
+    return render(request, 'ecommerce/ofertas.html')
 
 
 
 def tutoriales(request):
-    telefono = Informacion_empresa.objects.get(identificador="Numero de telefono")
-    email = Informacion_empresa.objects.get(identificador="Email")
-    ubicacion = Informacion_empresa.objects.get(identificador="Ubicacion")
 
-    return render(request, 'ecommerce/tutoriales.html', 
-    {'telefono' : telefono,
-    'email' : email,
-    'ubicacion' : ubicacion
-    })
+
+    return render(request, 'ecommerce/tutoriales.html')
 
 
 
 def instalaciones(request):
-    telefono = Informacion_empresa.objects.get(identificador="Numero de telefono")
-    email = Informacion_empresa.objects.get(identificador="Email")
-    ubicacion = Informacion_empresa.objects.get(identificador="Ubicacion")
     redes_sociales = Informacion_empresa.objects.get(identificador="Redes sociales")
     paso_1 = Informacion_instalaciones.objects.get(identificador="Paso 1")
     paso_2 = Informacion_instalaciones.objects.get(identificador="Paso 2")
@@ -97,9 +78,7 @@ def instalaciones(request):
 
 
     return render(request, 'ecommerce/instalaciones.html', 
-    {'telefono' : telefono,
-    'email' : email,
-    'ubicacion' : ubicacion,
+    {
     'redes_sociales' : redes_sociales,
     'paso_1' : paso_1,
     'paso_2' : paso_2,
@@ -107,9 +86,6 @@ def instalaciones(request):
     })
 
 def receptora(request):
-    telefono = Informacion_empresa.objects.get(identificador="Numero de telefono")
-    email = Informacion_empresa.objects.get(identificador="Email")
-    ubicacion = Informacion_empresa.objects.get(identificador="Ubicacion")
     redes_sociales = Informacion_empresa.objects.get(identificador="Redes sociales")
     paso_1 = Informacion_instalaciones.objects.get(identificador="Paso 1")
     paso_2 = Informacion_instalaciones.objects.get(identificador="Paso 2")
@@ -118,9 +94,7 @@ def receptora(request):
 
 
     return render(request, 'ecommerce/receptora.html', 
-    {'telefono' : telefono,
-    'email' : email,
-    'ubicacion' : ubicacion,
+    {
     'redes_sociales' : redes_sociales,
     'paso_1' : paso_1,
     'paso_2' : paso_2,
@@ -130,15 +104,10 @@ def receptora(request):
 
 
 def contacto(request):
-    telefono = Informacion_empresa.objects.get(identificador="Numero de telefono")
-    email = Informacion_empresa.objects.get(identificador="Email")
-    ubicacion = Informacion_empresa.objects.get(identificador="Ubicacion")
     redes_sociales = Informacion_empresa.objects.get(identificador="Redes sociales")
 
     return render(request, 'ecommerce/contacto.html', 
-    {'telefono' : telefono,
-    'email' : email,
-    'ubicacion' : ubicacion,
+    {
     'redes_sociales' : redes_sociales
     })
 
@@ -149,9 +118,6 @@ class ContactView(generic.FormView):
 
     def get_context_data(self, **kwargs):
         context = super(ContactView, self).get_context_data(**kwargs)
-        context['telefono'] = Informacion_empresa.objects.get(identificador="Numero de telefono")
-        context['email'] = Informacion_empresa.objects.get(identificador="Email")
-        context['ubicacion'] = Informacion_empresa.objects.get(identificador="Ubicacion")
         context['redes_sociales'] = Informacion_empresa.objects.get(identificador="Redes sociales")
 
         return context

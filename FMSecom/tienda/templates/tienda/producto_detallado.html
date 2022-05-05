@@ -31,12 +31,16 @@
                                             <div class="slide" data-thumb="{{producto.imagen1.url}}"><a
                                                     href="images/shop/dress/3.jpg" data-lightbox="gallery-item"><img
                                                         src="{{producto.imagen1.url}}"></a></div>
+                                            {% if producto.imagen2 %}
                                             <div class="slide" data-thumb={{producto.imagen2.url}}><a
                                                     href="images/shop/dress/3-1.jpg" data-lightbox="gallery-item"><img
                                                         src={{producto.imagen2.url}}></a></div>
+                                            {% endif %}
+                                            {% if producto.imagen3 %}
                                             <div class="slide" data-thumb={{producto.imagen3.url}}><a
                                                     href="images/shop/dress/3-2.jpg" data-lightbox="gallery-item"><img
                                                         src={{producto.imagen3.url}}></a></div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
@@ -78,13 +82,13 @@
 
                                 <!-- Un usuario no registrado tambien puede agregar al carrito -->
 
-                                <form method="POST" >
+                                <form method="POST">
                                     {% csrf_token %}
                                     {{ form|crispy }}
                                     <button type='submit' class="add-to-cart button m-0">Añadir al carrito</button>
                                 </form>
 
-                               
+
                             </form><!-- Product Single - Quantity & Cart Button End -->
 
                             <div class="line"></div>
@@ -101,7 +105,8 @@
                                     <span itemprop="productID" class="sku_wrapper">ID del producto: <span
                                             class="sku">{{producto.id}}</span></span>
                                     <br>
-                                    <span class="posted_in">Categoria: <a href="{% url 'tienda:categoria' producto.categoria_slug %}"
+                                    <span class="posted_in">Categoria: <a
+                                            href="{% url 'tienda:categoria' producto.categoria_slug %}"
                                             rel="tag">{{producto.categoria}}</a>.</span>
 
                                 </div>
@@ -214,7 +219,9 @@
                     <div class="product">
                         <div class="product-image">
                             <a href="#"><img src="{{producto.imagen1.url}}"></a>
+                            {% if producto.imagen2 %}
                             <a href="#"><img src="{{producto.imagen2.url}}"></a>
+                            {% endif %}
                         </div>
                         <div class="product-desc center">
                             <div class="product-title">

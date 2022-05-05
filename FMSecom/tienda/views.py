@@ -2,15 +2,10 @@ from django.shortcuts import render
 from .models import Categorias_productos, ItemPedido
 from .models import Productos, Direccion
 
-from ecommerce.models import Informacion_index
-from ecommerce.models import Informacion_empresa
-from ecommerce.models import Informacion_instalaciones
-from ecommerce.models import Empresas_apoyo
 
 # añadido para cambiar de vistas
 from dataclasses import fields
 from pdb import post_mortem
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import get_object_or_404, reverse, redirect
 from django.views import generic
 from .forms import AnadirAlCarrito, DireccionForm
@@ -25,13 +20,8 @@ from django.contrib import messages
 def categorias(request):
     return render(request, "tienda/categorias.html",
                   {
-                      "telefono": Informacion_empresa.objects.get(identificador="Numero de telefono"),
-                      "email": Informacion_empresa.objects.get(identificador="Email"),
-                      "ubicacion": Informacion_empresa.objects.get(identificador="Ubicacion"),
-
                       "categorias": Categorias_productos.objects.all
                   })
-
 
 
 # ------------------------------------------------------------------------
@@ -41,15 +31,9 @@ def categorias(request):
 def categoria_filtrada(request, slug):
     return render(request, "tienda/categoria_filtrada.html",
                   {
-                      "telefono": Informacion_empresa.objects.get(identificador="Numero de telefono"),
-                      "email": Informacion_empresa.objects.get(identificador="Email"),
-                      "ubicacion": Informacion_empresa.objects.get(identificador="Ubicacion"),
-
-                      "Empresas_apoyo": Empresas_apoyo.objects.all,
                       "categoria": Categorias_productos.objects.filter(slug=slug).first(),
                       "productos": Productos.objects.filter(categoria_slug=slug)
                   })
-
 
 
 # ------------------------------------------------------------------------
@@ -96,19 +80,13 @@ class ProductDetailView(generic.FormView):
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
         context['producto'] = self.get_object()
-        context['telefono'] = Informacion_empresa.objects.get(
-            identificador="Numero de telefono")
-        context['email'] = Informacion_empresa.objects.get(
-            identificador="Email")
-        context['ubicacion'] = Informacion_empresa.objects.get(
-            identificador="Ubicacion")
+
         context['categoria'] = Productos.objects.filter(slug=(self.get_object()).slug).get(
             categoria_slug=(self.get_object()).categoria_slug)
         context['productos_categoria'] = Productos.objects.filter(categoria_slug=(
             self.get_object()).categoria_slug).exclude(slug=(self.get_object()).slug)
 
         return context
-
 
 
 # ------------------------------------------------------------------------
@@ -124,7 +102,6 @@ class CarritoView(generic.TemplateView):
         return context
 
 
-
 # ------------------------------------------------------------------------
 # Funcion que incrementa 1 unidad la cantidad de un item de la compra
 # ------------------------------------------------------------------------
@@ -137,10 +114,9 @@ class IncrementarCantidadView(generic.View):
         return redirect("tienda:resumen-carrito")
 
 
-
 # ------------------------------------------------------------------------
 # Funcion que decrementa 1 unidad la cantidad de un item de la compra
-# ------------------------------------------------------------------------ 
+# ------------------------------------------------------------------------
 
 class DecrementarCantidadView(generic.View):
     def get(self, request, *args, **kwargs):
@@ -152,7 +128,6 @@ class DecrementarCantidadView(generic.View):
             order_item.cantidad -= 1
             order_item.save()
         return redirect("tienda:resumen-carrito")
-
 
 
 # ------------------------------------------------------------------------
@@ -178,14 +153,16 @@ class CheckoutView(generic.FormView):
     def get_success_url(self):
         return reverse("tienda:resumen-carrito")
 
-
     # D
+
     def form_valid(self, form):
 
         # Primero cogemos el pedido del cliente
         order = get_or_set_order_session(self.request)
-        direccion_envio_seleccionada = form.cleaned_data.get('direccion_envio_seleccionada')
-        direccion_facturacion_seleccionada = form.cleaned_data.get('direccion_facturacion_seleccionada')
+        direccion_envio_seleccionada = form.cleaned_data.get(
+            'direccion_envio_seleccionada')
+        direccion_facturacion_seleccionada = form.cleaned_data.get(
+            'direccion_facturacion_seleccionada')
 
         # Si el cliente ha podido seleccionar una de sus direcciones, la guardamos en el pedido
         if direccion_envio_seleccionada:
@@ -194,8 +171,8 @@ class CheckoutView(generic.FormView):
         # Si no tenia ninguna guardada, se crea una direccion asociada a él
         else:
             address = Direccion.objects.create(
-                direccion_tipo = 'E',
-                user = self.request.user,
+                direccion_tipo='E',
+                user=self.request.user,
                 direccion_1=form.cleaned_data['direccion_envio_1'],
                 direccion_2=form.cleaned_data['direccion_envio_2'],
                 codigo_zip=form.cleaned_data['codigo_zip_envio'],
@@ -207,8 +184,8 @@ class CheckoutView(generic.FormView):
             order.direccion_facturacion = direccion_facturacion_seleccionada
         else:
             address = Direccion.objects.create(
-                direccion_tipo = 'F',
-                user = self.request.user,
+                direccion_tipo='F',
+                user=self.request.user,
                 direccion_1=form.cleaned_data['direccion_facturacion_1'],
                 direccion_2=form.cleaned_data['direccion_facturacion_2'],
                 codigo_zip=form.cleaned_data['codigo_zip_facturacion'],
@@ -222,9 +199,8 @@ class CheckoutView(generic.FormView):
             self.request, "Usted ha rellenado todos los campos correctamente.")
         return super(CheckoutView, self).form_valid(form)
 
-
-
     # Le pasamos al html los datos necesarios
+
     def get_context_data(self, **kwargs):
         context = super(CheckoutView, self).get_context_data(**kwargs)
         context['pedido'] = get_or_set_order_session(self.request)
@@ -237,7 +213,6 @@ class CheckoutView(generic.FormView):
         return kwargs
 
 
-    
 class MisPedidosView(generic.TemplateView):
     template_name = "tienda/pedidos_cliente.html"
 

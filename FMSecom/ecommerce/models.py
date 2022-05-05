@@ -1,11 +1,5 @@
 from django.db import models
-
-#añadidos - recortar
-from django.contrib.auth.models import User
 from django.urls import reverse
-from datetime import datetime, date
-
-import string, random
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
 

@@ -16,6 +16,8 @@ class Categorias_productos(models.Model):
     slug = models.SlugField(max_length=500, unique=True, null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     ultima_modificacion = models.DateTimeField(auto_now=True)
+    imagen = models.ImageField(upload_to="images/categorias", null=True,
+                                blank=True, default="images/productos/Camara1_lzyN5KJ.png")
 
     def __str__(self):
         return self.nombre_categoria
@@ -53,6 +55,12 @@ class Productos(models.Model):
 
     def __str__(self):
         return str(self.categoria) + '          |           ' + str(self.nombre)
+
+    def save(self, *args, **kwargs):
+        self.categoria_slug = slugify(self.categoria)
+        self.slug = slugify(self.nombre)
+        
+        super(Productos, self).save(*args, **kwargs)
 
     # Metodo que nos devuelve la url de los detalles del producto
     def get_absolute_url(self):
@@ -185,8 +193,9 @@ class Pago(models.Model):
 # Slug de los productos
 # ------------------------------------------------------------------------
 
-def pre_save_product(sender, instance, *args, **kwargs):
-    if not instance.slug:
-        instance.slug = slugify(instance.nombre)
+#def pre_save_product(sender, instance, *args, **kwargs):
+  #  if not instance.slug or not instance.categoria_slug:
+ #       instance.slug = slugify(instance.nombre)
+#        instance.categoria_slug = slugify(instance.categoria_slug)
 
-pre_save.connect(pre_save_product, sender=Productos)
+#pre_save.connect(pre_save_product, sender=Productos)
