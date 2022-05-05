@@ -35,7 +35,7 @@ from django.urls import reverse_lazy
 
 class indexListView(generic.ListView):
     model = Categorias_productos
-    template_name = 'ecommerce/index.html'
+    template_name = 'core/index.html'
 
     def get_context_data(self, **kwargs):
         context = super(indexListView, self).get_context_data(**kwargs)
@@ -59,14 +59,14 @@ class indexListView(generic.ListView):
 
 def ofertas(request):
 
-    return render(request, 'ecommerce/ofertas.html')
+    return render(request, 'core/ofertas.html')
 
 
 
 def tutoriales(request):
 
 
-    return render(request, 'ecommerce/tutoriales.html')
+    return render(request, 'core/tutoriales.html')
 
 
 
@@ -77,7 +77,7 @@ def instalaciones(request):
     paso_3 = Informacion_instalaciones.objects.get(identificador="Paso 3")
 
 
-    return render(request, 'ecommerce/instalaciones.html', 
+    return render(request, 'core/instalaciones.html', 
     {
     'redes_sociales' : redes_sociales,
     'paso_1' : paso_1,
@@ -93,7 +93,7 @@ def receptora(request):
     receptora = Informacion_empresa.objects.get(identificador="Servicio receptora")
 
 
-    return render(request, 'ecommerce/receptora.html', 
+    return render(request, 'core/receptora.html', 
     {
     'redes_sociales' : redes_sociales,
     'paso_1' : paso_1,
@@ -106,7 +106,7 @@ def receptora(request):
 def contacto(request):
     redes_sociales = Informacion_empresa.objects.get(identificador="Redes sociales")
 
-    return render(request, 'ecommerce/contacto.html', 
+    return render(request, 'core/contacto.html', 
     {
     'redes_sociales' : redes_sociales
     })
@@ -114,7 +114,7 @@ def contacto(request):
 # Para que un cliente nos pueda mandar un mensaje a traves de la web
 class ContactView(generic.FormView):
     form_class=ContactForm
-    template_name='ecommerce/contacto.html'
+    template_name='core/contacto.html'
 
     def get_context_data(self, **kwargs):
         context = super(ContactView, self).get_context_data(**kwargs)
@@ -123,7 +123,7 @@ class ContactView(generic.FormView):
         return context
 
     def get_success_url(self):
-        return reverse('ecommerce:contacto')
+        return reverse('core:contacto')
 
     def form_valid(self, form):
         messages.info(

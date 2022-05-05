@@ -89,7 +89,7 @@
 
 	body.stretched #header.full-header .container { padding-right: 0; }
 
-	#header.full-header .primary-menu.style-ecommerce .menu-container { border-right: none; }
+	#header.full-header .primary-menu.style-core .menu-container { border-right: none; }
 
 	.menu-container > .menu-item > .menu-link {
 		position: relative;
@@ -102,7 +102,7 @@
 		color: #aab7bd;
 	}
 
-	.primary-menu.style-ecommerce .menu-container > .menu-item > .menu-link::after {
+	.primary-menu.style-core .menu-container > .menu-item > .menu-link::after {
 		position: absolute;
 		content: '';
 		top: auto;
@@ -116,11 +116,11 @@
 		transition: all .3s ease;
 	}
 
-	.primary-menu.style-ecommerce .menu-container > .menu-item:hover > .menu-link,
-	.primary-menu.style-ecommerce .menu-container > .menu-item.current > .menu-link { color: #000; }
+	.primary-menu.style-core .menu-container > .menu-item:hover > .menu-link,
+	.primary-menu.style-core .menu-container > .menu-item.current > .menu-link { color: #000; }
 
-	.primary-menu.style-ecommerce .menu-container > .menu-item:hover > .menu-link::after,
-	.primary-menu.style-ecommerce .menu-container > .menu-item.current > .menu-link::after {
+	.primary-menu.style-core .menu-container > .menu-item:hover > .menu-link::after,
+	.primary-menu.style-core .menu-container > .menu-item.current > .menu-link::after {
 		width: 100%;
 		left: 0;
 	}
@@ -205,7 +205,7 @@
 	letter-spacing: 0px;
 }
 
-.primary-menu.style-ecommerce #top-cart > a > span { background-color: #333 }
+.primary-menu.style-core #top-cart > a > span { background-color: #333 }
 
 #top-bar p {
 	font-size: 13px;
@@ -424,21 +424,21 @@
 }
 
 
-.ecommerce-categories [class^=col-] {
+.core-categories [class^=col-] {
 	position: relative;
 	margin-bottom: 30px;
 }
 
-.ecommerce-categories [class^=col-] > a {
+.core-categories [class^=col-] > a {
 	display: block;
 	position: relative;
 	height: 250px;
 	background-color: #EEE;
 }
 
-.ecommerce-categories [class^=col-] img { display: block; }
+.core-categories [class^=col-] img { display: block; }
 
-.ecommerce-categories [class^=col-] > a::before {
+.core-categories [class^=col-] > a::before {
 	content: '';
 	position: absolute;
 	width: 100%;
@@ -451,7 +451,7 @@
 	transition: all .7s ease;
 }
 
-.ecommerce-categories [class^=col-] > a:hover::before { opacity: 1; }
+.core-categories [class^=col-] > a:hover::before { opacity: 1; }
 
 .before-heading {
 	text-transform: uppercase;

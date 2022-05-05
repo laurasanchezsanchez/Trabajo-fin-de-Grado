@@ -14,16 +14,16 @@
     <link
         href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
         rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{% static 'ecommerce/css/bootstrap.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'ecommerce/style.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'ecommerce/css/swiper.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'ecommerce/css/dark.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'ecommerce/css/font-icons.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'ecommerce/css/animate.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'ecommerce/css/magnific-popup.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'ecommerce/css/custom.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/swiper.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/dark.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/font-icons.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/animate.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/magnific-popup.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/custom.css' %}" type="text/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="{% static 'ecommerce/css/components/ion.rangeslider.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/components/ion.rangeslider.css' %}" type="text/css" />
 
     <!-- Titulo Cabecera -->
     <title> FMSecom </title>
@@ -66,11 +66,11 @@
                         <!-- Logo superior izquierda-->
                         <div id="logo" >
                             <a href="/" class="standard-logo"
-                                data-dark-logo="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"><img
-                                    src="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"></a>
+                                data-dark-logo="{% static 'core/images/core/imagenes/Logo.png' %}"><img
+                                    src="{% static 'core/images/core/imagenes/Logo.png' %}"></a>
                             <a href="/" class="retina-logo" 
-                                data-dark-logo="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"><img 
-                                    src="{% static 'ecommerce/images/ecommerce/imagenes/Logo.png' %}"></a>
+                                data-dark-logo="{% static 'core/images/core/imagenes/Logo.png' %}"><img 
+                                    src="{% static 'core/images/core/imagenes/Logo.png' %}"></a>
                         </div>
                         <!-- #logo end -->
 
@@ -145,17 +145,17 @@
                                             </a>
                                         </li>
                                         <li class="menu-item">
-                                            <a class="menu-link" href="{% url 'ecommerce:tutoriales' %}">
+                                            <a class="menu-link" href="{% url 'core:tutoriales' %}">
                                                 <div><i class="icon-stack"></i>Tutoriales</div>
                                             </a>
                                         </li>
                                         <li class="menu-item">
-                                            <a class="menu-link" href="{% url 'ecommerce:instalaciones' %}">
+                                            <a class="menu-link" href="{% url 'core:instalaciones' %}">
                                                 <div><i class="icon-stack"></i>Nuestras instalaciones</div>
                                             </a>
                                         </li>
                                         <li class="menu-item">
-                                            <a class="menu-link" href="{% url 'ecommerce:receptora' %}">
+                                            <a class="menu-link" href="{% url 'core:receptora' %}">
                                                 <div><i class="icon-stack"></i>Servicio CRA (Receptora)</div>
                                             </a>
                                         </li>
@@ -164,14 +164,14 @@
 
                                 <!-- CONTACTO -->
                                 <li class="menu-item">
-                                    <a class="menu-link" href="{% url 'ecommerce:contacto' %}">
+                                    <a class="menu-link" href="{% url 'core:contacto' %}">
                                         <div class="fondoCabecera">Contacto</div>
                                     </a>
                                 </li>
 
                                 <!-- OFERTAS -->
                                 <li class="menu-item">
-                                    <a class="menu-link" href="{% url 'ecommerce:ofertas' %}">
+                                    <a class="menu-link" href="{% url 'core:ofertas' %}">
                                         <div class="fondoCabecera">Ofertas</div>
                                     </a>
                                 </li>
@@ -202,7 +202,7 @@
         <!-- FOOTER -->
 
         <footer id="footer" class="dark"
-            style="background-image: url('{% static 'ecommerce/images/ecommerce/imagenes/footer.jpg' %}');">
+            style="background-image: url('{% static 'core/images/core/imagenes/footer.jpg' %}');">
             <!-- Copyrights
 			============================================= -->
             <div id="copyrights">
@@ -236,9 +236,9 @@
                         </div>
 
                         <div class="copyrights-menu copyright-links">
-                            <a href="{% url 'ecommerce:index' %}">Inicio</a>/<a
-                                href="{% url 'ecommerce:contacto' %}">Contacto</a>/<a
-                                href="{% url 'ecommerce:ofertas' %}">Ofertas</a>
+                            <a href="{% url 'core:index' %}">Inicio</a>/<a
+                                href="{% url 'core:contacto' %}">Contacto</a>/<a
+                                href="{% url 'core:ofertas' %}">Ofertas</a>
                         </div>
 
                     </div>
@@ -273,15 +273,15 @@
 
     <!-- JavaScripts
 	============================================= -->
-    <script src="{% static 'ecommerce/js/jquery.js' %}"></script>
-    <script src="{% static 'ecommerce/js/plugins.min.js' %}"></script>
+    <script src="{% static 'core/js/jquery.js' %}"></script>
+    <script src="{% static 'core/js/plugins.min.js' %}"></script>
 
     <!-- Footer Scripts
 	============================================= -->
-    <script src="{% static 'ecommerce/js/functions.js' %}"></script>
+    <script src="{% static 'core/js/functions.js' %}"></script>
 
     <!-- Range Slider Plugin -->
-    <script src="{% static 'ecommerce/js/components/rangeslider.min.js' %}"></script>
+    <script src="{% static 'core/js/components/rangeslider.min.js' %}"></script>
 
 </body>
 </html>

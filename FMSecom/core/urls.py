@@ -6,7 +6,7 @@ from . views import indexListView
 from . views import ContactView
 
 
-app_name = 'ecommerce'
+app_name = 'core'
 
 #arreglar barra tutoriales
 urlpatterns = [

@@ -38,7 +38,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'autenticacion.apps.AutenticacionConfig',
     'tienda.apps.TiendaConfig',
-    'ecommerce.apps.EcommerceConfig',
+    'core.apps.CoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

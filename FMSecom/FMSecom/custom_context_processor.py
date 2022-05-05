@@ -1,6 +1,6 @@
 
-from ecommerce.models import Informacion_empresa
-from ecommerce.models import Empresas_apoyo
+from core.models import Informacion_empresa
+from core.models import Empresas_apoyo
 
 
 def subject_renderer(request):
