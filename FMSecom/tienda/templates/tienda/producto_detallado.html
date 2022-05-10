@@ -55,8 +55,7 @@
 
                                 <!-- Product Single - Price
                                 ============================================= -->
-                                <div class="product-price"> Producto y servicio: {{producto.precio_producto_servicio}} €
-                                    <br><ins> Producto: {{producto.precio_producto}} €</ins>
+                                <div class="product-price">{{producto.nombre}} {{producto.precio_producto}} €
                                 </div>
                                 <!-- Product Single - Price End -->
 
@@ -69,17 +68,7 @@
 
                             <form class="cart mb-0 d-flex justify-content-between align-items-center" method="post"
                                 enctype='multipart/form-data'>
-
-                                <!-- BOTON SUMAR O RESTAR CANTIDAD A COMPRAR
-                            
-                                <div class="quantity clearfix">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="number" step="1" min="1" name="quantity" value="1" title="Qty"
-                                        class="qty" />
-                                    <input type="button" value="+" class="plus">
-                                </div>
-                                ============================================= -->
-
+                                
                                 <!-- Un usuario no registrado tambien puede agregar al carrito -->
 
                                 <form method="POST">
@@ -118,8 +107,6 @@
 
                         <div class="col-md-2">
 
-                            <br>
-                            <br>
 
                             <div class="divider divider-center"><i class="icon-circle-blank"></i></div>
 

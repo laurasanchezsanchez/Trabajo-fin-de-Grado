@@ -2,6 +2,8 @@ from django.db import models
 from django.urls import reverse
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
+from numpy import deg2rad
+from tienda.models import Categorias_productos
 
     
 class Informacion_index(models.Model):
@@ -37,3 +39,11 @@ class Informacion_instalaciones(models.Model):
 
     def __str__(self):
         return self.identificador
+
+
+class Manuales(models.Model):
+    titulo = models.CharField(max_length = 200)
+    archivo = models.FileField(upload_to = "pdfs/manuales/")
+
+    categoria = models.ForeignKey(
+        Categorias_productos, on_delete=models.CASCADE)

@@ -11,9 +11,11 @@ app_name = 'core'
 #arreglar barra tutoriales
 urlpatterns = [
     path('', indexListView.as_view(), name='index'),
+    path('base/', views.baseView, name='base'),
     path('ofertas/', views.ofertas, name='ofertas'),
     path('tutoriales', views.tutoriales, name='tutoriales'),
     path('instalaciones/', views.instalaciones, name='instalaciones'),
     path('receptora', views.receptora, name='receptora'),
     path('contacto/', views.ContactView.as_view(), name='contacto'),
+    path('manuales/', views.manualesView, name='manuales'),
 ]

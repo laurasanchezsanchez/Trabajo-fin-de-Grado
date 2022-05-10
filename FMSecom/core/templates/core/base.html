@@ -25,6 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{% static 'core/css/components/ion.rangeslider.css' %}" type="text/css" />
 
+    
     <!-- Titulo Cabecera -->
     <title> FMSecom </title>
 
@@ -44,17 +45,18 @@
 
                         {% if user.is_authenticated %}
 
-                        Estamos encantados de tenerte como cliente, <strong>{{user.username}}</strong>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        
+                        Estamos encantados de tenerte como cliente, <strong>{{user.username}}</strong>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                         <a href="{% url 'tienda:mis-pedidos' %}" style="padding:0%;">Mis pedidos</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="{% url 'autenticacion:cerrar_sesion' %}" style="padding:0%;">Cerrar sesion</a>
-                        
+
 
                         {% else %}
 
                         <a href="{% url 'autenticacion:login' %}">Login</a>
-                         &nbsp;&nbsp;&nbsp;&nbsp;
+                        &nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="{% url 'autenticacion:autenticacion' %}">Registrate</a>
 
                         {% endif %}
@@ -64,12 +66,12 @@
 
 
                         <!-- Logo superior izquierda-->
-                        <div id="logo" >
+                        <div id="logo">
                             <a href="/" class="standard-logo"
                                 data-dark-logo="{% static 'core/images/core/imagenes/Logo.png' %}"><img
                                     src="{% static 'core/images/core/imagenes/Logo.png' %}"></a>
-                            <a href="/" class="retina-logo" 
-                                data-dark-logo="{% static 'core/images/core/imagenes/Logo.png' %}"><img 
+                            <a href="/" class="retina-logo"
+                                data-dark-logo="{% static 'core/images/core/imagenes/Logo.png' %}"><img
                                     src="{% static 'core/images/core/imagenes/Logo.png' %}"></a>
                         </div>
                         <!-- #logo end -->
@@ -92,16 +94,16 @@
 
                         <!-- Para cuando se hace la ventana más pequeña -->
                         <div id="primary-menu-trigger">
-							<svg class="svg-trigger" viewBox="0 0 100 100">
-								<path
-									d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
-								</path>
-								<path d="m 30,50 h 40"></path>
-								<path
-									d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
-								</path>
-							</svg>
-						</div>
+                            <svg class="svg-trigger" viewBox="0 0 100 100">
+                                <path
+                                    d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+                                </path>
+                                <path d="m 30,50 h 40"></path>
+                                <path
+                                    d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+                                </path>
+                            </svg>
+                        </div>
 
                         <!-- NAVEGACION SUPERIOR -->
                         <nav class="primary-menu">
@@ -140,7 +142,7 @@
                                             </a>
                                         </li>
                                         <li class="menu-item">
-                                            <a class="menu-link" href="#">
+                                            <a class="menu-link" href="{% url 'core:manuales' %}">
                                                 <div><i class="icon-stack"></i>Manuales</div>
                                             </a>
                                         </li>
@@ -179,11 +181,59 @@
 
                         </nav><!-- FIN DE LA BARRA PRINCIPAL -->
 
+                        <script>
+                            $(document).ready(function () {
+                                $("#formulario").on("keyup", function () {
+                                    var value = $(this).val().toLowerCase();
+                                    products.filter(function () {
+                                        $(this).toggle($(this).text()
+                                            .toLowerCase().indexOf(value) > -1)
+                                    });
+                                });
+                            });
+
+                            const formulario = document.querySelector('#formulario');
+                            const resultado = document.querySelector('#resultado')
+
+                            const filtrar = () => {
+                                resultado.innerHTML = '';
+                                //console.log(formulario.value)
+                                const texto = formulario.value.toLowerCase();
+                                for (let producto of products) {
+                                    let nombre = producto.nombre.toLowerCase();
+                                    if (nombre.indexOf(texto) !== -1) {
+                                        resultado.innerHTML += `
+                                        <li>
+                                            ${producto.nombre} - Precio:  ${producto.precio_producto}
+                                        </li>
+                                        `
+                                    }
+                                }
+                                if (resultado.innerHTML === '') {
+                                    resultado.innerHTML += `
+                                        <li>
+                                            Producto no encontrado...
+                                        </li>
+                                        `
+                                }
+                            }
+
+                            formulario.addEventListener('keyup', filtrar)
+                        </script>
+
                         <!-- Busqueda -->
-                        <form class="top-search-form" action="search.html" method="get">
+                        <form class="top-search-form" method="get" id="formulario">
                             <input type="text" name="q" class="form-control" value="" placeholder="Buscar..."
                                 autocomplete="off">
+                            <ul id="resultado">
+                                <li>
+                                    Hola
+                                </li>
+                            </ul>
                         </form>
+                        <form id="productos1" value={{productos.items.all}}></form>
+
+
 
                     </div>
                     <br>
@@ -284,4 +334,5 @@
     <script src="{% static 'core/js/components/rangeslider.min.js' %}"></script>
 
 </body>
+
 </html>

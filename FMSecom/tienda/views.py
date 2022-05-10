@@ -20,7 +20,8 @@ from django.contrib import messages
 def categorias(request):
     return render(request, "tienda/categorias.html",
                   {
-                      "categorias": Categorias_productos.objects.all
+                      "categorias": Categorias_productos.objects.all,
+                      "productos": Productos.objects.all
                   })
 
 

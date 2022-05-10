@@ -70,6 +70,12 @@ class Productos(models.Model):
     def get_precio(self):
         return "{:.2f}".format(self.precio_producto / 100)
 
+# ------------------------------------------------------------------------
+# Tabla para filtrar productos segun nombre, descripcion o especificaciones.
+# ------------------------------------------------------------------------
+
+
+
 
 # ------------------------------------------------------------------------
 # Tabla de los pedidos. Pueden estar o no realizados.
