@@ -9,5 +9,6 @@ def subject_renderer(request):
         'ubicacion': Informacion_empresa.objects.get(identificador="Ubicacion"),
         'telefono': Informacion_empresa.objects.get(identificador="Numero de telefono"),
         'Empresas_apoyo': Empresas_apoyo.objects.all,
+        'pie' : Informacion_empresa.objects.get(identificador="Pie de pagina")
 
     }

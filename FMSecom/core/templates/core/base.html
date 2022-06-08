@@ -11,6 +11,7 @@
 
     <!-- Stylesheets
 	============================================= -->
+    <link rel="shortcut icon" type="image/png" href="{% static 'core/images/core/imagenes/Logo.png' %}"/>
     <link
         href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
         rel="stylesheet" type="text/css" />
@@ -126,7 +127,7 @@
                                 <!-- PRODUCTOS-->
                                 <li class="menu-item ">
                                     <a class="menu-link" href="/tienda/">
-                                        <div class="fondoCabecera">Productos</div>
+                                        <div class="fondoCabecera">Tienda</div>
                                     </a>
                                 </li>
 
@@ -137,7 +138,7 @@
                                     </a>
                                     <ul class="sub-menu-container">
                                         <li class="menu-item">
-                                            <a class="menu-link" href="#">
+                                            <a class="menu-link" href="{% url 'core:leyes' %}">
                                                 <div><i class="icon-stack"></i>Leyes</div>
                                             </a>
                                         </li>
@@ -171,16 +172,11 @@
                                     </a>
                                 </li>
 
-                                <!-- OFERTAS -->
-                                <li class="menu-item">
-                                    <a class="menu-link" href="{% url 'core:ofertas' %}">
-                                        <div class="fondoCabecera">Ofertas</div>
-                                    </a>
-                                </li>
+                               
                             </ul>
 
                         </nav><!-- FIN DE LA BARRA PRINCIPAL -->
-
+<!--
                         <script>
                             $(document).ready(function () {
                                 $("#formulario").on("keyup", function () {
@@ -221,6 +217,7 @@
                             formulario.addEventListener('keyup', filtrar)
                         </script>
 
+-->
                         <!-- Busqueda -->
                         <form class="top-search-form" method="get" id="formulario">
                             <input type="text" name="q" class="form-control" value="" placeholder="Buscar..."
@@ -288,27 +285,14 @@
                         <div class="copyrights-menu copyright-links">
                             <a href="{% url 'core:index' %}">Inicio</a>/<a
                                 href="{% url 'core:contacto' %}">Contacto</a>/<a
-                                href="{% url 'core:ofertas' %}">Ofertas</a>
+                                href="{% url 'tienda:tienda' %}">Tienda</a>
                         </div>
 
                     </div>
 
                     <br></br>
                     <p class="footer-font">
-                        Esta página Web puede contener referencias a marcas comerciales o marcas registradas de FMSecom.
-                        Queda prohibido su uso sin el consentimiento previo y expreso de Domingo Sánchez
-                        Marín. Todas las demás referencias a otras marcas comerciales o registradas pertenecen a sus
-                        respectivos propietarios, sin que pueda entenderse que el acceso a la página Web atribuya
-                        derecho alguno sobre las mismas.
-                        FMSecom se reserva el derecho de modificar, en cualquier momento y sin necesidad
-                        de previo aviso, la configuración y contenidos de la página Web.
-                        Conforme a la Ley Orgánica 15/1999, de 13 de Diciembre, de Protección de Datos de Carácter
-                        Personal, FMSecom se compromete a tratar los datos facilitados por los usuarios a
-                        través de los formularios existentes en la página Web con total confidencialidad.
-                        Conforme al artículo 5 de la citada Ley Orgánica, los usuarios pueden acceder a sus datos
-                        personales, con derecho a modificación y cancelación mediante la oportuna solicitud por escrito
-                        al titular de la página Web y el fichero a la dirección que consta en los datos del titular de
-                        la página Web en los términos que suscribe la legislación vigente.
+                        {{pie.dato_1|safe}}
                     </p>
 
                 </div>
@@ -325,6 +309,7 @@
 	============================================= -->
     <script src="{% static 'core/js/jquery.js' %}"></script>
     <script src="{% static 'core/js/plugins.min.js' %}"></script>
+    
 
     <!-- Footer Scripts
 	============================================= -->

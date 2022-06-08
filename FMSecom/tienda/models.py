@@ -3,6 +3,7 @@ from django.template.defaultfilters import slugify
 from django.contrib.auth import get_user_model
 from django.db.models.signals import pre_save
 from django.shortcuts import reverse
+from ckeditor.fields import RichTextField
 
 User = get_user_model()
 
@@ -16,8 +17,6 @@ class Categorias_productos(models.Model):
     slug = models.SlugField(max_length=500, unique=True, null=True, blank=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     ultima_modificacion = models.DateTimeField(auto_now=True)
-    imagen = models.ImageField(upload_to="images/categorias", null=True,
-                                blank=True, default="images/productos/Camara1_lzyN5KJ.png")
 
     def __str__(self):
         return self.nombre_categoria
@@ -47,11 +46,9 @@ class Productos(models.Model):
         null=True, blank=True, upload_to="images/productos")
     imagen3 = models.ImageField(
         null=True, blank=True, upload_to="images/productos")
-    descripcion = models.TextField(null=True, blank=True)
-    especificaciones = models.TextField(null=True, blank=True)
-    precio_producto = models.IntegerField(default=0)
-    precio_producto_servicio = models.IntegerField(default=0)
-    tipo = models.CharField(max_length=200, default="Sin tipo")
+    descripcion = RichTextField(null=True, blank=True)
+    especificaciones = RichTextField(null=True, blank=True)
+    precio_producto = models.DecimalField(max_digits=12, decimal_places=2)
 
     def __str__(self):
         return str(self.categoria) + '          |           ' + str(self.nombre)
@@ -65,10 +62,6 @@ class Productos(models.Model):
     # Metodo que nos devuelve la url de los detalles del producto
     def get_absolute_url(self):
         return reverse('tienda:producto-detallado', kwargs={'slug': self.slug})
-
-    # Se guardan en centimos, por lo que usaremos esta funcion para mostrar su precio en €
-    def get_precio(self):
-        return "{:.2f}".format(self.precio_producto / 100)
 
 # ------------------------------------------------------------------------
 # Tabla para filtrar productos segun nombre, descripcion o especificaciones.
@@ -102,17 +95,13 @@ class Pedido(models.Model):
     def reference_number(self):
         return f"PEDIDO - {self.pk}"
 
-    # Devuelve el total DEL PEDIDO en centimos
-    def get_raw_subtotal(self):
+    # Devuelve el total DEL PEDIDO
+    def get_total(self):
         total = 0
         for order_item in self.items.all():
-            total += float(order_item.precio_bruto_producto())
+            total += float(order_item.precio_producto_cantidad())
         return total
 
-    # Devuelve el total del pedido en EUROS
-    def get_subtotal(self):
-        subtotal = self.get_raw_subtotal()
-        return "{:.2f}".format(subtotal / 100)
 
 
 # ------------------------------------------------------------------------
@@ -136,13 +125,10 @@ class ItemPedido(models.Model):
         
 
     # Precio en centimos del producto * su cantidad
-    def precio_bruto_producto(self):
+    def precio_producto_cantidad(self):
         return self.cantidad * self.producto.precio_producto
 
-    # Precio en euros del producto * su cantidad
-    def precio_total_producto(self):
-        precio = self.precio_bruto_producto()
-        return "{:.2f}".format(precio / 100)
+
 
 
 # ------------------------------------------------------------------------
@@ -182,7 +168,7 @@ class Pago(models.Model):
     ))
     fecha = models.DateTimeField(auto_now_add=True)
     succesful = models.BooleanField(default=False)
-    importe = models.FloatField()
+    importe = models.DecimalField(max_digits=12, decimal_places=2)
 
     # Respuesta del procesador de pago
     respuesta_pasarela_pago = models.TextField()
@@ -195,13 +181,3 @@ class Pago(models.Model):
         return f"PAGO-{self.pedido}-{self.pk}"
 
 
-# ------------------------------------------------------------------------
-# Slug de los productos
-# ------------------------------------------------------------------------
-
-#def pre_save_product(sender, instance, *args, **kwargs):
-  #  if not instance.slug or not instance.categoria_slug:
- #       instance.slug = slugify(instance.nombre)
-#        instance.categoria_slug = slugify(instance.categoria_slug)
-
-#pre_save.connect(pre_save_product, sender=Productos)

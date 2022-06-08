@@ -5,12 +5,12 @@ from django.http import HttpResponse
 from django.template import loader
 
 
-from .models import Informacion_index
+from .models import Informacion_index, Tutoriales
 from .models import Informacion_empresa
 from .models import Informacion_instalaciones
 from .models import Empresas_apoyo
 from .models import Manuales
-
+from .models import Leyes
 
 import importlib.util
 
@@ -60,8 +60,6 @@ class indexListView(generic.ListView):
             identificador="Descripcion del personal")
         context['descripcion_de_servicios'] = Informacion_index.objects.get(
             identificador="Descripcion de servicios")
-        context['titulo_de_oferta'] = Informacion_index.objects.get(
-            identificador="Titulo de oferta")
         context['datos_obligatorios'] = Informacion_index.objects.get(
             identificador="Datos obligatorios")
 
@@ -75,14 +73,20 @@ class indexListView(generic.ListView):
 # ------------------------------------------------------------------------
 
 
-def ofertas(request):
-
-    return render(request, 'core/ofertas.html')
-
 
 def tutoriales(request):
 
-    return render(request, 'core/tutoriales.html')
+    tutoriales = Tutoriales.objects.all()
+
+    return render(request, 'core/tutoriales.html',{
+                      'tutoriales': tutoriales
+                  })
+
+def tutorialDetallado(request, slug):
+    return render(request, "core/tutorial_detallado.html",
+                  {
+                      "tutorial": Tutoriales.objects.filter(slug=slug).first(),
+                  })
 
 
 def instalaciones(request):
@@ -181,4 +185,12 @@ def manualesView(request):
         "categorias" : categorias,
     })
 
+
+def leyesView(request):
+    
+    documents = Leyes.objects.all()
+
+    return render(request, "core/leyes.html", context = {
+        "files": documents,
+    })
 

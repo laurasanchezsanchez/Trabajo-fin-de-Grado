@@ -10,55 +10,77 @@
     {% csrf_token %}
     <div class="row">
         <div class="col-md-6 mb-md-0">
-            <h2 class="h3 mb-3 text-black text-center">Billing Details - Detalles de facturacion</h2>
+            <h2 class="h3 mb-3 text-black text-center">Detalles de facturacion</h2>
             <hr />
             <div class="p-2 p-lg-2">
                 {{ form|crispy }}
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-success btn-lg py-3 btn-block">
+                <button type="submit" class="btn btn-success btn-lg py-3 btn-block" data-target="#myModal1">
                     Pagar
                 </button>
+
+                <div class="modal-on-load"></div>
+
             </div>
         </div>
-
-        <div class="col-md-6">
-            <div class="row mb-5">
-                <div class="col-md-12">
-                    <h2 class="h3 mb-3 text-black text-center">Su pedido</h2>
-                    <hr>
-                    <div class="p-3 p-lg-5">
-                        <table class="table site-block-order-table mb-5">
-                            <thead>
-                                <th>Producto</th>
-                                <th>Total</th>
-                            </thead>
-                            <tbody>
-                                {% for item in pedido.items.all %}
-                                <tr>
-                                    <td>
-                                        {{ item.producto.nombre }}
-                                        <strong class="mx-2">x</strong> {{ item.cantidad }}
-                                    </td>
+    </div>
 
 
-                                    <td>
-                                        ${{ item.precio_total_producto }}
-                                    </td>
+    <div class="col-md-6">
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <h2 class="h3 mb-3 text-black text-center">Resumen de su pedido</h2>
+                <hr>
+                <div class="p-3 p-lg-5">
+                    <table class="table site-block-order-table mb-5">
+                        <thead>
+                            <th>Producto</th>
+                            <th>Total</th>
+                        </thead>
+                        <tbody>
+                            {% for item in pedido.items.all %}
+                            <tr>
+                                <td>
+                                    {{ item.producto.nombre }}
+                                    <strong class="mx-2">x</strong> {{ item.cantidad }}
+                                </td>
 
-                                </tr>
 
-                                {% endfor %}
-                                <tr>
-                                    <td><strong>Total a pagar</strong></td>
-                                    <td><strong class="text-black font-weight-bold">${{ pedido.get_subtotal }}</strong></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                                <td>
+                                    {{ item.precio_producto_cantidad }} €
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+                            <tr>
+                                <td><strong>Total a pagar</strong></td>
+                                <td><strong class="text-black font-weight-bold">{{ pedido.get_total }} €</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+    </div>
 </form>
+
+<!-- ################################################################################# -->
+<!-- ################################################################################# -->
+<!-- ################################################################################# -->
+<!-- ################################################################################# -->
+
+
+
+<form name="from" action="https://sis-t.redsys.es:25443/sis/realizarPago" method="POST">
+	<input type="hidden" name="Ds_SignatureVersion" value="HMAC_SHA256_V1"/>
+	<input type="hidden" name="Ds_MerchantParameters" value="
+		eyJEU19NRVJDSEFOVF9BTU9VTlQiOiAiMTQ1IiwiRFNfTUVSQ0hBTlRfQ1VSUkVOQ1kiOiAiOTc4IiwiRFNfTUVSQ0hBTlRfTUVSQ0hBTlRDT0RFIjogIjk5OTAwODg4MSIsIkRTX01FUkNIQU5UX01FUkNIQU5UVVJMIjogImh0dHA6Ly93d3cucHJ1ZWJhLmNvbS91cmxOb3RpZmljYWNpb24ucGhwIiwiRFNfTUVSQ0hBTlRfT1JERVIiOiAiMTQ0NjA2ODU4MSIsIkRTX01FUkNIQU5UX1RFUk1JTkFMIjogIjEiLCJEU19NRVJDSEFOVF9UUkFOU0FDVElPTlRZUEUiOiAiMCIsIkRTX01FUkNIQU5UX1VSTEtPIjogImh0dHA6Ly93d3cucHJ1ZWJhLmNvbS91cmxLTy5waHAiLCJEU19NRVJDSEFOVF9VUkxPSyI6ICJodHRwOi8vd3d3LnBydWViYS5jb20vdXJsT0sucGhwIn0="/>
+	<input type="hidden" name="Ds_Signature" value="PqV2+SF6asdasMjXasKJRTh3UIYya1hmU/igHkzhC+R="/>	
+</form>
+
+
 {% endblock %}

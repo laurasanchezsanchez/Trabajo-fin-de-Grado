@@ -1,0 +1,62 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block contenido %}
+
+
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;">
+    <div class="container clearfix text-center">
+        <h1>Leyes</h1>
+    </div>
+</section>
+
+
+<body class="stretched">
+
+    <!-- Document Wrapper
+	============================================= -->
+    <div id="wrapper" class="clearfix">
+        <section id="content">
+            <div class="content-wrap">
+                <div class="container clearfix">
+
+                    <div class="row gutter-40 col-mb-80">
+                        <!-- Post Content
+                ============================================= -->
+                        <div class="postcontent col-lg-9 order-lg-last">
+
+                            <!-- Shop
+                    ============================================= -->
+                            <div id="shop" class="shop row grid-container gutter-20" data-layout="fitRows">
+
+                                {% for file in files %}
+                                <div class="toggle faq faq-authors faq-legal faq-itemdiscussion ">
+                                    <div class="toggle-header ">
+                                        <div class="toggle-icon">
+                                            <i class="toggle-closed icon-download-alt"></i>
+                                            <i class="toggle-open icon-download-alt"></i>
+                                        </div>
+                                        <a class="toggle-title" href="{{file.archivo.url}}">
+                                             {{file.titulo|safe}}
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div><!-- #shop end -->
+
+                        </div><!-- .postcontent end -->
+
+                        
+                    </div>
+
+                </div>
+            </div>
+        </section><!-- #content end -->
+
+    </div>
+</body>
+
+
+{% endblock %}

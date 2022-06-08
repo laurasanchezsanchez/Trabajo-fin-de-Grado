@@ -55,7 +55,7 @@
 
                                 <!-- Product Single - Price
                                 ============================================= -->
-                                <div class="product-price">{{producto.nombre}} {{producto.precio_producto}} €
+                                <div class="product-price">{{producto.nombre}} <br>{{producto.precio_producto}} €
                                 </div>
                                 <!-- Product Single - Price End -->
 
@@ -85,7 +85,7 @@
 
                             <!-- Product Single - Short Description
                             ============================================= -->
-                            <p>{{producto.descripcion}}</p>
+                            <p>{{producto.descripcion|safe}}</p>
 
                             <!-- Product Single - Meta
                             ============================================= -->
@@ -170,11 +170,11 @@
                                 <div class="tab-container">
 
                                     <div class="tab-content clearfix" id="tabs-1">
-                                        <p>{{producto.descripcion}}
+                                        <p>{{ producto.descripcion|safe }}
                                     </div>
                                     <div class="tab-content clearfix" id="tabs-2">
 
-                                        {{producto.especificaciones}}
+                                        {{producto.especificaciones|safe}}
 
                                     </div>
 

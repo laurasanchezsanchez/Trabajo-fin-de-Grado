@@ -16863,3 +16863,18 @@ label.checkbox { padding-left: 20px; }
 .contacto{
 background-color: #b2a677;
 }
+
+
+#hide-me {
+	width: 100px;
+	height: 100px;
+	background: #bf7130;
+	display: block;
+	padding: 10px;
+	margin: 0 15px 0 0;
+	font-size: 14px;
+	font-weight: bold;
+	float: left;
+	text-align: center;
+	background: rgba(0, 0, 0, .15);
+  }

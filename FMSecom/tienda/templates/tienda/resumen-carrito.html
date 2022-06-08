@@ -39,19 +39,20 @@
                             <img width="64" height="64" src="{{ item.producto.imagen1.url }}" class="img-fluid">
                         </td>
                         <td class="cart-product-name">
-                            <a class="h5 text-black" href="{% url 'tienda:producto-detallado' item.producto.slug %}">{{item.producto.nombre}}</a>
+                            <a class="h5 text-black"
+                                href="{% url 'tienda:producto-detallado' item.producto.slug %}">{{item.producto.nombre}}</a>
 
                         </td>
-                        <td class="cart-product-price">{{ item.producto.get_precio }} €</td>
+                        <td class="cart-product-price">{{ item.producto.precio_producto }} €</td>
                         <td class="cart-product-quantity">
 
-                           
+
                             <div class="qty text-center">
                                 {{ item.cantidad }}
                             </div>
                         </td>
                         <td class="cart-product-subtotal">
-                            <span class="amount"> {{ item.precio_total_producto }} € </span>
+                            <span class="amount"> {{ item.precio_producto_cantidad }} € </span>
 
                         </td>
                     </tr>
@@ -69,7 +70,9 @@
 
             </table>
 
-            <a href="{% url 'tienda:categorias' %}">Seguir comprando</a>
+            <a href="{% url 'tienda:tienda' %}">Seguir comprando</a>
+
+            
 
 
 
@@ -97,7 +100,7 @@
                         </div>
 
                         <div class="col-md-6 text-right">
-                            <strong class="text-black">{{ pedido.get_subtotal }} €</strong>
+                            <strong class="text-black">{{ pedido.get_total }} €</strong>
                         </div>
                     </div>
 
@@ -108,13 +111,14 @@
                                 Ya casi ha finalizado su pedido.
                                 Por favor <a class="btn btn-outline-success"
                                     href="{% url 'autenticacion:autenticacion' %}">Regístrese</a> o <a
-                                    class="btn btn-outline-success" href="{% url 'autenticacion:login' %}">Inicie sesion</a>
+                                    class="btn btn-outline-success" href="{% url 'autenticacion:login' %}">Inicie
+                                    sesion</a>
                             </div>
 
-                            
+
                         </div>
                     </div>
-                   
+
                     {% else %}
                     <div class="row center">
                         <div class="col-md-12">

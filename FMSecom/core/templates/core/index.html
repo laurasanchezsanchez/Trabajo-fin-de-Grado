@@ -14,9 +14,9 @@
 					<div class="container">
 						<div class="slider-caption slider-caption-center">
 							<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
-								{{slider_1.titulo_informacion}}</h2>
+								{{slider_1.titulo_informacion|safe}}</h2>
 							<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
-								<strong>{{slider_1.descripcion_informacion}}</strong>
+								<strong>{{slider_1.descripcion_informacion|safe}}</strong>
 							</p>
 						</div>
 					</div>
@@ -35,9 +35,9 @@
 							<br>
 							<br>
 							<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
-								{{slider_2.titulo_informacion}}</h2>
+								{{slider_2.titulo_informacion|safe}}</h2>
 							<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
-								{{slider_2.descripcion_informacion}}
+								{{slider_2.descripcion_informacion|safe}}
 							</p>
 						</div>
 					</div>
@@ -53,9 +53,9 @@
 							<br>
 							<br>
 							<h2 data-animate="fadeInUp" id="textoRojo" class="letraCliente">
-								{{slider_3.titulo_informacion}}</h2>
+								{{slider_3.titulo_informacion|safe}}</h2>
 							<p class="d-none d-sm-block letraCliente" data-animate="fadeInUp" data-delay="200">
-								{{slider_3.descripcion_informacion}}
+								{{slider_3.descripcion_informacion|safe}}
 							</p>
 						</div>
 					</div>
@@ -83,9 +83,9 @@
 			<div class="row align-items-center">
 				<div class="col-lg-5">
 					<div class="heading-block">
-						<h1 id="textoRojo">{{acerca_de.titulo_informacion}}</h1>
+						<h1 id="textoRojo">{{acerca_de.titulo_informacion|safe}}</h1>
 					</div>
-					<p class="lead">{{acerca_de.descripcion_informacion}}
+					<p class="lead">{{acerca_de.descripcion_informacion|safe}}
 					</p>
 				</div>
 
@@ -100,20 +100,20 @@
 
 		<!-- Segunda parte - Salto de linea -->
 		<p class="lead center">
-			{% autoescape off %} {{descripcion_del_personal.descripcion_informacion}} {% endautoescape %}
+			{{descripcion_del_personal.descripcion_informacion|safe}}
 		</p>
 		<hr>
 		<p class="lead center">
-			{% autoescape off %} {{descripcion_de_servicios.descripcion_informacion}} {% endautoescape %}
+			{{descripcion_de_servicios.descripcion_informacion|safe}}
 	
 			<br>
 			<br>
 		</p>
 
 		<!-- Tercera parte - Enlace a nuestras ofertas -->
-		<a href="/ofertas" class="button button-full button-dark center text-end bottommargin-lg">
+		<a href="{% url 'tienda:tienda' %}" class="button button-full button-dark center text-end bottommargin-lg">
 			<div class="container clearfix">
-				{{titulo_de_oferta.descripcion_informacion}} <strong>Ver</strong> <i class="icon-caret-right"
+				<strong>Visite nuestra tienda</strong> <i class="icon-caret-right"
 					style="top:4px;"></i>
 			</div>
 		</a>
@@ -133,11 +133,10 @@
 		</div>
 
 		<p class="lead center">
-			<br>
-			<br>
-			{% autoescape off %} {{datos_obligatorios.descripcion_informacion}}{% endautoescape %}
+			{{ datos_obligatorios.descripcion_informacion|safe }}
 		</p>
 	</div>
+	
 </section>
 
 <!-- Fin del contenido - bloque -->

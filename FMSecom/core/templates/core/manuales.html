@@ -3,9 +3,6 @@
 
 {% block contenido %}
 
-{% for file in files %}
-<a href="{{file.archivo.url}}">{{file.titulo}}</a>
-{% endfor %}
 
 
 <!-- Situacion en la web -->
@@ -15,9 +12,6 @@
     </div>
 </section>
 
-
-<br>
-<br>
 
 <body class="stretched">
 
@@ -45,7 +39,7 @@
                                             <i class="toggle-open icon-download-alt"></i>
                                         </div>
                                         <a class="toggle-title {{file.categoria}}" href="{{file.archivo.url}}">
-                                            {{file.titulo}}
+                                            [{{file.categoria|safe}}] {{file.titulo|safe}}
                                         </a>
                                     </div>
                                 </div>
@@ -68,7 +62,7 @@
                                                 filtros</a></li>
                                         {% for categoria in categorias %}
                                         <li><a href="#"
-                                                data-filter=".{{categoria.slug}}">{{categoria.nombre_categoria}}</a>
+                                                data-filter=".{{categoria.slug}}">{{categoria.nombre_categoria|safe}}</a>
                                         </li>
                                         {% endfor %}
                                     </ul>

@@ -24,9 +24,9 @@
                         <div class="feature-box">
                             <div class="fbox-content">
                                 <h2 class="display-2 fw-bolder mb-3 text-danger">1</h2>
-                                <h3 class="nott text-larger mb-4">{{paso_1.titulo_informacion}}</h3>
+                                <h3 class="nott text-larger mb-4">{{paso_1.titulo_informacion|safe}}</h3>
                                 <p>
-                                    {% autoescape off %} {{paso_1.descripcion_informacion}}{% endautoescape %}
+                                   {{paso_1.descripcion_informacion|safe}}
                                 </p>
 
                             </div>
@@ -42,8 +42,8 @@
                         <div class="feature-box flex-column">
                             <div class="fbox-content">
                                 <h2 class="display-2 fw-bolder mb-3 text-danger">2</h2>
-                                <h3 class="nott text-larger mb-4">{{paso_2.titulo_informacion}}</h3>
-                                <p> {% autoescape off %} {{paso_2.descripcion_informacion}}{% endautoescape %}
+                                <h3 class="nott text-larger mb-4">{{paso_2.titulo_informacion|safe}}</h3>
+                                <p>{{paso_2.descripcion_informacion|safe}}
                                 </p>
                             </div>
                         </div>
@@ -58,10 +58,10 @@
                         <div class="feature-box flex-column noborder">
                             <div class="fbox-content">
                                 <h2 class="display-2 fw-bolder mb-3 text-danger">3</h2>
-                                <h3 class="nott text-larger mb-4">{{paso_3.titulo_informacion}}
+                                <h3 class="nott text-larger mb-4">{{paso_3.titulo_informacion|safe}}
                                 </h3>
                                 <p>
-                                    {% autoescape off %} {{paso_3.descripcion_informacion}}{% endautoescape %}
+                                    {{paso_3.descripcion_informacion|safe}}
 
                                 </p>
                             </div>

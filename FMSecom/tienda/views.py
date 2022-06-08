@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Categorias_productos, ItemPedido
 from .models import Productos, Direccion
-
+from django.conf import settings
 
 # añadido para cambiar de vistas
 from dataclasses import fields
@@ -12,6 +12,8 @@ from .forms import AnadirAlCarrito, DireccionForm
 from .utils import get_or_set_order_session, get_pedidos_session
 from django.contrib import messages
 
+import stripe
+stripe.api_key = "sk_test_51L8KiTGoxA9pTzWIYBbDEpGchhaj9hA4r3nDiMEYCOVodnJdzto6VYbwTNuTnBke1mrQyHepzuOptnP62b5pAeUL00epOSUraP"
 
 # ------------------------------------------------------------------------
 # Esta funcion nos devuelve todas las categorias
@@ -38,7 +40,8 @@ def categoria_filtrada(request, slug):
 
 
 # ------------------------------------------------------------------------
-# Funcion que devuelve los detalles de un producto concreto
+# Funcion que devuelve los detalles de un producto concreto. 
+# Al darle a añadir le lleva a la pagina del carrito
 # ------------------------------------------------------------------------
 
 class ProductDetailView(generic.FormView):
@@ -48,6 +51,7 @@ class ProductDetailView(generic.FormView):
     def get_object(self):
         return get_object_or_404(Productos, slug=self.kwargs["slug"])
 
+    # Al darle a añadir le lleva a la pagina del carrito
     def get_success_url(self):
         return reverse("tienda:resumen-carrito")
 
@@ -151,10 +155,12 @@ class CheckoutView(generic.FormView):
     form_class = DireccionForm
 
     # Si esta todo correcto, le da a pagar y nos dirige al html de pago
+    # Como aun no tengo html de pago, lo redirijo al resumen del carrito otra vez
     def get_success_url(self):
-        return reverse("tienda:resumen-carrito")
+        return reverse("tienda:payment")
 
-    # D
+    def get_cancel_url(self):
+        return reverse("tienda:categoria")
 
     def form_valid(self, form):
 
@@ -164,6 +170,7 @@ class CheckoutView(generic.FormView):
             'direccion_envio_seleccionada')
         direccion_facturacion_seleccionada = form.cleaned_data.get(
             'direccion_facturacion_seleccionada')
+        order.realizado = True
 
         # Si el cliente ha podido seleccionar una de sus direcciones, la guardamos en el pedido
         if direccion_envio_seleccionada:
@@ -196,8 +203,8 @@ class CheckoutView(generic.FormView):
 
         # Hacemos el save para cualquier opcion anterior
         order.save()
-        messages.info(
-            self.request, "Usted ha rellenado todos los campos correctamente.")
+
+       
         return super(CheckoutView, self).form_valid(form)
 
     # Le pasamos al html los datos necesarios
@@ -221,4 +228,22 @@ class MisPedidosView(generic.TemplateView):
         context = super(MisPedidosView, self).get_context_data(**kwargs)
         ped = get_pedidos_session(self.request)
         context["pedidos"] = ped
+        return context
+
+# Aqui se haran todas las operaciones con stripe
+def cargo(request):
+    redirect('gracias')
+
+class gracias(generic.TemplateView):
+    template_name = 'tienda/gracias.html'
+
+
+class PaymentView(generic.TemplateView):
+    template_name = 'tienda/payment.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(PaymentView, self).get_context_data(**kwargs)
+        context["PAYPAL_CLIENT_ID"] = settings.PAYPAL_SANDBOX_CLIENT_ID
+        context['order'] = get_or_set_order_session(self.request)
+        context['CALLBACK_URL']= self.request.build_absolute_uri(reverse("tienda:gracias"))
         return context

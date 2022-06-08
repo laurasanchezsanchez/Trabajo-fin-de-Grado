@@ -4,11 +4,7 @@
 {% block contenido %}
 
 <!-- Situacion en la web -->
-<section id="page-title" style="padding: 2em;">
-    <div class="container clearfix text-center">
-        <h1>Tutorial de Anydesk</h1>
-    </div>
-</section>
+
 
 <body class="stretched">
 
@@ -21,84 +17,32 @@
         <section id="content">
             <div class="content-wrap">
                 <div class="container">
-                    <p class="lead">
-                        AnyDesk es un software que nos permitirá tener control de su ratón desde nuestras oficinas con
-                        el fin de explicar o resolver cualquier pregunta.
-                        <br>
-                        Una vez se haya terminado la consulta, se hará una desconexión segura.
-                        En todo momento usted verá nuestras acciones desde su pantalla.
-                        <br>
-                        <a href="#" data-scrollto="#content" data-offset="100" class="one-page-arrow"><i
-                                class="icon-angle-down infinite animated fadeInDown"></i></a>
 
-                    </p>
+                    <div class="fancy-title title-border">
+						<h3>Tutoriales</h3>
+					</div>
+
+					<div class="row col-mb-50 mb-0">
 
 
+                        {% for tutorial in tutoriales %}
+						<div class="col-md-6 col-lg-4">
+							<div class="feature-box fbox-center fbox-dark">
+								<div class="fbox-icon" data-hover-animate="fadeIn" data-hover-parent=".feature-box">
+									<a href="#"><i class="icon-eye i-alt"></i></a>
+								</div>
+								<div class="fbox-content">
+									<h3><a
+                                        href="{% url 'core:tutorial-detallado' tutorial.slug %}">{{tutorial.titulo}}</a></h3>
+								</div>
+							</div>
+						</div>
+                        
+                        {% endfor %}
 
-                    <div class="section dark rounded-5 px-5" id="content"
-                        style="background: #0E2A47 url('images/blocks/preview/svg-bg/shiny.svg') no-repeat center center; background-size: cover; padding-top: 100px;padding-bottom: 100px;">
-                        <div class="row mb-1">
-                            <div class="col-md-12">
-                                <h2 class="display-4 fw-medium">Tutorial para descargar y usar AnyDesk</h2>
-                            </div>
-                        </div>
+						
+					</div>
 
-                        <br>
-                        <br>
-
-                        <div
-                            class="row feature-box-border-horizontal border-0 border-dashed col-mb-50 justify-content-center">
-                            <div class="col-md-4">
-                                <div class="feature-box flex-column">
-                                    <div class="fbox-icon mb-5">
-                                        <a href="#"><i class="bg-danger">1</i></a>
-                                    </div>
-                                    <div class="fbox-content">
-                                        <h3 class="nott text-larger mb-2">Descarga AnyDesk</h3>
-                                        <p class="lead text-white-50">Haz click en "descargar Anydesk":</p>
-                                        <a href="https://www.anydesk.com/es/downloads/thank-you?dv=win_exe"
-                                            class="button button-small bg-danger button-rounded border-width-1 ms-0 mt-4">DESCARGAR
-                                            ANYDESK<i class="icon-angle-right me-0"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="feature-box flex-column">
-                                    <div class="fbox-icon mb-5">
-                                        <a href="#"><i>2</i></a>
-                                    </div>
-                                    <div class="fbox-content">
-                                        <h3 class="nott text-larger mb-2">Abre AnyDesk</h3>
-                                        <p class="lead text-white-50">Haz click en el software descargado para abrirlo.
-                                            Si no lo encuentra, diríjase a su carpeta de "Descargas" y ahí lo
-                                            encontrará.</p>
-                                        <br>
-                                        <img src="{% static 'core/images/core/imagenes/AnydeskPaso1.png' %}"
-                                            alt="Paso 1 AnyDesk"></img>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-4">
-                                <div class="feature-box flex-column noborder">
-                                    <div class="fbox-icon mb-5">
-                                        <a href="#"><i>3</i></a>
-                                    </div>
-                                    <div class="fbox-content">
-                                        <h3 class="nott text-larger mb-2">Díganos su número de puesto de trabajo</h3>
-                                        <p class="lead text-white-50">Cuando nos lo comunique y nosotros intentemos
-                                            tener acceso remoto, le saldrá una pestaña para aceptarnos. Haga click en
-                                            "Aceptar".</p>
-                                        <br>
-                                        <img src="{% static 'core/images/core/imagenes/AnydeskPaso2.png' %}"
-                                            alt="Paso 2 AnyDesk"></img>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
 
                 </div>
             </div>

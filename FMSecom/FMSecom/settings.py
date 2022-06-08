@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms'
+    'crispy_forms',
+    'ckeditor',
+    'jquery'
 ]
 
 
@@ -149,3 +151,8 @@ STATICFILES_DIRS = [
 DEFAULT_FROM_EMAIL='laurasanchez13@correo.ugr.es'
 NOTIFY_EMAIL='laurasanchez13@correo.ugr.es'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+PAYPAL_SANDBOX_CLIENT_ID='AaCP9Pv4fy6gi16d2Gn_LIdWqy4uDvpgfkIxD--_jYAXCmV8NbOMPIVEydkLR5zCw4BTvjx3HPz2tXY_'
+PAYPAL_SANDBOX_SECRET_KEY='EDWChEupFDTPtK1wZrQrZ6QsbgDfa2mWCs1wP9hVSUOY9hrRIAns8D--bzSNha3_zUZ3cEHdB8gxWaGS'
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51L8KiTGoxA9pTzWIzuVkVS6Aj8ApVy9eQz93OygAeLa2jzmR52mTx54KAxalFzTUBo7AysLVzFyjXaqfW3UchqId00iuwiL0Xv'
+STRIPE_SECRET_KEY = 'sk_test_51L8KiTGoxA9pTzWIYBbDEpGchhaj9hA4r3nDiMEYCOVodnJdzto6VYbwTNuTnBke1mrQyHepzuOptnP62b5pAeUL00epOSUraP'

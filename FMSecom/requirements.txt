@@ -1,1 +1,4 @@
 django-filter
+django-ckeditor
+django-static-jquery
+stripe==3.0.0

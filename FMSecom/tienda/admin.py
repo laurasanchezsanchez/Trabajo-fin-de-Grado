@@ -16,7 +16,7 @@ class categoriasAdministrador(admin.ModelAdmin):
 
 class productosAdministrador(admin.ModelAdmin):
     # Orden en el que se muestran
-    list_display = ('categoria', 'categoria_slug', 'nombre', 'slug', 'precio_producto', 'precio_producto_servicio', 'tipo', 'id')     
+    list_display = ('categoria', 'categoria_slug', 'nombre', 'slug', 'precio_producto', 'id')     
     # Campo filtrado
     list_filter = ("categoria", "nombre",)  
     # Campo de búsqueda                                      
@@ -40,7 +40,7 @@ class pedidoAdmin(admin.ModelAdmin):
         'start_date',
         'direccion_facturacion',
         'direccion_envio',
-        'get_subtotal',
+        'get_total',
         'realizado'
         
     ]
