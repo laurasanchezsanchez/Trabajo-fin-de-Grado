@@ -12,6 +12,12 @@ from .forms import AnadirAlCarrito, DireccionForm
 from .utils import get_or_set_order_session, get_pedidos_session
 from django.contrib import messages
 
+
+from django.conf import settings # new
+from django.http.response import JsonResponse # new
+from django.views.decorators.csrf import csrf_exempt # new
+from django.views.generic.base import TemplateView
+
 import stripe
 stripe.api_key = "sk_test_51L8KiTGoxA9pTzWIYBbDEpGchhaj9hA4r3nDiMEYCOVodnJdzto6VYbwTNuTnBke1mrQyHepzuOptnP62b5pAeUL00epOSUraP"
 
@@ -241,9 +247,68 @@ class gracias(generic.TemplateView):
 class PaymentView(generic.TemplateView):
     template_name = 'tienda/payment.html'
 
+
     def get_context_data(self, **kwargs):
         context = super(PaymentView, self).get_context_data(**kwargs)
         context["PAYPAL_CLIENT_ID"] = settings.PAYPAL_SANDBOX_CLIENT_ID
-        context['order'] = get_or_set_order_session(self.request)
+        context['order'] = get_or_set_order_session(self.request).get_total
         context['CALLBACK_URL']= self.request.build_absolute_uri(reverse("tienda:gracias"))
         return context
+
+
+# #########################################################################
+# #########################################################################
+# ############################ stripe #####################################
+# #########################################################################
+# #########################################################################
+
+@csrf_exempt
+def stripe_config(request):
+    if request.method == 'GET':
+        stripe_config = {'publicKey': settings.STRIPE_PUBLISHABLE_KEY}
+        return JsonResponse(stripe_config, safe=False)
+
+
+@csrf_exempt
+def create_checkout_session(request):
+    if request.method == 'GET':
+        domain_url = 'http://localhost:8000/'
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        pedido = get_or_set_order_session(request)
+        cantidad = pedido.get_total()
+
+        try:
+            # Create new Checkout Session for the order
+            # Other optional params include:
+            # [billing_address_collection] - to display billing address details on the page
+            # [customer] - if you have an existing Stripe Customer ID
+            # [payment_intent_data] - capture the payment later
+            # [customer_email] - prefill the email input in the form
+            # For full details see https://stripe.com/docs/api/checkout/sessions/create
+
+            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
+            checkout_session = stripe.checkout.Session.create(
+                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                cancel_url=domain_url + 'cancelled/',
+                payment_method_types=['card'],
+                mode='payment',
+                line_items=[
+                    {
+                        'name': 'CamaraPrueba',
+                        'quantity': 1,
+                        'currency': 'eur',
+                        'amount': {{cantidad}},
+                    }
+                ]
+            )
+            return JsonResponse({'sessionId': checkout_session['id']})
+        except Exception as e:
+            return JsonResponse({'error': str(e)})
+
+
+class SuccessView(TemplateView):
+    template_name = 'tienda/success.html'
+
+
+class CancelledView(TemplateView):
+    template_name = 'tienda/cancelled.html'

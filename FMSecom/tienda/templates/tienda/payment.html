@@ -29,7 +29,7 @@
             
 
             <div id='paymentInfo'>
-                <p>Order Total: ${{ order.get_total }}</p>
+                <p>Order Total: ${{ order }}</p>
                 <h4>Select a payment method</h4>
                 <div id="paypal-button-container"></div>
             </div>
@@ -64,4 +64,23 @@
         }).render('#paypal-button-container');
     </script>
 
+
+<!-- ############################################################################## -->
+<!-- ############################################################################## -->
+<!-- ############################################################################## -->
+<!-- ############################################################################## -->
+<!-- ############################################################################## -->
+<!-- ############################################################################## -->
+<!-- ############################################################################## -->
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+<script src="{% static 'main.js' %}"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
+<section class="section">
+    <div class="container">
+      <button class="button is-primary" id="submitBtn">Purchase!</button>
+    </div>
+  </section>
 {% endblock %}

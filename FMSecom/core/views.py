@@ -11,7 +11,7 @@ from .models import Informacion_instalaciones
 from .models import Empresas_apoyo
 from .models import Manuales
 from .models import Leyes
-
+from django.views.generic.base import TemplateView
 import importlib.util
 
 # necesita importar las categorias
@@ -194,3 +194,9 @@ def leyesView(request):
         "files": documents,
     })
 
+class SuccessView(TemplateView):
+    template_name = 'core/success.html'
+
+
+class CancelledView(TemplateView):
+    template_name = 'core/cancelled.html'

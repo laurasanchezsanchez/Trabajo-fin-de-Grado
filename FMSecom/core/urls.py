@@ -20,4 +20,6 @@ urlpatterns = [
     path('tutoriales/<slug>/', views.tutorialDetallado,
         name='tutorial-detallado'),
     path('leyes/', views.leyesView, name='leyes'),
+    path('success/', views.SuccessView.as_view()), # new
+    path('cancelled/', views.CancelledView.as_view()), # new
 ]

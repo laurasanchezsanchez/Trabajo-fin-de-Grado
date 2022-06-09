@@ -16,6 +16,11 @@ urlpatterns = [
     path('mis-pedidos/', views.MisPedidosView.as_view(), name='mis-pedidos'),
     path('gracias/', views.gracias.as_view(), name='gracias'),
     path('payment/', views.PaymentView.as_view(), name='payment'),
+
+    path('config/', views.stripe_config),  
+    path('create-checkout-session/', views.create_checkout_session), # new
+    path('success/', views.SuccessView.as_view()), # new
+    path('cancelled/', views.CancelledView.as_view()), # new
     
     
 
