@@ -1,4 +1,3 @@
-console.log("Sanity check!");
 
 // Get Stripe publishable key
 fetch("/tienda/config/")

@@ -1,19 +1,11 @@
-<!-- templates/cancelled.html -->
+{% extends "core/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Django + Stripe Checkout</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
-  </head>
-  <body>
-  <section class="section">
-    <div class="container">
-      <p>Your payment was cancelled.</p>
-    </div>
-  </section>
-  </body>
-</html>
+{% block contenido %}
+<br>
+<div class="alert alert-error">
+	El pago ha sido cancelado. Si tiene algún problema respecto al pago, póngase en contacto con nosotros vía telefónica al número <a href="tel:601190589">{{telefono.dato_1}}</a>
+  </div>
+
+{% endblock %}

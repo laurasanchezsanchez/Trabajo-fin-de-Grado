@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Categorias_productos, ItemPedido
+from .models import Categorias_productos, ItemPedido, Pedido
 from .models import Productos, Direccion
 from django.conf import settings
 
@@ -176,7 +176,7 @@ class CheckoutView(generic.FormView):
             'direccion_envio_seleccionada')
         direccion_facturacion_seleccionada = form.cleaned_data.get(
             'direccion_facturacion_seleccionada')
-        order.realizado = True
+        order.realizado = False
 
         # Si el cliente ha podido seleccionar una de sus direcciones, la guardamos en el pedido
         if direccion_envio_seleccionada:
@@ -247,11 +247,10 @@ class gracias(generic.TemplateView):
 class PaymentView(generic.TemplateView):
     template_name = 'tienda/payment.html'
 
-
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super(PaymentView, self).get_context_data(**kwargs)
         context["PAYPAL_CLIENT_ID"] = settings.PAYPAL_SANDBOX_CLIENT_ID
-        context['order'] = get_or_set_order_session(self.request).get_total
+        context["pedido"] = get_or_set_order_session(self.request)
         context['CALLBACK_URL']= self.request.build_absolute_uri(reverse("tienda:gracias"))
         return context
 
@@ -297,7 +296,7 @@ def create_checkout_session(request):
                         'name': 'CamaraPrueba',
                         'quantity': 1,
                         'currency': 'eur',
-                        'amount': {{cantidad}},
+                        'amount': round(cantidad)*100,
                     }
                 ]
             )
@@ -306,9 +305,18 @@ def create_checkout_session(request):
             return JsonResponse({'error': str(e)})
 
 
-class SuccessView(TemplateView):
-    template_name = 'tienda/success.html'
 
+
+class SuccessView(generic.TemplateView):
+    template_name = "tienda/success.html"
+    
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(SuccessView, self).get_context_data(**kwargs)
+        pedido = get_or_set_order_session(self.request)
+        pedido.realizado = True
+        context["pedido"] = get_or_set_order_session(self.request)
+        return context
 
 class CancelledView(TemplateView):
     template_name = 'tienda/cancelled.html'

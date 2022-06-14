@@ -29,8 +29,8 @@
             
 
             <div id='paymentInfo'>
-                <p>Order Total: ${{ order }}</p>
-                <h4>Select a payment method</h4>
+                <p>Cantidad a pagar: {{ pedido.get_total }} €</p>
+                <h4>Seleccione un método de pago</h4>
                 <div id="paypal-button-container"></div>
             </div>
 
@@ -80,7 +80,7 @@
 
 <section class="section">
     <div class="container">
-      <button class="button is-primary" id="submitBtn">Purchase!</button>
+      <button class="button is-primary" id="submitBtn">PAGAR CON STRIPE</button>
     </div>
   </section>
 {% endblock %}

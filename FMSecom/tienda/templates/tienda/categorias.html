@@ -8,8 +8,10 @@
     <div class="container clearfix text-center">
         <h1>Productos de FMSecom</h1>
     </div>
-</section>
 
+    <input id="searchbar" onkeyup="buscar_producto()" type="text"
+        name="search" placeholder="Buscar un producto..">
+</section>
 
 
 <br>
@@ -33,8 +35,9 @@
                     ============================================= -->
                             <div id="shop" class="shop row grid-container gutter-20" data-layout="fitRows">
 
+                                
                                 {% for producto in productos.all %}
-                                <div class="product col-md-4 col-sm-6 {{producto.categoria_slug}}">
+                                <div class="product col-md-4 col-sm-6 {{producto.categoria_slug}} claseProducto" style="display:block">
                                     <div class="grid-inner">
                                         <div class="product-image">
                                             <a href="#"><img src="{{producto.imagen1.url}}"></a>
@@ -106,6 +109,7 @@
     </div>
 </body>
 
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
@@ -166,6 +170,23 @@
             });
         });
     });
+
+
+    function buscar_producto() {
+        let input = document.getElementById('searchbar').value
+        input=input.toLowerCase();
+        let x = document.getElementsByClassName('claseProducto');
+        
+        for (i = 0; i < x.length; i++) { 
+            console.log(x[i].innerHTML)
+            if (!x[i].innerHTML.toLowerCase().includes(input)) {
+                x[i].style.display="none";
+            }
+            else {
+                x[i].style.display="block";                 
+            }
+        }
+}
 </script>
 
 

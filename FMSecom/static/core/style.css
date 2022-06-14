@@ -16878,3 +16878,21 @@ background-color: #b2a677;
 	text-align: center;
 	background: rgba(0, 0, 0, .15);
   }
+
+
+  #searchbar{
+	margin-left: 15%;
+	padding:15px;
+	border-radius: 10px;
+  }
+
+
+
+ #list{
+   font-size:  1.5em;
+   margin-left: 90px;
+  }
+
+.claseProducto{
+  display: block;    
+ } 
