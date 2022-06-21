@@ -1,14 +1,18 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
+from django.shortcuts import render, reverse
 from django.views.generic import View
 
 # Nos construye el formulario, la otra el de login
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 
 # Poder hacer login y logout. El authenticate es el que nos permite ver si ha hecho bien la autenticacion
 from django.contrib.auth import login, logout, authenticate
 
 # Para mostrar los mensajes de error al hacer mal el registro
 from django.contrib import messages
+
+from django.contrib.auth.views import PasswordChangeView
+from .forms import CambiarPasswordForm, UserCreationForm
 
 
 # Create your views here.
@@ -75,3 +79,15 @@ def loguear(request):
 
     form = AuthenticationForm()
     return render(request, "login/login.html", {"form": form})
+
+
+class perfilView(PasswordChangeView):
+    form_class = CambiarPasswordForm
+    template_name = 'usuario/perfil.html'
+
+    def get_success_url(self):
+        return reverse('autenticacion:password_success')
+
+
+def password_success(request):
+    return render(request, "usuario/password_success.html", {})

@@ -102,6 +102,9 @@ class Pedido(models.Model):
             total += float(order_item.precio_producto_cantidad())
         return total
 
+    def get_items(self):
+        return self.items
+
 
 
 # ------------------------------------------------------------------------

@@ -10,6 +10,20 @@
     </div>
 </section>
 
+{% for pedido in pedidos %} 
+<h1> EL PEDIDO ES: {{pedido.id}}</h1>
+Numero de items: {{pedido.items.count}}
+<br>
+<p>ITEMS:</p>
+{% for ped in pedido.items.all %}
+{{ped.producto.nombre}}
+<br>
+{% endfor %}
+TOTAL DEL PEDIDO: {{pedido.get_total}} €
+ <br>
+ <br>
+ {% endfor %}                 
+
 <!-- Content
 		============================================= -->
 <section id="content">

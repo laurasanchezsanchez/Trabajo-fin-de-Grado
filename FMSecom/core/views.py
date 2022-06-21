@@ -166,12 +166,8 @@ class ContactView(generic.FormView):
 
             {mensaje}
             """
-        send_mail(
-            subject="Mensaje recibido por un cliente.",
-            message=full_message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[settings.NOTIFY_EMAIL]
-        )
+        form.send()
+        form.send_confirmation()
         return super(ContactView, self).form_valid(form)
 
 

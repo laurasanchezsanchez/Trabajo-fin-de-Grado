@@ -1,3 +1,4 @@
+from django.core.mail import send_mail
 from django.shortcuts import render
 from .models import Categorias_productos, ItemPedido, Pedido
 from .models import Productos, Direccion
@@ -9,21 +10,21 @@ from pdb import post_mortem
 from django.shortcuts import get_object_or_404, reverse, redirect
 from django.views import generic
 from .forms import AnadirAlCarrito, DireccionForm
-from .utils import get_or_set_order_session, get_pedidos_session
+from .utils import get_or_set_order_session, get_pedidos_session, enviar_confirmacion_pedido
 from django.contrib import messages
 
 
-from django.conf import settings # new
-from django.http.response import JsonResponse # new
-from django.views.decorators.csrf import csrf_exempt # new
+from django.conf import settings  # new
+from django.http.response import JsonResponse  # new
+from django.views.decorators.csrf import csrf_exempt  # new
 from django.views.generic.base import TemplateView
 
 import stripe
 stripe.api_key = "sk_test_51L8KiTGoxA9pTzWIYBbDEpGchhaj9hA4r3nDiMEYCOVodnJdzto6VYbwTNuTnBke1mrQyHepzuOptnP62b5pAeUL00epOSUraP"
-
 # ------------------------------------------------------------------------
 # Esta funcion nos devuelve todas las categorias
 # ------------------------------------------------------------------------
+
 
 def categorias(request):
     return render(request, "tienda/categorias.html",
@@ -46,7 +47,7 @@ def categoria_filtrada(request, slug):
 
 
 # ------------------------------------------------------------------------
-# Funcion que devuelve los detalles de un producto concreto. 
+# Funcion que devuelve los detalles de un producto concreto.
 # Al darle a añadir le lleva a la pagina del carrito
 # ------------------------------------------------------------------------
 
@@ -210,7 +211,6 @@ class CheckoutView(generic.FormView):
         # Hacemos el save para cualquier opcion anterior
         order.save()
 
-       
         return super(CheckoutView, self).form_valid(form)
 
     # Le pasamos al html los datos necesarios
@@ -237,8 +237,11 @@ class MisPedidosView(generic.TemplateView):
         return context
 
 # Aqui se haran todas las operaciones con stripe
+
+
 def cargo(request):
     redirect('gracias')
+
 
 class gracias(generic.TemplateView):
     template_name = 'tienda/gracias.html'
@@ -251,7 +254,8 @@ class PaymentView(generic.TemplateView):
         context = super(PaymentView, self).get_context_data(**kwargs)
         context["PAYPAL_CLIENT_ID"] = settings.PAYPAL_SANDBOX_CLIENT_ID
         context["pedido"] = get_or_set_order_session(self.request)
-        context['CALLBACK_URL']= self.request.build_absolute_uri(reverse("tienda:gracias"))
+        context['CALLBACK_URL'] = self.request.build_absolute_uri(
+            reverse("tienda:gracias"))
         return context
 
 
@@ -287,7 +291,8 @@ def create_checkout_session(request):
 
             # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
             checkout_session = stripe.checkout.Session.create(
-                success_url=domain_url + 'success?session_id={CHECKOUT_SESSION_ID}',
+                success_url=domain_url +
+                'success?session_id={CHECKOUT_SESSION_ID}',
                 cancel_url=domain_url + 'cancelled/',
                 payment_method_types=['card'],
                 mode='payment',
@@ -305,18 +310,26 @@ def create_checkout_session(request):
             return JsonResponse({'error': str(e)})
 
 
-
-
 class SuccessView(generic.TemplateView):
     template_name = "tienda/success.html"
-    
 
+    
     def get_context_data(self, *args, **kwargs):
         context = super(SuccessView, self).get_context_data(**kwargs)
         pedido = get_or_set_order_session(self.request)
         pedido.realizado = True
+        enviar_confirmacion_pedido()
         context["pedido"] = get_or_set_order_session(self.request)
+        
         return context
+
 
 class CancelledView(TemplateView):
     template_name = 'tienda/cancelled.html'
+
+
+# Search
+def search(request):
+	q=request.GET['q']
+	data=Productos.objects.filter(nombre__icontains=q).order_by('-id')
+	return render(request,'tienda/search.html',{'data':data})

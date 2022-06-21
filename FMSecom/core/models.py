@@ -54,6 +54,7 @@ class Tutoriales(models.Model):
     titulo = models.CharField(max_length=1000)
     slug = models.SlugField(max_length=500, unique=True, null=True, blank=True)
     descripcion = RichTextField(null=True, blank=True)
+    logo_tutorial = models.ImageField(upload_to="images/tutoriales", default="images/tutoriales/logoPorDefecto.png")
 
     paso_1 = models.CharField(max_length=1000)
     descripcion_paso_1 = RichTextField(null=True, blank=True)

@@ -21,6 +21,7 @@ urlpatterns = [
     path('create-checkout-session/', views.create_checkout_session), # new
     path('success/', views.SuccessView.as_view()), # new
     path('cancelled/', views.CancelledView.as_view()), # new
+    path('search',views.search,name='search'),
     
     
 

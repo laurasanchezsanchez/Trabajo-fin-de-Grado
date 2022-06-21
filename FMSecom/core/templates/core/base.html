@@ -28,7 +28,8 @@
 
     
     <!-- Titulo Cabecera -->
-    <title> FMSecom </title>
+    <title> FMSecom - {% block tituloPagina %}
+        {% endblock %}</title>
 
 </head>
 
@@ -52,6 +53,8 @@
                         <a href="{% url 'tienda:mis-pedidos' %}" style="padding:0%;">Mis pedidos</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="{% url 'autenticacion:cerrar_sesion' %}" style="padding:0%;">Cerrar sesion</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'autenticacion:perfil' %}" style="padding:0%;">Mi perfil</a>
 
 
                         {% else %}
@@ -248,6 +251,8 @@
 
         <!-- FOOTER -->
 
+        
+
         <footer id="footer" class="dark"
             style="background-image: url('{% static 'core/images/core/imagenes/footer.jpg' %}');">
             <!-- Copyrights
@@ -305,6 +310,13 @@
 	============================================= -->
     <div id="gotoTop" class="icon-angle-up"></div>
 
+    <div id="whatsapp">
+        <a href="https://api.whatsapp.com/send?phone=+34601190589&text=Hola, soy {{user.username}}, ¿podría ayudarme?">
+          <img src="{% static 'core/images/core/imagenes/whatsapp.png' %}" height="75px" title="Escríbenos por Whastapp" alt="Escríbenos por Whastapp">
+          Háblenos por Whatsapp!</a>
+        
+     </div>
+
     <!-- JavaScripts
 	============================================= -->
     <script src="{% static 'core/js/jquery.js' %}"></script>
@@ -314,6 +326,7 @@
     <!-- Footer Scripts
 	============================================= -->
     <script src="{% static 'core/js/functions.js' %}"></script>
+    <script src="{% static 'core/js/miscript.js' %}"></script>
 
     <!-- Range Slider Plugin -->
     <script src="{% static 'core/js/components/rangeslider.min.js' %}"></script>

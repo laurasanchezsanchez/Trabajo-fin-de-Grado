@@ -1,6 +1,10 @@
 {% extends "core/base.html" %}
 {% load static %}
 
+{% block tituloPagina %} 
+Tienda
+{% endblock %}
+
 {% block contenido %}
 
 <!-- Situacion en la web -->
@@ -11,6 +15,15 @@
 
     <input id="searchbar" onkeyup="buscar_producto()" type="text"
         name="search" placeholder="Buscar un producto..">
+        
+        <form class="form-inline my-2 my-lg-0" action="./search">
+            <div class="input-group">
+                <input name="q" type="text" class="form-control" placeholder="search" />
+                <div class="input-group-append">
+                  <button class="btn btn-dark" type="submit" id="button-addon2">Search</button>
+                </div>
+              </div>
+          </form>
 </section>
 
 
@@ -85,18 +98,7 @@
 
                                 </div>
 
-                                <div class="widget widget-filter-links">
-
-                                    <h4>Ordenar por</h4>
-                                    <ul class="shop-sorting ps-2">
-                                        <li class="widget-filter-reset active-filter"><a href="#"
-                                                data-sort-by="original-order">Sin filtros</a></li>
-                                        <li><a href="#" data-sort-by="name">Nombre</a></li>
-                                        <li><a href="#" data-sort-by="price_lh">Precio ascendente</a></li>
-                                        <li><a href="#" data-sort-by="price_hl">Precio descendente</a></li>
-                                    </ul>
-
-                                </div>
+                                
 
                             </div>
                         </div><!-- .sidebar end -->
@@ -116,6 +118,7 @@
 <script>
     jQuery(document).ready(function ($) {
         $(window).on('pluginIsotopeReady', function () {
+            alert("Hola");
             $('#shop').isotope({
                 transitionDuration: '0.65s',
                 getSortData: {
@@ -186,7 +189,26 @@
                 x[i].style.display="block";                 
             }
         }
+
 }
+
+
+
+$(document).ready(function() {
+    $.ajax({
+        method: 'POST',
+        url: '/mi-app/function-pruebas',
+        data: {'Valor': 5},
+        success: funcionPrueba (data) {
+             //this gets called when server returns an OK response
+             console.log('it worked!');
+             console.log(data.result);
+        },
+        error: funcionPrueba () {
+             console.log("it didnt work");
+        }
+    });
+});
 </script>
 
 

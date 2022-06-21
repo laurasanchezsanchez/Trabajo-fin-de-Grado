@@ -117,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'es'
 
 TIME_ZONE = 'Europe/Madrid'
 
@@ -150,7 +150,15 @@ STATICFILES_DIRS = [
 
 DEFAULT_FROM_EMAIL='laurasanchez13@correo.ugr.es'
 NOTIFY_EMAIL='laurasanchez13@correo.ugr.es'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'sanchezlaura.ing@gmail.com'
+EMAIL_HOST_PASSWORD = 'glri sumq nerb nxbd'
+RECIPIENT_ADDRESS = 'laurasanchezsanchez.lss.13@gmail.com'
+
 PAYPAL_SANDBOX_CLIENT_ID='AaCP9Pv4fy6gi16d2Gn_LIdWqy4uDvpgfkIxD--_jYAXCmV8NbOMPIVEydkLR5zCw4BTvjx3HPz2tXY_'
 PAYPAL_SANDBOX_SECRET_KEY='EDWChEupFDTPtK1wZrQrZ6QsbgDfa2mWCs1wP9hVSUOY9hrRIAns8D--bzSNha3_zUZ3cEHdB8gxWaGS'
 

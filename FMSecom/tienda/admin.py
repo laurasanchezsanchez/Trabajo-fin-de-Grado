@@ -32,6 +32,9 @@ class direccionAdmin(admin.ModelAdmin):
         'direccion_tipo'
     ]
 
+class ItemInline(admin.TabularInline):
+    model = ItemPedido
+    fk_name = "pedido"
 
 class pedidoAdmin(admin.ModelAdmin):
     list_display = [
@@ -41,9 +44,13 @@ class pedidoAdmin(admin.ModelAdmin):
         'direccion_facturacion',
         'direccion_envio',
         'get_total',
-        'realizado'
-        
+        'realizado',
+        'get_items'
     ]
+
+    def get_items(self, obj):
+        return obj.get_items.pedido
+
 
 admin.site.register(Categorias_productos, categoriasAdministrador)
 admin.site.register(Productos, productosAdministrador)

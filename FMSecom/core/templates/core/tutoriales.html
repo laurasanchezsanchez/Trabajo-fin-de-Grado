@@ -1,6 +1,10 @@
 {% extends "./base.html" %}
 {% load static %}
 
+{% block tituloPagina %} 
+Tutoriales
+{% endblock %}
+
 {% block contenido %}
 
 <!-- Situacion en la web -->
@@ -29,15 +33,16 @@
 						<div class="col-md-6 col-lg-4">
 							<div class="feature-box fbox-center fbox-dark">
 								<div class="fbox-icon" data-hover-animate="fadeIn" data-hover-parent=".feature-box">
-									<a href="#"><i class="icon-eye i-alt"></i></a>
+									<a href="#"><img src="{{tutorial.logo_tutorial}}"></img></a>
 								</div>
+                                
 								<div class="fbox-content">
 									<h3><a
                                         href="{% url 'core:tutorial-detallado' tutorial.slug %}">{{tutorial.titulo}}</a></h3>
 								</div>
 							</div>
 						</div>
-                        
+                        <img src="{{tutorial.logo_tutorial}}">
                         {% endfor %}
 
 						
@@ -55,14 +60,7 @@
 	============================================= -->
     <div id="gotoTop" class="icon-angle-up"></div>
 
-    <!-- JavaScripts
-	============================================= -->
-    <script src="js/jquery.js"></script>
-    <script src="js/plugins.min.js"></script>
 
-    <!-- Footer Scripts
-	============================================= -->
-    <script src="js/functions.js"></script>
 
 </body>
 <br>
