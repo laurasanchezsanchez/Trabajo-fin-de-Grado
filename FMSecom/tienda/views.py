@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.core.mail import send_mail
 from django.shortcuts import render
 from .models import Categorias_productos, ItemPedido, Pedido
@@ -114,33 +115,6 @@ class CarritoView(generic.TemplateView):
         return context
 
 
-# ------------------------------------------------------------------------
-# Funcion que incrementa 1 unidad la cantidad de un item de la compra
-# ------------------------------------------------------------------------
-
-class IncrementarCantidadView(generic.View):
-    def get(self, request, *args, **kwargs):
-        order_item = get_object_or_404(ItemPedido, id=kwargs['pk'])
-        order_item.cantidad += 1
-        order_item.save(force_update=True, update_fields=['cantidad'])
-        return redirect("tienda:resumen-carrito")
-
-
-# ------------------------------------------------------------------------
-# Funcion que decrementa 1 unidad la cantidad de un item de la compra
-# ------------------------------------------------------------------------
-
-class DecrementarCantidadView(generic.View):
-    def get(self, request, *args, **kwargs):
-        order_item = get_object_or_404(ItemPedido, id=kwargs['pk'])
-
-        if order_item.cantidad <= 1:
-            order_item.delete()
-        else:
-            order_item.cantidad -= 1
-            order_item.save()
-        return redirect("tienda:resumen-carrito")
-
 
 # ------------------------------------------------------------------------
 # Funcion que elimina completamente un item de la compra
@@ -236,15 +210,6 @@ class MisPedidosView(generic.TemplateView):
         context["pedidos"] = ped
         return context
 
-# Aqui se haran todas las operaciones con stripe
-
-
-def cargo(request):
-    redirect('gracias')
-
-
-class gracias(generic.TemplateView):
-    template_name = 'tienda/gracias.html'
 
 
 class PaymentView(generic.TemplateView):
@@ -254,8 +219,6 @@ class PaymentView(generic.TemplateView):
         context = super(PaymentView, self).get_context_data(**kwargs)
         context["PAYPAL_CLIENT_ID"] = settings.PAYPAL_SANDBOX_CLIENT_ID
         context["pedido"] = get_or_set_order_session(self.request)
-        context['CALLBACK_URL'] = self.request.build_absolute_uri(
-            reverse("tienda:gracias"))
         return context
 
 
@@ -279,17 +242,13 @@ def create_checkout_session(request):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         pedido = get_or_set_order_session(request)
         cantidad = pedido.get_total()
+        enviar_confirmacion_pedido(request)
+        pedido.realizado = True
+        pedido.fecha = datetime.now()
+        pedido.save()
+        
 
         try:
-            # Create new Checkout Session for the order
-            # Other optional params include:
-            # [billing_address_collection] - to display billing address details on the page
-            # [customer] - if you have an existing Stripe Customer ID
-            # [payment_intent_data] - capture the payment later
-            # [customer_email] - prefill the email input in the form
-            # For full details see https://stripe.com/docs/api/checkout/sessions/create
-
-            # ?session_id={CHECKOUT_SESSION_ID} means the redirect will have the session ID set as a query param
             checkout_session = stripe.checkout.Session.create(
                 success_url=domain_url +
                 'success?session_id={CHECKOUT_SESSION_ID}',
@@ -310,19 +269,15 @@ def create_checkout_session(request):
             return JsonResponse({'error': str(e)})
 
 
-class SuccessView(generic.TemplateView):
-    template_name = "tienda/success.html"
 
-    
-    def get_context_data(self, *args, **kwargs):
-        context = super(SuccessView, self).get_context_data(**kwargs)
-        pedido = get_or_set_order_session(self.request)
+class SuccessView(generic.View):
+    def post(self, request, *args, **kwargs):
+        pedido = get_or_set_order_session(request)
         pedido.realizado = True
-        enviar_confirmacion_pedido()
-        context["pedido"] = get_or_set_order_session(self.request)
-        
-        return context
-
+        pedido.fecha = datetime.date.today()
+        pedido.save()
+        #enviar_confirmacion_pedido()
+        return redirect("tienda/success.html")
 
 class CancelledView(TemplateView):
     template_name = 'tienda/cancelled.html'
@@ -333,3 +288,11 @@ def search(request):
 	q=request.GET['q']
 	data=Productos.objects.filter(nombre__icontains=q).order_by('-id')
 	return render(request,'tienda/search.html',{'data':data})
+
+
+
+def detallesPedido(request, pk):
+    return render(request, "tienda/detalles_pedido.html",
+                  {
+                      "pedido": Pedido.objects.filter(pk=pk).first(),
+                  })

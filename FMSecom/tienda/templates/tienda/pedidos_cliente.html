@@ -10,22 +10,6 @@
     </div>
 </section>
 
-{% for pedido in pedidos %} 
-<h1> EL PEDIDO ES: {{pedido.id}}</h1>
-Numero de items: {{pedido.items.count}}
-<br>
-<p>ITEMS:</p>
-{% for ped in pedido.items.all %}
-{{ped.producto.nombre}}
-<br>
-{% endfor %}
-TOTAL DEL PEDIDO: {{pedido.get_total}} €
- <br>
- <br>
- {% endfor %}                 
-
-<!-- Content
-		============================================= -->
 <section id="content">
     <div class="content-wrap">
         <div class="container">
@@ -39,8 +23,11 @@ TOTAL DEL PEDIDO: {{pedido.get_total}} €
                 <thead>
                     <tr>
                         <th class="cart-product-name center">ID del pedido</th>
-                        <th class="cart-product-name center">Cantidad de productos</th>
+                        <th class="cart-product-price center">Fecha del pedido</th>
+                        <th class="cart-product-price center">Dirección de facturación</th>
+                        <th class="cart-product-price center">Dirección de facturación</th>
                         <th class="cart-product-price center">Precio total</th>
+                        <th class="cart-product-price center"></th>
                     </tr>
 
                 </thead>
@@ -50,15 +37,37 @@ TOTAL DEL PEDIDO: {{pedido.get_total}} €
                         <td class="cart-product-name ">
                             <a class="h5 text-black">{{pedido.id}}</a>
                         </td>
-                        <td class="cart-product-name">{{pedido.items.count}}
-                            
 
+                        <td class="cart-product-price">
+                            <time class="qty text-center">
+                                {{pedido.fecha}}
+                            </time>
                         </td>
+
+                        <td class="cart-product-price">
+                            <div class="qty text-center">
+                                {{pedido.direccion_facturacion}}
+                            </div>
+                        </td>
+
+                        <td class="cart-product-price">
+                            <div class="qty text-center">
+                                {{pedido.direccion_envio}}
+                            </div>
+                        </td>
+
                         <td class="cart-product-price">
                             <div class="qty text-center">
                                 {{pedido.get_total}} €
                             </div>
                         </td>
+
+                        <td class="cart-product-price">
+                            <div class="qty text-center">
+                                <button class="btn" id="button-addon2"><a href="{% url 'tienda:detalles-pedido' pedido.pk %}">Ver</a></button>
+                            </div>
+                        </td>
+                        
                         
 
 
@@ -76,33 +85,12 @@ TOTAL DEL PEDIDO: {{pedido.get_total}} €
 
             </table>
 
-            <br>
-            <div id="hide-me">¿Me ves?
-            </div>
-            <p>Esconder/mostrar con <button id="displayNone">diplay: none / block</button>
-            </p>
 
         </div>
 
 
     </div>
 </section><!-- #content end -->
-
-
-<script>
-    $('#displayNone').click(function (e) {
-
-        // Resetear, por si acaso has estado jugando con la otra propiedad
-       // $('#hide-me').css('visibility', 'visible');
-
-        if ($('#hide-me').is(":visible")) {
-            $('#hide-me').css('display', 'none');
-        } else {
-            $('#hide-me').css('display', 'block');
-        }
-    });
-
-</script>
 
 
 {% endblock %}

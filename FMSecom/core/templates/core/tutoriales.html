@@ -1,7 +1,7 @@
 {% extends "./base.html" %}
 {% load static %}
 
-{% block tituloPagina %} 
+{% block tituloPagina %}
 Tutoriales
 {% endblock %}
 
@@ -23,30 +23,35 @@ Tutoriales
                 <div class="container">
 
                     <div class="fancy-title title-border">
-						<h3>Tutoriales</h3>
-					</div>
+                        <h3>Tutoriales</h3>
+                    </div>
 
-					<div class="row col-mb-50 mb-0">
+                    <div class="row col-mb-50 mb-0">
 
 
                         {% for tutorial in tutoriales %}
-						<div class="col-md-6 col-lg-4">
-							<div class="feature-box fbox-center fbox-dark">
-								<div class="fbox-icon" data-hover-animate="fadeIn" data-hover-parent=".feature-box">
-									<a href="#"><img src="{{tutorial.logo_tutorial}}"></img></a>
-								</div>
-                                
-								<div class="fbox-content">
-									<h3><a
-                                        href="{% url 'core:tutorial-detallado' tutorial.slug %}">{{tutorial.titulo}}</a></h3>
-								</div>
-							</div>
-						</div>
-                        <img src="{{tutorial.logo_tutorial}}">
+
+                        <div class="product  col-md-4 col-sm-6 {{producto.categoria_slug}} claseProducto"
+                            style="display:block">
+                            <div class="grid-inner">
+                                <div class="product-image center">
+                                    <a href="{% url 'core:tutorial-detallado' tutorial.slug %}"><img
+                                            src="{{tutorial.logo_tutorial.url}}"></a>
+                                </div>
+                                <div class="product-desc center">
+                                    <div class="product-title">
+                                        <h3><a
+                                                href="{% url 'core:tutorial-detallado' tutorial.slug %}">{{tutorial.titulo}}</a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         {% endfor %}
 
-						
-					</div>
+
+                    </div>
 
 
                 </div>

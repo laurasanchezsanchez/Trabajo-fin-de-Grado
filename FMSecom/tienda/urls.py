@@ -9,12 +9,9 @@ urlpatterns = [
     path('producto/<slug>/', views.ProductDetailView.as_view(),
          name='producto-detallado'),
     path('carrito/', views.CarritoView.as_view(), name='resumen-carrito'),
-    path('incrementar-cantidad/<pk>/', views.IncrementarCantidadView.as_view(), name='incrementar-cantidad'),
-    path('decrementar-cantidad/<pk>/', views.DecrementarCantidadView.as_view(), name='decrementar-cantidad'),
     path('eliminar-del-carrito/<pk>/', views.EliminarDelCarritoView.as_view(), name='eliminar-del-carrito'),
     path('checkout/', views.CheckoutView.as_view(), name='checkout'),
     path('mis-pedidos/', views.MisPedidosView.as_view(), name='mis-pedidos'),
-    path('gracias/', views.gracias.as_view(), name='gracias'),
     path('payment/', views.PaymentView.as_view(), name='payment'),
 
     path('config/', views.stripe_config),  
@@ -22,6 +19,7 @@ urlpatterns = [
     path('success/', views.SuccessView.as_view()), # new
     path('cancelled/', views.CancelledView.as_view()), # new
     path('search',views.search,name='search'),
+    path('detalles-pedido/<pk>',views.detallesPedido, name='detalles-pedido'),
     
     
 

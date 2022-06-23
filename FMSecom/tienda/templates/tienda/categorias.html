@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 {% load static %}
 
-{% block tituloPagina %} 
+{% block tituloPagina %}
 Tienda
 {% endblock %}
 
@@ -12,18 +12,15 @@ Tienda
     <div class="container clearfix text-center">
         <h1>Productos de FMSecom</h1>
     </div>
-
-    <input id="searchbar" onkeyup="buscar_producto()" type="text"
-        name="search" placeholder="Buscar un producto..">
-        
-        <form class="form-inline my-2 my-lg-0" action="./search">
-            <div class="input-group">
-                <input name="q" type="text" class="form-control" placeholder="search" />
-                <div class="input-group-append">
-                  <button class="btn btn-dark" type="submit" id="button-addon2">Search</button>
-                </div>
-              </div>
-          </form>
+<br>
+    <form class="form-inline my-2 my-lg-0" action="./search">
+        <div class="input-group">
+            <input name="q" type="text" class="form-control" placeholder="Buscar producto..." />
+            <div class="input-group-append">
+                <button class="btn btn-dark" type="submit" id="button-addon2">Buscar</button>
+            </div>
+        </div>
+    </form>
 </section>
 
 
@@ -48,18 +45,19 @@ Tienda
                     ============================================= -->
                             <div id="shop" class="shop row grid-container gutter-20" data-layout="fitRows">
 
-                                
+
                                 {% for producto in productos.all %}
-                                <div class="product col-md-4 col-sm-6 {{producto.categoria_slug}} claseProducto" style="display:block">
+                                <div class="product col-md-4 col-sm-6 {{producto.categoria_slug}} claseProducto"
+                                    style="display:block">
                                     <div class="grid-inner">
                                         <div class="product-image">
-                                            <a href="#"><img src="{{producto.imagen1.url}}"></a>
+                                            <a href="{% url 'tienda:producto-detallado' producto.slug %}"><img src="{{producto.imagen1.url}}"></a>
                                             {% if producto.imagen2 %}
-                                            <a href="#"><img src="{{producto.imagen2.url}}"></a>
+                                            <a href="{% url 'tienda:producto-detallado' producto.slug %}"><img src="{{producto.imagen2.url}}"></a>
                                             {% endif %}
                                             <div class="sale-flash badge bg-secondary p-2 promo-uppercase">
                                                 {{producto.categoria}}</div>
-                                            
+
                                         </div>
                                         <div class="product-desc center">
                                             <div class="product-title">
@@ -98,7 +96,7 @@ Tienda
 
                                 </div>
 
-                                
+
 
                             </div>
                         </div><!-- .sidebar end -->
@@ -177,35 +175,35 @@ Tienda
 
     function buscar_producto() {
         let input = document.getElementById('searchbar').value
-        input=input.toLowerCase();
+        input = input.toLowerCase();
         let x = document.getElementsByClassName('claseProducto');
-        
-        for (i = 0; i < x.length; i++) { 
+
+        for (i = 0; i < x.length; i++) {
             console.log(x[i].innerHTML)
             if (!x[i].innerHTML.toLowerCase().includes(input)) {
-                x[i].style.display="none";
+                x[i].style.display = "none";
             }
             else {
-                x[i].style.display="block";                 
+                x[i].style.display = "block";
             }
         }
 
-}
+    }
 
 
 
-$(document).ready(function() {
-    $.ajax({
-        method: 'POST',
-        url: '/mi-app/function-pruebas',
-        data: {'Valor': 5},
-        success: funcionPrueba (data) {
-             //this gets called when server returns an OK response
-             console.log('it worked!');
-             console.log(data.result);
+    $(document).ready(function () {
+        $.ajax({
+            method: 'POST',
+            url: '/mi-app/function-pruebas',
+            data: { 'Valor': 5 },
+            success: funcionPrueba(data) {
+            //this gets called when server returns an OK response
+            console.log('it worked!');
+            console.log(data.result);
         },
-        error: funcionPrueba () {
-             console.log("it didnt work");
+            error: funcionPrueba() {
+            console.log("it didnt work");
         }
     });
 });

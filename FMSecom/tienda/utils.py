@@ -29,13 +29,20 @@ def get_pedidos_session(request):
 
     return pedidos
 
-def enviar_confirmacion_pedido():
+def enviar_confirmacion_pedido(request):
     nombre = 'LAURA'
-    email_cliente = 'laurasanchezsanchez.lss.13@gmail.com'
+    email_cliente = request.user.email
     subject = "[FMSecom] Su pedido se ha realizado correctamente"
 
     msg = f'Hola, {nombre}. \n'
-    msg += f'Su pedido se ha realizado correctamente Le responderemos lo antes posible. \n Gracias por confiar en FMSecom'
+    msg += f'Su pedido se ha realizado correctamente.'
+    msg += f'\n Detalles de su pedido: \n'
+    pedido = get_or_set_order_session(request)
+    for item in pedido.items.all():
+        msg += f'{item.reference_number}' 
+        msg += f'\n'
+    
+    msg += f'\n\n Gracias por confiar en FMSecom'
 
     send_mail(
             subject=subject,
