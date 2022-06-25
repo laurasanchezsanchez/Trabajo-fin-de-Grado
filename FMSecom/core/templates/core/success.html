@@ -2,9 +2,22 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block tituloPagina %}
+
+Pago realizado
+
+{% endblock %}
+
 {% block contenido %}
 <br>
-<div class="alert alert-success">
-	Su pago ha sido realizado con éxito. En 24-48 horas nos pondremos en contacto con usted para concretar una cita para la instalación.
+<div class="alert alert-success center">
+  Su pago ha sido realizado con éxito. En 24-48 horas nos pondremos en contacto con usted para concretar una cita para
+  la instalación.
+</div>
+
+<div class="row center">
+  <div class="col-md-12">
+      <a href="{% url 'core:index' %}" type="button" class="btn btn-outline-success">VOLVER AL INICIO</a>
   </div>
+</div>
 {% endblock %}

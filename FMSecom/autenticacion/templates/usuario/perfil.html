@@ -3,15 +3,8 @@
 
 {% block contenido %}
 
-PAGINA DE perfil
-
-{{user.username}}
-
-<h1>Cambiar contraseña</h1>
 <form method="POST">
     {% csrf_token %}
-<!-- Content
-		============================================= -->
 		<section id="content">
 			<div class="content-wrap">
 				<div class="container clearfix">
@@ -19,11 +12,12 @@ PAGINA DE perfil
 					<div class="form-widget">
 
 						<div class="form-result"></div>
+						<h2 class="center">Mi perfil</h2>
 
 						<div class="row shadow bg-light border">
 
-							<div class="col-lg-4 dark" style="background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.2)), url('{% static 'core/images/core/imagenes/Logo.png' %}') center center / cover; min-height: 400px;">
-								<h3 class="center mt-5">Cambiar contraseña</h3>
+							<div class="col-lg-4 dark" style="background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.2)), url('{% static 'core/images/core/imagenes/user.png' %}') center center / cover; min-height: 400px;">
+								
 								
 							</div>
 
@@ -34,6 +28,33 @@ PAGINA DE perfil
 											<div class="css3-spinner-scaler"></div>
 										</div>
 									</div>
+
+									<div class="col-12 form-group">
+										<div class="row">
+											<div class="col-sm-4 col-form-label">
+												<label>Nombre:</label>
+											</div>
+											<div class="col-sm-8">
+                                                {{user.username}}
+											</div>
+										</div>
+									</div>
+
+									<div class="col-12 form-group">
+										<div class="row">
+											<div class="col-sm-4 col-form-label">
+												<label>Email:</label>
+											</div>
+											<div class="col-sm-8">
+                                                {{user.email}}
+											</div>
+										</div>
+									</div>
+
+									<hr>
+									<h4 class="center">Cambiar contraseña</h4>
+
+
 									<div class="col-12 form-group">
 										<div class="row">
 											<div class="col-sm-4 col-form-label">

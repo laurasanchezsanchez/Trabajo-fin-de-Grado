@@ -1,10 +1,15 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% block contenido %}
-holaaaaa
+
+{% block tituloPagina %}
+Búsqueda de producto
+        {% endblock %}
+
+
 <main class="container my-4">
     <!-- Featured Products -->
-    <h3 class="my-4 border-bottom pb-1"><span class="text-muted">Search result for</span> {{request.GET.q}}</h3>
+    <h3 class="my-4 border-bottom pb-1"><span class="text-muted">Resultados de la búsqueda: </span> {{request.GET.q}}</h3>
     <div class="row">
         {% for product in data %}
         <div class="product col-md-4 col-sm-6 {{product.categoria_slug}} claseproduct" style="display:block">

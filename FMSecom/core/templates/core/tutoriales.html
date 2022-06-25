@@ -8,7 +8,16 @@ Tutoriales
 {% block contenido %}
 
 <!-- Situacion en la web -->
-
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ayuda al usuario</li>
+            <li class="breadcrumb-item active" aria-current="page">Tutoriales</li>
+        </ol>
+    </nav>
+</section>
 
 <body class="stretched">
 
@@ -35,8 +44,10 @@ Tutoriales
                             style="display:block">
                             <div class="grid-inner">
                                 <div class="product-image center">
-                                    <a href="{% url 'core:tutorial-detallado' tutorial.slug %}"><img
-                                            src="{{tutorial.logo_tutorial.url}}"></a>
+                                    <p>
+                                        <a href="{% url 'core:tutorial-detallado' tutorial.slug %}"><img
+                                                src="{{tutorial.logo_tutorial.url}}"  width="300px" height="300px"></img></a>
+                                    </p>
                                 </div>
                                 <div class="product-desc center">
                                     <div class="product-title">

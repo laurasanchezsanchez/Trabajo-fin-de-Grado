@@ -11,7 +11,7 @@ from pdb import post_mortem
 from django.shortcuts import get_object_or_404, reverse, redirect
 from django.views import generic
 from .forms import AnadirAlCarrito, DireccionForm
-from .utils import get_or_set_order_session, get_pedidos_session, enviar_confirmacion_pedido
+from .utils import get_or_set_order_session, get_pedidos_session, enviar_confirmacion_pedido, enviar_pedido_realizado_fmsecom
 from django.contrib import messages
 
 
@@ -243,6 +243,7 @@ def create_checkout_session(request):
         pedido = get_or_set_order_session(request)
         cantidad = pedido.get_total()
         enviar_confirmacion_pedido(request)
+        enviar_pedido_realizado_fmsecom(request)
         pedido.realizado = True
         pedido.fecha = datetime.now()
         pedido.save()

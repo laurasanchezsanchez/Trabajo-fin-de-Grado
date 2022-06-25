@@ -2,40 +2,58 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block contenido %}
+{% block tituloPagina %}
 
+Pago
+
+{% endblock %}
+
+{% block contenido %}
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-
-            {% comment %} <div class="alert alert-success" role="alert" id="alertSuccess" style="display: none;">
-                El pago se ha realizado con éxito.
-            </div>
-
-            <div class="alert alert-danger" role="alert" id="alertFailure" style="display: none;">
-                El pago ha fallado. Por favor, inténtelo de nuevo.
-            </div>
-
-
-            <div class="text-center py-3">
-                <div id="loader" class="lds-ring" style="margin:auto; display:none;">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div> {% endcomment %}
-            
-
+            <br>
+            <br>
             <div id='paymentInfo'>
-                <p>Cantidad a pagar: {{ pedido.get_total }} €</p>
-                <h4>Seleccione un método de pago</h4>
-                <div id="paypal-button-container"></div>
-            </div>
+                <h2 class="h3 mb-3 text-black text-center">Resumen de su pedido</h2>
 
+                <div class="p-3 p-lg-5">
+                    <table class="table site-block-order-table mb-5">
+                        <thead>
+                            <th>Producto</th>
+                            <th>Total</th>
+                        </thead>
+                        <tbody>
+                            {% for item in pedido.items.all %}
+                            <tr>
+                                <td>
+                                    {{ item.producto.nombre }}
+                                    <strong class="mx-2">x</strong> {{ item.cantidad }}
+                                </td>
+
+
+                                <td>
+                                    {{ item.precio_producto_cantidad }} €
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+                            <tr>
+                                <td><strong>Total a pagar</strong></td>
+                                <td><strong class="text-black font-weight-bold">{{ pedido.get_total }} €</strong>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+                    <button class="btn-lg py-3 button is-primary center" id="submitBtn">REALIZAR PAGO</button>
+                </div>
+            </div>
         </div>
-        
     </div>
 </div>
 
@@ -43,9 +61,4 @@
 <script src="{% static 'main.js' %}"></script>
 <script src="https://js.stripe.com/v3/"></script>
 
-<section class="section">
-    <div class="container">
-      <button class="button is-primary" id="submitBtn">PAGAR CON STRIPE</button>
-    </div>
-  </section>
 {% endblock %}

@@ -51,6 +51,64 @@ INSTALLED_APPS = [
     'jquery'
 ]
 
+#Para el desempeño de nuestro trabajo contamos con personal cualificado, con habilitación expedida por el Ministerio del Interior.
+
+#Éstos irán uniformados con distintivos propios de la empresa.
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        # 'skin': 'office2013',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_YourCustomToolbarConfig': [
+            {'name': 'document', 'items': ['Source', '-', 'Preview', '-', 'Templates']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord']},
+            {'name': 'clipboard2', 'items': ['Undo', 'Redo']},
+           
+            
+            '/',
+
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'
+                   ]},
+            {'name': 'links', 'items': ['Link', 'Unlink']},
+            {'name': 'insert',
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+
+            '/',  
+            
+            {'name': 'yourcustomtools', 'items': [
+                'Preview'
+
+            ]},
+        ],
+        'toolbar': 'YourCustomToolbarConfig',
+        # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 3,
+        'extraPlugins': ','.join([
+            'uploadimage', 
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+    }
+}
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [

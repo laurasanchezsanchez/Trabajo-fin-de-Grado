@@ -8,12 +8,15 @@ Manuales
 {% block contenido %}
 
 
-
 <!-- Situacion en la web -->
 <section id="page-title" style="padding: 2em;">
-    <div class="container clearfix text-center">
-        <h1>Manuales</h1>
-    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Ayuda al usuario</li>
+          <li class="breadcrumb-item active" aria-current="page">Manuales</li>
+        </ol>
+      </nav>
 </section>
 
 
@@ -37,7 +40,9 @@ Manuales
 
                                 {% for file in files %}
                                 <div class="toggle faq faq-authors faq-legal faq-itemdiscussion {{file.categoria.slug}} ">
+                                    
                                     <div class="toggle-header ">
+                                        
                                         <div class="toggle-icon">
                                             <i class="toggle-closed icon-download-alt"></i>
                                             <i class="toggle-open icon-download-alt"></i>
@@ -45,6 +50,11 @@ Manuales
                                         <a class="toggle-title {{file.categoria}}" href="{{file.archivo.url}}">
                                             [{{file.categoria|safe}}] {{file.titulo|safe}}
                                         </a>
+                                        <div class="toggle-icon">
+                                            <img src="{% static 'core/images/core/imagenes/pdf.png' %}" style="height: 50px;"></img>
+                                        </div>
+                                        
+                                        
                                     </div>
                                 </div>
                                 {% endfor %}

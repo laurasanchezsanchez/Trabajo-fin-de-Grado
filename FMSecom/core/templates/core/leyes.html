@@ -7,14 +7,19 @@ Leyes
 
 {% block contenido %}
 
-
-
 <!-- Situacion en la web -->
 <section id="page-title" style="padding: 2em;">
-    <div class="container clearfix text-center">
-        <h1>Leyes</h1>
-    </div>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Ayuda al usuario</li>
+          <li class="breadcrumb-item active" aria-current="page">Leyes</li>
+        </ol>
+      </nav>
 </section>
+
+<br>
+<br>
 
 
 <body class="stretched">
@@ -45,6 +50,9 @@ Leyes
                                         <a class="toggle-title" href="{{file.archivo.url}}">
                                              {{file.titulo|safe}}
                                         </a>
+                                        <div class="toggle-icon">
+                                            <img src="{% static 'core/images/core/imagenes/pdf.png' %}" style="height: 50px;"></img>
+                                        </div>
                                     </div>
                                 </div>
                                 {% endfor %}

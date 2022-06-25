@@ -2,16 +2,12 @@
 {% load carrito_template_tags %}
 
 <!DOCTYPE html>
-<html dir="ltr" lang="en-US">
+<html dir="ltr" lang="es-ES">
 
 <head>
-
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="SemiColonWeb" />
-
-    <!-- Stylesheets
-	============================================= -->
-    <link rel="shortcut icon" type="image/png" href="{% static 'core/images/core/imagenes/Logo.png' %}"/>
+    <link rel="shortcut icon" type="image/png" href="{% static 'core/images/core/imagenes/Logo.png' %}" />
     <link
         href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
         rel="stylesheet" type="text/css" />
@@ -26,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{% static 'core/css/components/ion.rangeslider.css' %}" type="text/css" />
 
-    
+
     <!-- Titulo Cabecera -->
     <title> FMSecom - {% block tituloPagina %}
         {% endblock %}</title>
@@ -59,16 +55,16 @@
 
                         {% else %}
 
-                        <a href="{% url 'autenticacion:login' %}">Login</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="{% url 'autenticacion:autenticacion' %}">Registrate</a>
+                        <a href="{% url 'autenticacion:login' %}">Iniciar Sesión</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'autenticacion:autenticacion' %}">Registrarme</a>
 
                         {% endif %}
                     </p>
+
                     <hr>
+
                     <div class="header-row">
-
-
                         <!-- Logo superior izquierda-->
                         <div id="logo">
                             <a href="/" class="standard-logo"
@@ -81,13 +77,6 @@
                         <!-- #logo end -->
 
                         <div class="header-misc">
-                            <!-- LUPA DE ARRIBA -->
-                            <div id="top-search" class="header-misc-icon">
-                                <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i
-                                        class="icon-line-cross"></i></a>
-                            </div>
-                            <!-- end lupa-->
-
                             <!-- CARRITO DE ARRIBA -->
                             <div id="top-cart" class="header-misc-icon d-none d-sm-block">
                                 <a href="{% url 'tienda:resumen-carrito' %}"><i class="icon-line-bag"></i><span
@@ -175,66 +164,9 @@
                                     </a>
                                 </li>
 
-                               
                             </ul>
 
                         </nav><!-- FIN DE LA BARRA PRINCIPAL -->
-<!--
-                        <script>
-                            $(document).ready(function () {
-                                $("#formulario").on("keyup", function () {
-                                    var value = $(this).val().toLowerCase();
-                                    products.filter(function () {
-                                        $(this).toggle($(this).text()
-                                            .toLowerCase().indexOf(value) > -1)
-                                    });
-                                });
-                            });
-
-                            const formulario = document.querySelector('#formulario');
-                            const resultado = document.querySelector('#resultado')
-
-                            const filtrar = () => {
-                                resultado.innerHTML = '';
-                                //console.log(formulario.value)
-                                const texto = formulario.value.toLowerCase();
-                                for (let producto of products) {
-                                    let nombre = producto.nombre.toLowerCase();
-                                    if (nombre.indexOf(texto) !== -1) {
-                                        resultado.innerHTML += `
-                                        <li>
-                                            ${producto.nombre} - Precio:  ${producto.precio_producto}
-                                        </li>
-                                        `
-                                    }
-                                }
-                                if (resultado.innerHTML === '') {
-                                    resultado.innerHTML += `
-                                        <li>
-                                            Producto no encontrado...
-                                        </li>
-                                        `
-                                }
-                            }
-
-                            formulario.addEventListener('keyup', filtrar)
-                        </script>
-
--->
-                        <!-- Busqueda -->
-                        <form class="top-search-form" method="get" id="formulario">
-                            <input type="text" name="q" class="form-control" value="" placeholder="Buscar..."
-                                autocomplete="off">
-                            <ul id="resultado">
-                                <li>
-                                    Hola
-                                </li>
-                            </ul>
-                        </form>
-                        <form id="productos1" value={{productos.items.all}}></form>
-
-
-
                     </div>
                     <br>
                 </div>
@@ -246,21 +178,15 @@
         <!-- FIN CABECERA -->
 
         {% block contenido %}
-
         {% endblock %}
 
         <!-- FOOTER -->
-
-        
-
         <footer id="footer" class="dark"
             style="background-image: url('{% static 'core/images/core/imagenes/footer.jpg' %}');">
-            <!-- Copyrights
-			============================================= -->
+
             <div id="copyrights">
                 <div class="container">
                     <div class="row justify-content-between col-mb-30">
-
                         <div class="col-lg-5 ">
                             Copyright ©
                             <address>
@@ -269,8 +195,10 @@
                         </div>
 
                         <div class="col-lg-5">
-                            <abbr title="Teléfono"><strong>Teléfono: </strong></abbr>(+34) <a href="tel:601190589">{{telefono.dato_1}}</a><br>
-                            <abbr title="Email"><strong>Email: </strong></abbr> <a href="mailto:{{email.dato_1}}">{{email.dato_1}}</a>
+                            <abbr title="Teléfono"><strong>Teléfono: </strong></abbr>(+34) <a
+                                href="tel:601190589">{{telefono.dato_1}}</a><br>
+                            <abbr title="Email"><strong>Email: </strong></abbr> <a
+                                href="mailto:{{email.dato_1}}">{{email.dato_1}}</a>
 
                             <br></br>
 
@@ -312,16 +240,17 @@
 
     <div id="whatsapp">
         <a href="https://api.whatsapp.com/send?phone=+34601190589&text=Hola, soy {{user.username}}, ¿podría ayudarme?">
-          <img src="{% static 'core/images/core/imagenes/whatsapp.png' %}" height="75px" title="Escríbenos por Whastapp" alt="Escríbenos por Whastapp">
-          Háblenos por Whatsapp!</a>
-        
-     </div>
+            <img src="{% static 'core/images/core/imagenes/whatsapp.png' %}" height="75px"
+                title="Escríbenos por Whastapp" alt="Escríbenos por Whastapp">
+            Háblenos por Whatsapp!</a>
+
+    </div>
 
     <!-- JavaScripts
 	============================================= -->
     <script src="{% static 'core/js/jquery.js' %}"></script>
     <script src="{% static 'core/js/plugins.min.js' %}"></script>
-    
+
 
     <!-- Footer Scripts
 	============================================= -->
@@ -332,5 +261,4 @@
     <script src="{% static 'core/js/components/rangeslider.min.js' %}"></script>
 
 </body>
-
 </html>

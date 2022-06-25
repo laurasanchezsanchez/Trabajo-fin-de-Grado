@@ -1,7 +1,7 @@
 {% extends "./base.html" %}
 {% load static %}
 
-{% block tituloPagina %} 
+{% block tituloPagina %}
 Inicio
 {% endblock %}
 
@@ -89,29 +89,28 @@ Inicio
 			<div class="row align-items-center">
 				<div class="col-lg-5">
 					<div class="heading-block">
-						<h1 id="textoRojo">{{acerca_de.titulo_informacion|safe}}</h1>
+						<h1 id="textoRojo">{{ acerca_de.titulo_informacion|safe }}</h1>
 					</div>
-					<p class="lead">{{acerca_de.descripcion_informacion|safe}}
+					<p class="lead">{{ acerca_de.descripcion_informacion|safe }}
 					</p>
 				</div>
 
 				<div class="col-lg-7 align-self-end">
 					<div class="position-relative overflow-hidden">
-						<img src="{{imagen_camara_publicitaria.imagen.url}}" data-animate="fadeInUp" data-delay="100"
-							>
+						<img src="{{imagen_camara_publicitaria.imagen.url}}" data-animate="fadeInUp" data-delay="100">
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- Segunda parte - Salto de linea -->
-		<p class="lead center">
-			{{descripcion_del_personal.descripcion_informacion|safe}}
+		<p class="lead center" style="text-align:center;">
+			{{ descripcion_del_personal.descripcion_informacion|safe }}
 		</p>
 		<hr>
 		<p class="lead center">
 			{{descripcion_de_servicios.descripcion_informacion|safe}}
-	
+
 			<br>
 			<br>
 		</p>
@@ -119,8 +118,7 @@ Inicio
 		<!-- Tercera parte - Enlace a nuestras ofertas -->
 		<a href="{% url 'tienda:tienda' %}" class="button button-full button-dark center text-end bottommargin-lg">
 			<div class="container clearfix">
-				<strong>Visite nuestra tienda</strong> <i class="icon-caret-right"
-					style="top:4px;"></i>
+				<strong>Visite nuestra tienda</strong> <i class="icon-caret-right" style="top:4px;"></i>
 			</div>
 		</a>
 
@@ -142,7 +140,7 @@ Inicio
 			{{ datos_obligatorios.descripcion_informacion|safe }}
 		</p>
 	</div>
-	
+
 </section>
 
 <!-- Fin del contenido - bloque -->

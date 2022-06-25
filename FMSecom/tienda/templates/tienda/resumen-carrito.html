@@ -2,6 +2,10 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block tituloPagina %} Carrito
+        {% endblock %}
+
+
 {% block contenido %}
 <br>
 
@@ -122,8 +126,7 @@
                     {% else %}
                     <div class="row center">
                         <div class="col-md-12">
-                            <a href="{% url 'tienda:checkout' %}" class="btn btn-warning btn-lg py-3 btn-block">IR AL
-                                CHECKOUT</a>
+                            <a href="{% url 'tienda:checkout' %}" class="btn-lg py-3 button is-primary">INICIAR PAGO</a>
                         </div>
                     </div>
                     {% endif %}
