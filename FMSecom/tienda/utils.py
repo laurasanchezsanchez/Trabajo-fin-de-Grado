@@ -43,7 +43,9 @@ def enviar_confirmacion_pedido(request):
         msg += f'{item.reference_number}' 
         msg += f'\n'
     
-    msg += f'\n\n Gracias por confiar en FMSecom'
+    msg += f'\n\n Gracias por confiar en FMSecom\n'
+    msg += f'\n\n\nEste mensaje y sus anexos pueden contener información confidencial, por lo que se informa de que su uso no autorizado está prohibido por la ley. Si Vd. considera que no es el destinatario pretendido por el remitente o no desea recibir información comercial, por favor póngalo en su conocimiento por esta misma vía o por cualquier otro medio y elimine esta comunicación y los anexos de su sistema, sin copiar, remitir o revelar los contenidos del mismo a cualquier otra persona. Cualquier información, opinión, conclusión, recomendación, etc. contenida en el presente mensaje no relacionada con la actividad empresarial de DOMINGO SANCHEZ MARIN y/o emitida por persona sin capacidad para ello, deberá considerarse como no proporcionada ni aprobada por DOMINGO SANCHEZ MARIN pone los medios a su alcance para garantizar la seguridad y ausencia de errores en la correspondencia electrónica, pero no puede asegurar la inexistencia de virus o la no alteración de los documentos transmitidos electrónicamente, por lo que declina cualquier responsabilidad a este respecto.'
+
 
     send_mail(
             subject=subject,

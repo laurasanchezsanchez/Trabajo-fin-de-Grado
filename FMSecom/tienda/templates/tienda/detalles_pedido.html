@@ -23,6 +23,7 @@ Detalles del pedido
                 <thead>
                     <tr>
                         <th class="cart-product-name center">Imagen del producto</th>
+                        <th class="cart-product-name center">Cantidad del producto</th>
                         <th class="cart-product-name center">Producto</th>
                         <th class="cart-product-price center">Precio por unidad</th>
                         <th class="cart-product-price center">Precio total</th>
@@ -37,18 +38,22 @@ Detalles del pedido
                         </td>
 
                         <td class="cart-product-name ">
-                            <a class="h5 text-black" href="{% url 'tienda:producto-detallado' ped.producto.slug %}">{{ped.reference_number}}</a>
+                            <a class="h5 text-black">{{ped.cantidad}}</a>
+                        </td>
+
+                        <td class="cart-product-name ">
+                            <a class="h5 text-black" href="{% url 'tienda:producto-detallado' ped.producto.slug %}">{{ped.producto.nombre}}</a>
                         </td>
 
                         <td class="cart-product-price">
                             <div class="qty text-center">
-                                {{ped.producto.precio_producto}}
+                                {{ped.producto.precio_producto}} €
                             </div>
                         </td>
 
                         <td class="cart-product-price">
                             <div class="qty text-center">
-                                {{ped.precio_producto_cantidad}}
+                                {{ped.precio_producto_cantidad}} €
                             </div>
                         </td>
 

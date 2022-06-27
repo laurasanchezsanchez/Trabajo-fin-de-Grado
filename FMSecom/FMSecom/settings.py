@@ -213,12 +213,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'sanchezlaura.ing@gmail.com'
-EMAIL_HOST_PASSWORD = 'glri sumq nerb nxbd'
-RECIPIENT_ADDRESS = 'laurasanchezsanchez.lss.13@gmail.com'
+EMAIL_HOST_USER = 'noreply.fmsecom@gmail.com'
+EMAIL_HOST_PASSWORD = 'jytb smsc tsyl glmy'
+# RECIPIENT_ADDRESS = 'laurasanchezsanchez.lss.13@gmail.com'
 
-PAYPAL_SANDBOX_CLIENT_ID='AaCP9Pv4fy6gi16d2Gn_LIdWqy4uDvpgfkIxD--_jYAXCmV8NbOMPIVEydkLR5zCw4BTvjx3HPz2tXY_'
-PAYPAL_SANDBOX_SECRET_KEY='EDWChEupFDTPtK1wZrQrZ6QsbgDfa2mWCs1wP9hVSUOY9hrRIAns8D--bzSNha3_zUZ3cEHdB8gxWaGS'
+# PAYPAL_SANDBOX_CLIENT_ID='AaCP9Pv4fy6gi16d2Gn_LIdWqy4uDvpgfkIxD--_jYAXCmV8NbOMPIVEydkLR5zCw4BTvjx3HPz2tXY_'
+# PAYPAL_SANDBOX_SECRET_KEY='EDWChEupFDTPtK1wZrQrZ6QsbgDfa2mWCs1wP9hVSUOY9hrRIAns8D--bzSNha3_zUZ3cEHdB8gxWaGS'
 
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51L8KiTGoxA9pTzWIzuVkVS6Aj8ApVy9eQz93OygAeLa2jzmR52mTx54KAxalFzTUBo7AysLVzFyjXaqfW3UchqId00iuwiL0Xv'
 STRIPE_SECRET_KEY = 'sk_test_51L8KiTGoxA9pTzWIYBbDEpGchhaj9hA4r3nDiMEYCOVodnJdzto6VYbwTNuTnBke1mrQyHepzuOptnP62b5pAeUL00epOSUraP'

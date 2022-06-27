@@ -217,7 +217,6 @@ class PaymentView(generic.TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(PaymentView, self).get_context_data(**kwargs)
-        context["PAYPAL_CLIENT_ID"] = settings.PAYPAL_SANDBOX_CLIENT_ID
         context["pedido"] = get_or_set_order_session(self.request)
         return context
 
