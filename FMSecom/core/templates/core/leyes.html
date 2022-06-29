@@ -1,7 +1,7 @@
 {% extends "./base.html" %}
 {% load static %}
 
-{% block tituloPagina %} 
+{% block tituloPagina %}
 Leyes
 {% endblock %}
 
@@ -11,11 +11,11 @@ Leyes
 <section id="page-title" style="padding: 2em;">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Inicio</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Ayuda al usuario</li>
-          <li class="breadcrumb-item active" aria-current="page">Leyes</li>
+            <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ayuda al usuario</li>
+            <li class="breadcrumb-item active" aria-current="page">Leyes</li>
         </ol>
-      </nav>
+    </nav>
 </section>
 
 <br>
@@ -29,46 +29,63 @@ Leyes
     <div id="wrapper" class="clearfix">
         <section id="content">
             <div class="content-wrap">
-                <div class="container clearfix">
-
-                    <div class="row gutter-40 col-mb-80">
-                        <!-- Post Content
-                ============================================= -->
-                        <div class="postcontent col-lg-9 order-lg-last">
-
-                            <!-- Shop
-                    ============================================= -->
-                            <div id="shop" class="shop row grid-container gutter-20" data-layout="fitRows">
-
-                                {% for file in files %}
-                                <div class="toggle faq faq-authors faq-legal faq-itemdiscussion ">
-                                    <div class="toggle-header ">
-                                        <div class="toggle-icon">
-                                            <i class="toggle-closed icon-download-alt"></i>
-                                            <i class="toggle-open icon-download-alt"></i>
-                                        </div>
-                                        <a class="toggle-title" href="{{file.archivo.url}}">
-                                             {{file.titulo|safe}}
-                                        </a>
-                                        <div class="toggle-icon">
-                                            <img src="{% static 'core/images/core/imagenes/pdf.png' %}" style="height: 50px;"></img>
-                                        </div>
-                                    </div>
-                                </div>
-                                {% endfor %}
-                            </div><!-- #shop end -->
-
-                        </div><!-- .postcontent end -->
-
-                        
+                <div class="container">
+                    <div class="fancy-title title-border">
+                        <h3>Leyes</h3>
                     </div>
+                    <div class="content-wrap">
+                        <div class="container clearfix">
 
-                </div>
-            </div>
+                            <div class="row gutter-40 col-mb-80">
+                                <!-- Post Content
+                ============================================= -->
+                                <div class="postcontent col-lg-9 order-lg-last">
+
+                                    <!-- Shop
+                    ============================================= -->
+                                    <div id="shop" class="shop row grid-container gutter-20" data-layout="fitRows">
+
+                                        {% for file in files %}
+                                        <div class="toggle faq faq-authors faq-legal faq-itemdiscussion ">
+                                            <div class="toggle-header ">
+                                                <div class="toggle-icon">
+                                                    <i class="toggle-closed icon-download-alt"></i>
+                                                    <i class="toggle-open icon-download-alt"></i>
+                                                </div>
+                                                <a class="toggle-title" href="{{file.archivo.url}}">
+                                                    {{file.titulo|safe}}
+                                                </a>
+                                                <div class="toggle-icon">
+                                                    <img src="{% static 'core/images/core/imagenes/pdf.png' %}"
+                                                        style="height: 50px;"></img>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div><!-- #shop end -->
+
+                                </div><!-- .postcontent end -->
+
+
+                            </div>
+
+                        </div>
+                    </div>
         </section><!-- #content end -->
 
     </div>
 </body>
+
+</div>
+</section><!-- #content end -->
+
+
+</div><!-- #wrapper end -->
+
+<!-- Go To Top
+============================================= -->
+<div id="gotoTop" class="icon-angle-up"></div>
+
 
 
 {% endblock %}

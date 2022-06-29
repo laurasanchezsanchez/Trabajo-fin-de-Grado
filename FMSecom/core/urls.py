@@ -22,4 +22,5 @@ urlpatterns = [
     path('leyes/', views.leyesView, name='leyes'),
     path('success/', views.SuccessView.as_view()), # new
     path('cancelled/', views.CancelledView.as_view()), # new
+    path('search',views.search,name='search'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

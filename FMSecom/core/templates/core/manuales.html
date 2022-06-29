@@ -1,7 +1,7 @@
 {% extends "./base.html" %}
 {% load static %}
 
-{% block tituloPagina %} 
+{% block tituloPagina %}
 Manuales
 {% endblock %}
 
@@ -12,13 +12,14 @@ Manuales
 <section id="page-title" style="padding: 2em;">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Inicio</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Ayuda al usuario</li>
-          <li class="breadcrumb-item active" aria-current="page">Manuales</li>
+            <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Inicio</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ayuda al usuario</li>
+            <li class="breadcrumb-item active" aria-current="page">Manuales</li>
         </ol>
-      </nav>
+    </nav>
 </section>
-
+<br>
+<br>
 
 <body class="stretched">
 
@@ -27,74 +28,118 @@ Manuales
     <div id="wrapper" class="clearfix">
         <section id="content">
             <div class="content-wrap">
-                <div class="container clearfix">
+                <div class="container">
+                    <div class="fancy-title title-border">
+                        <h3>Manuales</h3>
+                    </div>
 
-                    <div class="row gutter-40 col-mb-80">
-                        <!-- Post Content
+                    <br>
+                    <form class="form-inline my-2 my-lg-0" action="/search">
+                        <div class="input-group">
+                            <input name="q" type="text" class="form-control" placeholder="Buscar manual..." />
+                            <div class="input-group-append">
+                                <button class="btn btn-dark" type="submit" id="button-addon2">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <body class="stretched">
+
+                        <!-- Document Wrapper
+	============================================= -->
+                        <div id="wrapper" class="clearfix">
+                            <section id="content">
+                                <div class="content-wrap">
+                                    <div class="container clearfix">
+
+                                        <div class="row gutter-40 col-mb-80">
+                                            <!-- Post Content
                 ============================================= -->
-                        <div class="postcontent col-lg-9 order-lg-last">
+                                            <div class="postcontent col-lg-9 order-lg-last">
 
-                            <!-- Shop
+                                                <!-- Shop
                     ============================================= -->
-                            <div id="shop" class="shop row grid-container gutter-20" data-layout="fitRows">
+                                                <div id="shop" class="shop row grid-container gutter-20"
+                                                    data-layout="fitRows">
 
-                                {% for file in files %}
-                                <div class="toggle faq faq-authors faq-legal faq-itemdiscussion {{file.categoria.slug}} ">
-                                    
-                                    <div class="toggle-header ">
-                                        
-                                        <div class="toggle-icon">
-                                            <i class="toggle-closed icon-download-alt"></i>
-                                            <i class="toggle-open icon-download-alt"></i>
+                                                    {% for file in files %}
+                                                    <div
+                                                        class="toggle faq faq-authors faq-legal faq-itemdiscussion {{file.categoria.slug}} ">
+
+                                                        <div class="toggle-header ">
+
+                                                            <div class="toggle-icon">
+                                                                <i class="toggle-closed icon-download-alt"></i>
+                                                                <i class="toggle-open icon-download-alt"></i>
+                                                            </div>
+                                                            <a class="toggle-title {{file.categoria}}"
+                                                                href="{{file.archivo.url}}">
+                                                                [{{file.categoria|safe}}] {{file.titulo|safe}}
+                                                            </a>
+                                                            <div class="toggle-icon">
+                                                                <img src="{% static 'core/images/core/imagenes/pdf.png' %}"
+                                                                    style="height: 50px;"></img>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                    {% endfor %}
+                                                </div><!-- #shop end -->
+
+                                            </div><!-- .postcontent end -->
+
+                                            <!-- Sidebar
+                ============================================= -->
+                                            <div class="sidebar col-lg-3">
+                                                <div class="sidebar-widgets-wrap">
+
+                                                    <div class="widget widget-filter-links">
+
+                                                        <h4>Seleccionar categoria</h4>
+                                                        <ul class="custom-filter ps-2" data-container="#shop"
+                                                            data-active-class="active-filter">
+                                                            <li class="widget-filter-reset active-filter"><a href="#"
+                                                                    data-filter="*">Sin
+                                                                    filtros</a></li>
+                                                            {% for categoria in categorias %}
+                                                            <li><a href="#"
+                                                                    data-filter=".{{categoria.slug}}">{{categoria.nombre_categoria|safe}}</a>
+                                                            </li>
+                                                            {% endfor %}
+                                                        </ul>
+
+                                                    </div>
+
+
+
+                                                </div>
+                                            </div><!-- .sidebar end -->
                                         </div>
-                                        <a class="toggle-title {{file.categoria}}" href="{{file.archivo.url}}">
-                                            [{{file.categoria|safe}}] {{file.titulo|safe}}
-                                        </a>
-                                        <div class="toggle-icon">
-                                            <img src="{% static 'core/images/core/imagenes/pdf.png' %}" style="height: 50px;"></img>
-                                        </div>
-                                        
-                                        
+
                                     </div>
                                 </div>
-                                {% endfor %}
-                            </div><!-- #shop end -->
+                            </section><!-- #content end -->
 
-                        </div><!-- .postcontent end -->
-
-                        <!-- Sidebar
-                ============================================= -->
-                        <div class="sidebar col-lg-3">
-                            <div class="sidebar-widgets-wrap">
-
-                                <div class="widget widget-filter-links">
-
-                                    <h4>Seleccionar categoria</h4>
-                                    <ul class="custom-filter ps-2" data-container="#shop"
-                                        data-active-class="active-filter">
-                                        <li class="widget-filter-reset active-filter"><a href="#" data-filter="*">Sin
-                                                filtros</a></li>
-                                        {% for categoria in categorias %}
-                                        <li><a href="#"
-                                                data-filter=".{{categoria.slug}}">{{categoria.nombre_categoria|safe}}</a>
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-
-                                </div>
-
-
-
-                            </div>
-                        </div><!-- .sidebar end -->
-                    </div>
+                        </div>
+                    </body>
 
                 </div>
             </div>
         </section><!-- #content end -->
 
-    </div>
+
+    </div><!-- #wrapper end -->
+
+    <!-- Go To Top
+============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+
+
 </body>
+<br>
 
 <script>
     jQuery(document).ready(function ($) {
@@ -103,7 +148,7 @@ Manuales
                 transitionDuration: '0.65s',
                 getSortData: {
                     name: '.product-title',
-                    
+
                 },
                 sortAscending: {
                     name: true,

@@ -126,20 +126,24 @@ Inicio
 		<!-- Cuarta parte - Hay que poner el include para poder usar el mapa en otros html -->
 		{% include './mapa.html' %}
 
+		
+
+		<p class="lead center">
+			{{ datos_obligatorios.descripcion_informacion|safe }}
+		</p>
+
+		<br>
+		<br>
 		<!-- Quinta parte - Logos de las empresas con las que colaboramos - receptora, safire... -->
 		<div class="container clearfix">
 			<div id="oc-clients" class="owl-carousel image-carousel carousel-widget" data-margin="60" data-loop="true"
-				data-nav="false" data-autoplay="800" data-pagi="false" data-items-sm="9">
+				data-nav="false" data-autoplay="800" data-pagi="false" data-items-sm="8">
 
 				{% for otra_empresa in otras_empresas.all %}
 				<div class="oc-item"><img src="{{otra_empresa.imagen.url}}"> </div>
 				{% endfor %}
 			</div>
 		</div>
-
-		<p class="lead center">
-			{{ datos_obligatorios.descripcion_informacion|safe }}
-		</p>
 	</div>
 
 </section>

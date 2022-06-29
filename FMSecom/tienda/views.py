@@ -257,7 +257,7 @@ def create_checkout_session(request):
                 mode='payment',
                 line_items=[
                     {
-                        'name': 'CamaraPrueba',
+                        'name': 'Cantidad a pagar',
                         'quantity': 1,
                         'currency': 'eur',
                         'amount': round(cantidad)*100,

@@ -42,15 +42,17 @@
                     <p style="text-align: right; margin:0px; margin-left:10px; margin-top:10px; padding:0%;">
 
                         {% if user.is_authenticated %}
-
+                        
                         Estamos encantados de tenerte como cliente, <strong>{{user.username}}</strong>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                        <a href="{% url 'tienda:mis-pedidos' %}" style="padding:0%;">Mis pedidos</a>
+                        <a href="{% url 'autenticacion:perfil' %}" style="padding:0%;">MI PERFIL</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="{% url 'autenticacion:cerrar_sesion' %}" style="padding:0%;">Cerrar sesion</a>
+                        <a href="{% url 'tienda:mis-pedidos' %}" style="padding:0%;">MIS PEDIDOS</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="{% url 'autenticacion:perfil' %}" style="padding:0%;">Mi perfil</a>
+                        <a href="{% url 'autenticacion:cerrar_sesion' %}" style="padding:0%;">CERRAR SESIÓN</a>
+                        
+                        
 
 
                         {% else %}
