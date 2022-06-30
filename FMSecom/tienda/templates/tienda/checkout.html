@@ -1,0 +1,66 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block tituloPagina %}
+
+Checkout
+
+{% endblock %}
+
+{% block contenido %}
+
+<section id="content">
+  
+    <div class="content-wrap">
+     
+        <div class="container">
+      
+            <form method="POST">
+               
+                {% csrf_token %}
+               
+                    <div class="col-md-10 mb-md-0">
+                        <h2 class="h3 mb-3 text-black text-center">Detalles de facturacion</h2>
+                   
+                        <div class="p-2 p-lg-2">
+                            {{ form|crispy }}
+                        </div>
+                        <div class="form-group center">
+
+
+                            <button type="submit" class="btn-lg py-3 button is-primary" data-target="#myModal1">
+                                Continuar
+                            </button>
+
+                            <div class="modal-on-load"></div>
+
+                        </div>
+                    </div>
+               
+            </form>
+
+
+
+        </div>
+
+    </div>
+</section>
+
+    <!-- ################################################################################# -->
+    <!-- ################################################################################# -->
+    <!-- ################################################################################# -->
+    <!-- ################################################################################# -->
+
+
+
+    <form name="from" action="https://sis-t.redsys.es:25443/sis/realizarPago" method="POST">
+        <input type="hidden" name="Ds_SignatureVersion" value="HMAC_SHA256_V1" />
+        <input type="hidden" name="Ds_MerchantParameters"
+            value="
+		eyJEU19NRVJDSEFOVF9BTU9VTlQiOiAiMTQ1IiwiRFNfTUVSQ0hBTlRfQ1VSUkVOQ1kiOiAiOTc4IiwiRFNfTUVSQ0hBTlRfTUVSQ0hBTlRDT0RFIjogIjk5OTAwODg4MSIsIkRTX01FUkNIQU5UX01FUkNIQU5UVVJMIjogImh0dHA6Ly93d3cucHJ1ZWJhLmNvbS91cmxOb3RpZmljYWNpb24ucGhwIiwiRFNfTUVSQ0hBTlRfT1JERVIiOiAiMTQ0NjA2ODU4MSIsIkRTX01FUkNIQU5UX1RFUk1JTkFMIjogIjEiLCJEU19NRVJDSEFOVF9UUkFOU0FDVElPTlRZUEUiOiAiMCIsIkRTX01FUkNIQU5UX1VSTEtPIjogImh0dHA6Ly93d3cucHJ1ZWJhLmNvbS91cmxLTy5waHAiLCJEU19NRVJDSEFOVF9VUkxPSyI6ICJodHRwOi8vd3d3LnBydWViYS5jb20vdXJsT0sucGhwIn0=" />
+        <input type="hidden" name="Ds_Signature" value="PqV2+SF6asdasMjXasKJRTh3UIYya1hmU/igHkzhC+R=" />
+    </form>
+
+
+    {% endblock %}

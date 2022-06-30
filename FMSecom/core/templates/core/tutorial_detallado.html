@@ -1,0 +1,138 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block contenido %}
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;">
+    <div class="container clearfix text-center">
+        <h1>{{tutorial.titulo|safe}}</h1>
+    </div>
+</section>
+
+<body class="stretched">
+
+    <!-- Document Wrapper
+	============================================= -->
+    <div id="wrapper" class="clearfix">
+
+        <!-- Content
+		============================================= -->
+        <section id="content">
+            <div class="content-wrap">
+                <div class="container">
+
+                    <a href="#" data-scrollto="#content" data-offset="100" class="one-page-arrow"><i
+                        class="icon-angle-down infinite animated fadeInDown"></i></a>
+                    {% if tutorial.descripcion %}
+                    <p class="lead">
+                        {{tutorial.descripcion|safe}}
+                    </p>
+                    {% endif %}
+
+
+
+                    <div class="section dark rounded-5 px-5" id="content"
+                        style="background: #0E2A47 url('images/blocks/preview/svg-bg/shiny.svg') no-repeat center center; background-size: cover; padding-top: 100px;padding-bottom: 100px;">
+                        <div class="row mb-1">
+                            <div class="col-md-12">
+                                <h2 class="display-4 fw-medium">{{tutorial.titulo|safe}}</h2>
+                            </div>
+                        </div>
+
+                        <br>
+                        <br>
+
+                        <div
+                            class="row feature-box-border-horizontal border-0 border-dashed col-mb-50 justify-content-center">
+                            <div class="col-md-4">
+                                <div class="feature-box flex-column">
+                                    <div class="fbox-icon mb-5">
+                                        <a href="#"><i class="bg-danger">1</i></a>
+                                    </div>
+                                    <div class="fbox-content">
+                                        <h3 class="nott text-larger mb-2">{{tutorial.paso_1|safe}}</h3>
+                                        
+                                        {% if tutorial.descripcion_paso_1 %}
+                                        <p class="lead text-white-50">{{tutorial.descripcion_paso_1|safe}}</p>
+                                        {% endif %}
+
+                                        {% if tutorial.url_descarga %}
+                                        <a href="{{tutorial.url_descarga}}"
+                                            class="button button-small bg-danger button-rounded border-width-1 ms-0 mt-4">DESCARGAR
+                                            <i class="icon-angle-right me-0"></i></a>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="feature-box flex-column">
+                                    <div class="fbox-icon mb-5">
+                                        <a href="#"><i>2</i></a>
+                                    </div>
+                                    <div class="fbox-content">
+                                        <h3 class="nott text-larger mb-2">{{tutorial.paso_2|safe}}</h3>
+
+                                        {% if tutorial.descripcion_paso_2 %}
+                                        <p class="lead text-white-50">{{tutorial.descripcion_paso_2|safe}}</p>
+                                        {% endif %}
+
+                                        <br>
+
+                                        {% if tutorial.imagen_paso_2 %}
+                                        <img src={{tutorial.imagen_paso_2.url}}></img>
+                                        {% endif %}
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="feature-box flex-column noborder">
+                                    <div class="fbox-icon mb-5">
+                                        <a href="#"><i>3</i></a>
+                                    </div>
+                                    <div class="fbox-content">
+                                        <h3 class="nott text-larger mb-2">{{tutorial.paso_3|safe}}</h3>
+                                        
+                                        {% if tutorial.descripcion_paso_3 %}
+                                        <p class="lead text-white-50">{{tutorial.descripcion_paso_3|safe}}</p>
+                                        {% endif %}
+                                        <br>
+
+                                        {% if tutorial.imagen_paso_3 %}
+                                        <img src={{tutorial.imagen_paso_3.url}}></img>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section><!-- #content end -->
+
+
+    </div><!-- #wrapper end -->
+
+    <!-- Go To Top
+	============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- JavaScripts
+	============================================= -->
+    <script src="js/jquery.js"></script>
+    <script src="js/plugins.min.js"></script>
+
+    <!-- Footer Scripts
+	============================================= -->
+    <script src="js/functions.js"></script>
+
+</body>
+<br>
+
+{% endblock %}

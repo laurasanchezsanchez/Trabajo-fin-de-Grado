@@ -1,0 +1,115 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block tituloPagina %}
+Tienda
+{% endblock %}
+
+{% block contenido %}
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;">
+    <div class="container clearfix text-center">
+        <h1>Productos de FMSecom</h1>
+    </div>
+    <br>
+    <form class="form-inline my-2 my-lg-0" action="./search">
+        <div class="input-group">
+            <input name="q" type="text" class="form-control" placeholder="Buscar producto..." />
+            <div class="input-group-append">
+                <button class="btn btn-dark" type="submit" id="button-addon2">Buscar</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+
+<br>
+<br>
+
+<body class="stretched">
+
+    <!-- Document Wrapper
+	============================================= -->
+    <div id="wrapper" class="clearfix">
+        <section id="content">
+            <div class="content-wrap">
+                <div class="container clearfix">
+
+                    <div class="row gutter-40 col-mb-80">
+                        <!-- Post Content
+                ============================================= -->
+                        <div class="postcontent col-lg-9 order-lg-last">
+
+                            <!-- Shop
+                    ============================================= -->
+                            <div id="shop" class="shop row grid-container gutter-20" data-layout="fitRows">
+
+
+                                {% for producto in productos.all %}
+                                <div class="product col-md-4 col-sm-6 {{producto.categoria_slug}} claseProducto"
+                                    style="display:block">
+                                    <div class="grid-inner">
+                                        <div class="product-image">
+                                            <a href="{% url 'tienda:producto-detallado' producto.slug %}"><img
+                                                    src="{{producto.imagen1.url}}"></a>
+                                            {% if producto.imagen2 %}
+                                            <a href="{% url 'tienda:producto-detallado' producto.slug %}"><img
+                                                    src="{{producto.imagen2.url}}"></a>
+                                            {% endif %}
+                                            <div class="sale-flash badge bg-secondary p-2 promo-uppercase">
+                                                {{producto.categoria}}</div>
+
+                                        </div>
+                                        <div class="product-desc center">
+                                            <div class="product-title">
+                                                <h3><a
+                                                        href="{% url 'tienda:producto-detallado' producto.slug %}">{{producto.nombre}}</a>
+                                                </h3>
+                                            </div>
+                                            <hr>
+                                            <h2 class="product-price"><ins>{{producto.precio_producto}}€</ins></h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div><!-- #shop end -->
+
+                        </div><!-- .postcontent end -->
+
+                        <!-- Sidebar
+                ============================================= -->
+                        <div class="sidebar col-lg-3">
+                            <div class="sidebar-widgets-wrap">
+
+                                <div class="widget widget-filter-links">
+
+                                    <h4>Filtrar por categoria</h4>
+                                    <ul class="custom-filter ps-2" data-container="#shop"
+                                        data-active-class="active-filter">
+                                        <li class="widget-filter-reset active-filter"><a href="#" data-filter="*">Sin
+                                                filtros</a></li>
+                                        {% for categoria in categorias %}
+                                        <li><a href="#"
+                                                data-filter=".{{categoria.slug}}">{{categoria.nombre_categoria}}</a>
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!-- .sidebar end -->
+                    </div>
+
+                </div>
+            </div>
+        </section><!-- #content end -->
+
+    </div>
+</body>
+
+
+
+
+
+
+{% endblock %}

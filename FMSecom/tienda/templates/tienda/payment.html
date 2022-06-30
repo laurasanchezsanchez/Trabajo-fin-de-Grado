@@ -1,0 +1,64 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block tituloPagina %}
+
+Pago
+
+{% endblock %}
+
+{% block contenido %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <br>
+            <br>
+            <div id='paymentInfo'>
+                <h2 class="h3 mb-3 text-black text-center">Resumen de su pedido</h2>
+
+                <div class="p-3 p-lg-5">
+                    <table class="table site-block-order-table mb-5">
+                        <thead>
+                            <th>Producto</th>
+                            <th>Total</th>
+                        </thead>
+                        <tbody>
+                            {% for item in pedido.items.all %}
+                            <tr>
+                                <td>
+                                    {{ item.producto.nombre }}
+                                    <strong class="mx-2">x</strong> {{ item.cantidad }}
+                                </td>
+
+
+                                <td>
+                                    {{ item.precio_producto_cantidad }} €
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+                            <tr>
+                                <td><strong>Total a pagar</strong></td>
+                                <td><strong class="text-black font-weight-bold">{{ pedido.get_total }} €</strong>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+
+                    </table>
+                    <button class="btn-lg py-3 button is-primary center" id="submitBtn">REALIZAR PAGO</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+<script src="{% static 'main.js' %}"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
+{% endblock %}

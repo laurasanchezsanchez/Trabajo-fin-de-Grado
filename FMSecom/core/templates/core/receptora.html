@@ -1,0 +1,46 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block tituloPagina %} 
+Receptora
+{% endblock %}
+
+{% block contenido %}
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Ayuda al usuario</li>
+          <li class="breadcrumb-item active" aria-current="page">Servicio CRA (Receptora)</li>
+        </ol>
+      </nav>
+</section>
+<br>
+<br>
+
+
+<div id="wrapper" class="clearfix">
+
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+        <div class="container">
+            <p>
+                {{receptora.dato_1|safe}}
+            </p>
+            <div class="oc-item center"><img
+                src="{% static 'core/images/core/imagenes/LogoIbercra.png' %}"
+                width="20%" alt="Ibercra"></div>
+        </div>
+    </section><!-- #content end -->
+
+
+</div><!-- #wrapper end -->
+
+<br>
+<br>
+
+
+{% endblock %}

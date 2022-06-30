@@ -1,0 +1,83 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% block tituloPagina %} 
+
+Detalles del pedido
+        
+{% endblock %}
+
+{% block contenido %}
+
+
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <h3 class="text-black h4 text-uppercase text-center">DETALLES DEL PEDIDO</h3>
+                </div>
+            </div>
+
+            <table class="table cart mb-3">
+                <thead>
+                    <tr>
+                        <th class="cart-product-name center">Imagen del producto</th>
+                        <th class="cart-product-name center">Cantidad del producto</th>
+                        <th class="cart-product-name center">Producto</th>
+                        <th class="cart-product-price center">Precio por unidad</th>
+                        <th class="cart-product-price center">Precio total</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for ped in pedido.items.all %}
+                    <tr class="cart_item center">
+                        <td class="cart-product-name ">
+                            <a href="{% url 'tienda:producto-detallado' ped.producto.slug %}"><img width="64" height="64" src="{{ped.producto.imagen1.url}}"></img></a>
+                        </td>
+
+                        <td class="cart-product-name ">
+                            <a class="h5 text-black">{{ped.cantidad}}</a>
+                        </td>
+
+                        <td class="cart-product-name ">
+                            <a class="h5 text-black" href="{% url 'tienda:producto-detallado' ped.producto.slug %}">{{ped.producto.nombre}}</a>
+                        </td>
+
+                        <td class="cart-product-price">
+                            <div class="qty text-center">
+                                {{ped.producto.precio_producto}} €
+                            </div>
+                        </td>
+
+                        <td class="cart-product-price">
+                            <div class="qty text-center">
+                                {{ped.precio_producto_cantidad}} €
+                            </div>
+                        </td>
+
+                        
+
+
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6">
+                            Error.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <br>
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+</section><!-- #content end -->
+{% endblock %}

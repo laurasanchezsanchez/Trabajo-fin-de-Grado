@@ -1,0 +1,67 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block tituloPagina %} 
+
+{{categoria.nombre_categoria}}
+        
+{% endblock %}
+
+
+{% block contenido %}
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;" >
+    <div class="container clearfix text-center" >
+        <h1>{{categoria.nombre_categoria}}</h1>
+        <span>Todos los productos 100% originales.</span>
+    </div>
+</section>
+
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container clearfix">
+
+            <!-- Shop
+            ============================================= -->
+            <div id="shop" class="shop row grid-container gutter-30" data-layout="fitRows">
+                {% for producto in productos.all %}
+                <div class="product col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="grid-inner">
+                        <div class="product-image">
+                            <a href="#"><img src="{{producto.imagen1.url}}" ></a>
+                            {% if producto.imagen2 %}
+                                <a href="#"><img src="{{producto.imagen2.url}}"></a>
+                            {% endif %}
+                            <div class="bg-overlay">
+                                <div class="bg-overlay-content align-items-end justify-content-between"
+                                    data-hover-animate="fadeIn" data-hover-speed="400">
+                                    <a href="#" class="btn btn-dark me-2"><i class="icon-shopping-basket"></i></a>
+                                    <a href="include/ajax/shop-item.html" class="btn btn-dark" data-lightbox="ajax"><i
+                                            class="icon-line-expand"></i></a>
+                                </div>
+                                <div class="bg-overlay-bg bg-transparent"></div>
+                            </div>
+                        </div>
+                        <div class="product-desc center">
+                            <div class="product-title">
+                                <h3><a href="{% url 'tienda:producto-detallado' producto.slug %}">{{producto.nombre}}</a></h3>
+                            </div>
+                            <hr>
+                            <h2>{{producto.precio_producto}} €</h2>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div><!-- #shop end -->
+
+        </div>
+    </div>
+</section><!-- #content end -->
+
+
+
+
+
+{% endblock %}

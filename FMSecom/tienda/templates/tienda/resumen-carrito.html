@@ -1,0 +1,143 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block tituloPagina %} Carrito
+        {% endblock %}
+
+
+{% block contenido %}
+<br>
+
+
+<!-- Content
+		============================================= -->
+<section id="content">
+    <div class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <h3 class="text-black h4 text-uppercase text-center">RESUMEN DEL CARRITO</h3>
+                </div>
+            </div>
+
+            <table class="table cart mb-5">
+                <thead>
+                    <tr>
+                        <th class="cart-product-remove">&nbsp;</th>
+                        <th class="cart-product-thumbnail">&nbsp;</th>
+                        <th class="cart-product-name">Nombre del producto</th>
+                        <th class="cart-product-price">Precio unidad</th>
+                        <th class="cart-product-quantity">Cantidad</th>
+                        <th class="cart-product-subtotal">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in pedido.items.all %}
+                    <tr class="cart_item">
+                        <td class="cart-product-remove">
+                            <a href="{% url 'tienda:eliminar-del-carrito' item.id %}" class="remove"
+                                title="Remove this item"><i class="icon-trash2"></i></a>
+                        </td>
+                        <td class="cart-product-thumbnail">
+                            <img width="64" height="64" src="{{ item.producto.imagen1.url }}" class="img-fluid">
+                        </td>
+                        <td class="cart-product-name">
+                            <a class="h5 text-black"
+                                href="{% url 'tienda:producto-detallado' item.producto.slug %}">{{item.producto.nombre}}</a>
+
+                        </td>
+                        <td class="cart-product-price">{{ item.producto.precio_producto }} €</td>
+                        <td class="cart-product-quantity">
+
+
+                            <div class="qty text-center">
+                                {{ item.cantidad }}
+                            </div>
+                        </td>
+                        <td class="cart-product-subtotal">
+                            <span class="amount"> {{ item.precio_producto_cantidad }} € </span>
+
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6">
+                            No hay productos en su carrito.
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                    <br>
+
+                </tbody>
+
+            </table>
+
+            <a href="{% url 'tienda:tienda' %}">Seguir comprando</a>
+
+            
+
+
+
+        </div>
+
+        <br>
+        <br>
+        {% if pedido.items.count > 0 %}
+
+
+        <div class="col-md-12 pl-5 text-center ">
+            <div class="row justify-content-end">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12 text-right border-bottom mb-5">
+                            <h3 class="text-black h4 text-uppercase ">TOTAL A PAGAR</h3>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mb-5">
+                        <div class="col-md-6">
+                            <span class="text-black">Total</span>
+                        </div>
+
+                        <div class="col-md-6 text-right">
+                            <strong class="text-black">{{ pedido.get_total }} €</strong>
+                        </div>
+                    </div>
+
+                    {% if not user.is_authenticated %}
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <div class="border p-4 rounded" role="alert">
+                                Ya casi ha finalizado su pedido.
+                                Por favor <a class="btn btn-outline-success"
+                                    href="{% url 'autenticacion:autenticacion' %}">Regístrese</a> o <a
+                                    class="btn btn-outline-success" href="{% url 'autenticacion:login' %}">Inicie
+                                    sesion</a>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    {% else %}
+                    <div class="row center">
+                        <div class="col-md-12">
+                            <a href="{% url 'tienda:checkout' %}" class="btn-lg py-3 button is-primary">INICIAR PAGO</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    </div>
+</section><!-- #content end -->
+
+
+{% endblock %}

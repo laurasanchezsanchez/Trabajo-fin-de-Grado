@@ -1,0 +1,98 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block tituloPagina %} 
+
+Mis pedidos
+        
+{% endblock %}
+
+
+{% block contenido %}
+
+
+
+<section id="content">
+    <div class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 ">
+                    <h3 class="text-black h4 text-uppercase text-center">Mis pedidos</h3>
+                </div>
+            </div>
+
+            <table class="table cart mb-3">
+                <thead>
+                    <tr>
+                        <th class="cart-product-name center">ID del pedido</th>
+                        <th class="cart-product-price center">Fecha del pedido</th>
+                        <th class="cart-product-price center">Dirección de facturación</th>
+                        <th class="cart-product-price center">Dirección de envío</th>
+                        <th class="cart-product-price center">Precio total</th>
+                        <th class="cart-product-price center"></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    {% for pedido in pedidos %}
+                    <tr class="cart_item center">
+                        <td class="cart-product-name ">
+                            <a class="h5 text-black">{{pedido.id}}</a>
+                        </td>
+
+                        <td class="cart-product-price">
+                            <time class="qty text-center">
+                                {{pedido.fecha}}
+                            </time>
+                        </td>
+
+                        <td class="cart-product-price">
+                            <div class="qty text-center">
+                                {{pedido.direccion_facturacion}}
+                            </div>
+                        </td>
+
+                        <td class="cart-product-price">
+                            <div class="qty text-center">
+                                {{pedido.direccion_envio}}
+                            </div>
+                        </td>
+
+                        <td class="cart-product-price">
+                            <div class="qty text-center">
+                                {{pedido.get_total}} €
+                            </div>
+                        </td>
+
+                        <td class="cart-product-price">
+                            <div class="qty text-center">
+                                <button class="btn" id="button-addon2"><a href="{% url 'tienda:detalles-pedido' pedido.pk %}">Ver</a></button>
+                            </div>
+                        </td>
+                        
+                        
+
+
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6">
+                            Aún no ha realizado ningún pedido.
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <br>
+
+                </tbody>
+
+            </table>
+
+
+        </div>
+
+
+    </div>
+</section><!-- #content end -->
+
+
+{% endblock %}

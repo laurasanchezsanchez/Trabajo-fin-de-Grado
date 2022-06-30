@@ -1,0 +1,92 @@
+{% extends "./base.html" %}
+{% load static %}
+
+{% block tituloPagina %} 
+Instalaciones
+{% endblock %}
+
+{% block contenido %}
+
+<!-- Situacion en la web -->
+<section id="page-title" style="padding: 2em;">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'core:index' %}">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Ayuda al usuario</li>
+          <li class="breadcrumb-item active" aria-current="page">Nuestras instalaciones</li>
+        </ol>
+      </nav>
+</section>
+<br>
+
+<h1 class="h3 mb-3 text-black center">¿Cómo trabajamos?</h1>
+
+<br>
+
+<div id="wrapper" class="clearfix">
+
+    <!-- Content
+    ============================================= -->
+    <section id="content">
+            <div class="container">
+                <div class="row feature-box-border-horizontal col-mb-50">
+                    <div class="col-lg-3 col-md-4">
+                        <div class="feature-box">
+                            <div class="fbox-content">
+                                <h2 class="display-2 fw-bolder mb-3 text-danger">1</h2>
+                                <h3 class="nott text-larger mb-4">{{paso_1.titulo_informacion|safe}}</h3>
+                                <p>
+                                   {{paso_1.descripcion_informacion|safe}}
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col d-none d-lg-flex text-center align-self-center flex-column">
+                        <a href="#" class="d-block h-translate-x-n all-ts"><i
+                                class="icon-double-angle-right icon-stacked rounded-pill text-danger ps-1 h5 border border-default icon-2x"></i></a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="feature-box flex-column">
+                            <div class="fbox-content">
+                                <h2 class="display-2 fw-bolder mb-3 text-danger">2</h2>
+                                <h3 class="nott text-larger mb-4">{{paso_2.titulo_informacion|safe}}</h3>
+                                <p>{{paso_2.descripcion_informacion|safe}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col d-none d-lg-flex text-center align-self-center flex-column">
+                        <a href="#" class="d-block h-translate-x-n all-ts"><i
+                                class="icon-double-angle-right icon-stacked rounded-pill text-danger ps-1 h5 border border-default icon-2x"></i></a>
+                    </div>
+
+                    <div class="col-lg-3 col-md-4">
+                        <div class="feature-box flex-column noborder">
+                            <div class="fbox-content">
+                                <h2 class="display-2 fw-bolder mb-3 text-danger">3</h2>
+                                <h3 class="nott text-larger mb-4">{{paso_3.titulo_informacion|safe}}
+                                </h3>
+                                <p>
+                                    {{paso_3.descripcion_informacion|safe}}
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </section><!-- #content end -->
+
+
+</div><!-- #wrapper end -->
+
+<br>
+<br>
+
+
+{% endblock %}

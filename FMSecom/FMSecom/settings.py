@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
+
 # ------------------- PROYECTO  -------------------
 # Para la especificacion de la carpeta estatica
 # -------------------------------------------------
@@ -36,15 +37,80 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'ecommerce.apps.EcommerceConfig',
+    'autenticacion.apps.AutenticacionConfig',
+    'tienda.apps.TiendaConfig',
+    'core.apps.CoreConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'ckeditor',
+    'jquery'
 ]
 
+#Para el desempeño de nuestro trabajo contamos con personal cualificado, con habilitación expedida por el Ministerio del Interior.
+
+#Éstos irán uniformados con distintivos propios de la empresa.
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        # 'skin': 'office2013',
+        'toolbar_Basic': [
+            ['Source', '-', 'Bold', 'Italic']
+        ],
+        'toolbar_YourCustomToolbarConfig': [
+            {'name': 'document', 'items': ['Source', '-', 'Preview', '-', 'Templates']},
+            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord']},
+            {'name': 'clipboard2', 'items': ['Undo', 'Redo']},
+           
+            
+            '/',
+
+            {'name': 'basicstyles',
+             'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'paragraph',
+             'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-',
+                       'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'
+                   ]},
+            {'name': 'links', 'items': ['Link', 'Unlink']},
+            {'name': 'insert',
+             'items': ['Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe']},
+            '/',
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+
+            '/',  
+            
+            {'name': 'yourcustomtools', 'items': [
+                'Preview'
+
+            ]},
+        ],
+        'toolbar': 'YourCustomToolbarConfig',
+        # 'mathJaxLib': '//cdn.mathjax.org/mathjax/2.2-latest/MathJax.js?config=TeX-AMS_HTML',
+        'tabSpaces': 3,
+        'extraPlugins': ','.join([
+            'uploadimage', 
+            'div',
+            'autolink',
+            'autoembed',
+            'embedsemantic',
+            'autogrow',
+            'widget',
+            'lineutils',
+            'clipboard',
+            'dialog',
+            'dialogui',
+            'elementspath'
+        ]),
+    }
+}
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -68,6 +134,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'FMSecom.custom_context_processor.subject_renderer'
             ],
         },
     },
@@ -124,6 +191,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Es la url publica
+# Cambiar por MEDIA_URL
+MEDIA_URL = '/media/'
+
+# Indicamos donde tiene que buscarlo
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # ------------------- PROYECTO  -------------------
@@ -132,3 +205,20 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+DEFAULT_FROM_EMAIL='laurasanchez13@correo.ugr.es'
+NOTIFY_EMAIL='laurasanchez13@correo.ugr.es'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'noreply.fmsecom@gmail.com'
+EMAIL_HOST_PASSWORD = 'jytb smsc tsyl glmy'
+# RECIPIENT_ADDRESS = 'laurasanchezsanchez.lss.13@gmail.com'
+
+# PAYPAL_SANDBOX_CLIENT_ID='AaCP9Pv4fy6gi16d2Gn_LIdWqy4uDvpgfkIxD--_jYAXCmV8NbOMPIVEydkLR5zCw4BTvjx3HPz2tXY_'
+# PAYPAL_SANDBOX_SECRET_KEY='EDWChEupFDTPtK1wZrQrZ6QsbgDfa2mWCs1wP9hVSUOY9hrRIAns8D--bzSNha3_zUZ3cEHdB8gxWaGS'
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51L8KiTGoxA9pTzWIzuVkVS6Aj8ApVy9eQz93OygAeLa2jzmR52mTx54KAxalFzTUBo7AysLVzFyjXaqfW3UchqId00iuwiL0Xv'
+STRIPE_SECRET_KEY = 'sk_test_51L8KiTGoxA9pTzWIYBbDEpGchhaj9hA4r3nDiMEYCOVodnJdzto6VYbwTNuTnBke1mrQyHepzuOptnP62b5pAeUL00epOSUraP'

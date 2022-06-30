@@ -1,0 +1,89 @@
+{% extends "core/index.html" %}
+{% load static %}
+
+{% block contenido %}
+
+
+<form method="POST">
+    {% csrf_token %}
+    <section id="content">
+        <div class="content-wrap">
+            <div class="container clearfix">
+
+                <div class="form-widget">
+
+                    <div class="form-result"></div>
+                    <h2 class="center">Iniciar Sesión</h2>
+
+                    <div class="row shadow bg-light border">
+
+                        <div class="col-lg-4 dark"
+                            style="background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.2)), url('{% static 'core/images/core/imagenes/user.png' %}') center center / cover; min-height: 400px;">
+                        </div>
+
+                        <div class="col-lg-8 p-5">
+                            <form class="row mb-0" id="fitness-form" action="include/form.php" method="post"
+                                enctype="multipart/form-data">
+                                <div class="form-process">
+                                    <div class="css3-spinner">
+                                        <div class="css3-spinner-scaler"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-form-label">
+                                            <label>Nombre:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            {{ form.username }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 form-group">
+                                    <div class="row">
+                                        <div class="col-sm-4 col-form-label">
+                                            <label>Contraseña:</label>
+                                        </div>
+                                        <div class="col-sm-8">
+                                            {{ form.password }}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                {% for error in form.password.errors %}
+                                <div class="alert alert-danger">
+                                    {{error}}
+
+                                </div>
+                                {% endfor %}
+
+                                <hr>
+                                <br>
+
+                                <div class="col-12 d-flex      align-items-center center">
+                                    <button type="submit" class="btn btn-outline-success">Iniciar sesión</button>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <button type="button" onclick="location.href='{% url 'core:index' %}'" class="btn btn-outline-secondary">Cancelar</button>
+
+
+                                </div>
+
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section><!-- #content end -->
+
+
+</form>
+
+{% endblock %}

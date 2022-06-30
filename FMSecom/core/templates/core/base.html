@@ -1,0 +1,266 @@
+{% load static %}
+{% load carrito_template_tags %}
+
+<!DOCTYPE html>
+<html dir="ltr" lang="es-ES">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'core/images/core/imagenes/Logo.png' %}" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700|Poppins:300,400,500,600,700|PT+Serif:400,400i&display=swap"
+        rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/bootstrap.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/style.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/swiper.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/dark.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/font-icons.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/animate.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/magnific-popup.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'core/css/custom.css' %}" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="{% static 'core/css/components/ion.rangeslider.css' %}" type="text/css" />
+
+
+    <!-- Titulo Cabecera -->
+    <title> FMSecom - {% block tituloPagina %}
+        {% endblock %}</title>
+
+</head>
+
+<body class="stretched">
+
+
+    <!-- Document Wrapper -->
+    <div id="wrapper" class="clearfix">
+        <!-- Header -->
+        <header id="header" class="full-header transparent-header" data-sticky-class="not-dark">
+
+            <div id="header-wrap">
+                <div class="container" style="margin:auto">
+                    <p style="text-align: right; margin:0px; margin-left:10px; margin-top:10px; padding:0%;">
+
+                        {% if user.is_authenticated %}
+                        
+                        Estamos encantados de tenerte como cliente, <strong>{{user.username}}</strong>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <a href="{% url 'autenticacion:perfil' %}" style="padding:0%;">MI PERFIL</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'tienda:mis-pedidos' %}" style="padding:0%;">MIS PEDIDOS</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'autenticacion:cerrar_sesion' %}" style="padding:0%;">CERRAR SESIÓN</a>
+                        
+                        
+
+
+                        {% else %}
+
+                        <a href="{% url 'autenticacion:login' %}">Iniciar Sesión</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="{% url 'autenticacion:autenticacion' %}">Registrarme</a>
+
+                        {% endif %}
+                    </p>
+
+                    <hr>
+
+                    <div class="header-row">
+                        <!-- Logo superior izquierda-->
+                        <div id="logo">
+                            <a href="/" class="standard-logo"
+                                data-dark-logo="{% static 'core/images/core/imagenes/Logo.png' %}"><img
+                                    src="{% static 'core/images/core/imagenes/Logo.png' %}"></a>
+                            <a href="/" class="retina-logo"
+                                data-dark-logo="{% static 'core/images/core/imagenes/Logo.png' %}"><img
+                                    src="{% static 'core/images/core/imagenes/Logo.png' %}"></a>
+                        </div>
+                        <!-- #logo end -->
+
+                        <div class="header-misc">
+                            <!-- CARRITO DE ARRIBA -->
+                            <div id="top-cart" class="header-misc-icon d-none d-sm-block">
+                                <a href="{% url 'tienda:resumen-carrito' %}"><i class="icon-line-bag"></i><span
+                                        class="top-cart-number">{{ request|count_items }}</span></a>
+                            </div>
+                            <!-- end carrito -->
+                        </div>
+
+                        <!-- Para cuando se hace la ventana más pequeña -->
+                        <div id="primary-menu-trigger">
+                            <svg class="svg-trigger" viewBox="0 0 100 100">
+                                <path
+                                    d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20">
+                                </path>
+                                <path d="m 30,50 h 40"></path>
+                                <path
+                                    d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20">
+                                </path>
+                            </svg>
+                        </div>
+
+                        <!-- NAVEGACION SUPERIOR -->
+                        <nav class="primary-menu">
+                            <ul class="menu-container">
+
+                                <!-- TELEFONO-->
+                                <li class="menu-item">
+                                    <a class="menu-link" href="tel:601190589">
+                                        <h3 id="cabeceraTelf">📞 {{telefono.dato_1}}</h3>
+                                    </a>
+                                </li>
+
+                                <!-- INICIO-->
+                                <li class="menu-item">
+                                    <a class="menu-link" href="/">
+                                        <div class="fondoCabecera menuPrincipal">Inicio</div>
+                                    </a>
+                                </li>
+
+                                <!-- PRODUCTOS-->
+                                <li class="menu-item ">
+                                    <a class="menu-link" href="/tienda/">
+                                        <div class="fondoCabecera">Tienda</div>
+                                    </a>
+                                </li>
+
+                                <!-- AYUDA AL USUARIO-->
+                                <li class="menu-item">
+                                    <a class="menu-link" href="#">
+                                        <div class="fondoCabecera">Ayuda al usuario</div>
+                                    </a>
+                                    <ul class="sub-menu-container">
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{% url 'core:leyes' %}">
+                                                <div><i class="icon-stack"></i>Leyes</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{% url 'core:manuales' %}">
+                                                <div><i class="icon-stack"></i>Manuales</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{% url 'core:tutoriales' %}">
+                                                <div><i class="icon-stack"></i>Tutoriales</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{% url 'core:instalaciones' %}">
+                                                <div><i class="icon-stack"></i>Nuestras instalaciones</div>
+                                            </a>
+                                        </li>
+                                        <li class="menu-item">
+                                            <a class="menu-link" href="{% url 'core:receptora' %}">
+                                                <div><i class="icon-stack"></i>Servicio CRA (Receptora)</div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <!-- CONTACTO -->
+                                <li class="menu-item">
+                                    <a class="menu-link" href="{% url 'core:contacto' %}">
+                                        <div class="fondoCabecera">Contacto</div>
+                                    </a>
+                                </li>
+
+                            </ul>
+
+                        </nav><!-- FIN DE LA BARRA PRINCIPAL -->
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="header-wrap-clone"></div>
+
+        </header>
+
+        <!-- FIN CABECERA -->
+
+        {% block contenido %}
+        {% endblock %}
+
+        <!-- FOOTER -->
+        <footer id="footer" class="dark"
+            style="background-image: url('{% static 'core/images/core/imagenes/footer.jpg' %}');">
+
+            <div id="copyrights">
+                <div class="container">
+                    <div class="row justify-content-between col-mb-30">
+                        <div class="col-lg-5 ">
+                            Copyright ©
+                            <address>
+                                {% autoescape off %} {{ubicacion.dato_1}} {% endautoescape %}
+                            </address>
+                        </div>
+
+                        <div class="col-lg-5">
+                            <abbr title="Teléfono"><strong>Teléfono: </strong></abbr>(+34) <a
+                                href="tel:601190589">{{telefono.dato_1}}</a><br>
+                            <abbr title="Email"><strong>Email: </strong></abbr> <a
+                                href="mailto:{{email.dato_1}}">{{email.dato_1}}</a>
+
+                            <br></br>
+
+                            <a href="https://es-es.facebook.com/DSM-seguridad-390049028044888/"
+                                class="social-icon inline-block si-medium mb-10 si-facebook">
+                                <i class="icon-facebook"></i>
+                                <i class="icon-facebook"></i>
+                            </a>
+
+                            <a href="https://www.instagram.com/dsmseguridad/"
+                                class="social-icon inline-block si-medium mb-10 si-instagram">
+                                <i class="icon-instagram"></i>
+                                <i class="icon-instagram"></i>
+                            </a>
+                        </div>
+
+                        <div class="copyrights-menu copyright-links">
+                            <a href="{% url 'core:index' %}">Inicio</a>/<a
+                                href="{% url 'core:contacto' %}">Contacto</a>/<a
+                                href="{% url 'tienda:tienda' %}">Tienda</a>
+                        </div>
+
+                    </div>
+
+                    <br></br>
+                    <p class="footer-font">
+                        {{pie.dato_1|safe}}
+                    </p>
+
+                </div>
+            </div><!-- #copyrights end -->
+        </footer><!-- #footer end -->
+    </div><!-- #wrapper end -->
+
+
+    <!-- Go To Top
+	============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <div id="whatsapp">
+        <a href="https://api.whatsapp.com/send?phone=+34601190589&text=Hola, soy {{user.username}}, ¿podría ayudarme?">
+            <img src="{% static 'core/images/core/imagenes/whatsapp.png' %}" height="75px"
+                title="Escríbenos por Whastapp" alt="Escríbenos por Whastapp">
+            Háblenos por Whatsapp!</a>
+
+    </div>
+
+    <!-- JavaScripts
+	============================================= -->
+    <script src="{% static 'core/js/jquery.js' %}"></script>
+    <script src="{% static 'core/js/plugins.min.js' %}"></script>
+
+
+    <!-- Footer Scripts
+	============================================= -->
+    <script src="{% static 'core/js/functions.js' %}"></script>
+    <script src="{% static 'core/js/miscript.js' %}"></script>
+
+    <!-- Range Slider Plugin -->
+    <script src="{% static 'core/js/components/rangeslider.min.js' %}"></script>
+
+</body>
+</html>
