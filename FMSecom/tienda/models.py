@@ -63,12 +63,6 @@ class Productos(models.Model):
     def get_absolute_url(self):
         return reverse('tienda:producto-detallado', kwargs={'slug': self.slug})
 
-# ------------------------------------------------------------------------
-# Tabla para filtrar productos segun nombre, descripcion o especificaciones.
-# ------------------------------------------------------------------------
-
-
-
 
 # ------------------------------------------------------------------------
 # Tabla de los pedidos. Pueden estar o no realizados.
