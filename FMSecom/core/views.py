@@ -13,6 +13,7 @@ from .models import Manuales
 from .models import Leyes
 from django.views.generic.base import TemplateView
 import importlib.util
+from django.contrib.auth.decorators import login_required
 
 # necesita importar las categorias
 from tienda.models import Categorias_productos
@@ -190,12 +191,7 @@ def leyesView(request):
         "files": documents,
     })
 
-class SuccessView(TemplateView):
-    template_name = 'core/success.html'
 
-
-class CancelledView(TemplateView):
-    template_name = 'core/cancelled.html'
 
 
 # Search
@@ -203,3 +199,11 @@ def search(request):
 	q=request.GET['q']
 	data=Manuales.objects.filter(titulo__icontains=q).order_by('-id')
 	return render(request,'core/search_manual.html',{'data':data})
+
+
+class SuccessView(TemplateView):
+    template_name = 'core/success.html'
+
+
+class CancelledView(TemplateView):
+    template_name = 'core/cancelled.html'

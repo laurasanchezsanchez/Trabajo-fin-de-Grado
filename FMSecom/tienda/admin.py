@@ -53,3 +53,4 @@ admin.site.register(Productos, productosAdministrador)
 admin.site.register(Pedido, pedidoAdmin)
 admin.site.register(ItemPedido)
 admin.site.register(Direccion, direccionAdmin)
+

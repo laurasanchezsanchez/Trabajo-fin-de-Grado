@@ -21,7 +21,7 @@ class VistaRegistro(View):
     # Nos renderiza/muestra el formulario
     def get(self, request):
         form = UserCreationForm
-        return render(request, "registro/registro.html", {"form": form})
+        return render(request, "autenticacion/registro.html", {"form": form})
 
     # Envia los datos a la bd
 
@@ -45,12 +45,11 @@ class VistaRegistro(View):
                 # Los mensajes iran en la peticion y le mandamos justo ese mensaje (error_messages es un array)
                 messages.error(request, form.error_messages[msg])
 
-            return render(request, "registro/registro.html", {"form": form})
+            return render(request, "autenticacion/registro.html", {"form": form})
 
 
 def cerrar_sesion(request):
     logout(request)
-
     return redirect('/')
 
 
@@ -72,22 +71,22 @@ def loguear(request):
                 login(request,user)
                 return redirect('/')
             else:
-                messages.error(request, "user no valido")
+                messages.error(request, "Usuario no valido")
 
         else:
             messages.error(request, "Informacion incorrecta.")
 
     form = AuthenticationForm()
-    return render(request, "login/login.html", {"form": form})
+    return render(request, "autenticacion/login.html", {"form": form})
 
 
 class perfilView(PasswordChangeView):
     form_class = CambiarPasswordForm
-    template_name = 'usuario/perfil.html'
+    template_name = 'autenticacion/perfil.html'
 
     def get_success_url(self):
         return reverse('autenticacion:password_success')
 
 
 def password_success(request):
-    return render(request, "usuario/password_success.html", {})
+    return render(request, "autenticacion/password_success.html", {})
