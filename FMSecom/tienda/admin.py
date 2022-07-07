@@ -6,11 +6,10 @@ from .models import Categorias_productos, Productos, Pedido, ItemPedido, Direcci
 
 class categoriasAdministrador(admin.ModelAdmin):
     # Orden en el que se muestran
-    list_display = ('nombre_categoria', 'slug')     
+    list_display = ('nombre_categoria',)     
     # Campo filtrado
     list_filter = ("nombre_categoria",)          
-    # Campo de búsqueda                              
-    search_fields = ['nombre_categoria', ]                 
+    # Campo de búsqueda                                    
     exclude = ('slug',)  
     readonly_fields = ('fecha_creacion', 'ultima_modificacion')
 
@@ -19,18 +18,20 @@ class productosAdministrador(admin.ModelAdmin):
     list_display = ('categoria', 'categoria_slug', 'nombre', 'slug', 'precio_producto', 'id')     
     # Campo filtrado
     list_filter = ("categoria", "nombre",)  
-    # Campo de búsqueda                                      
-    search_fields = ['categoria', 'nombre', ]                            
+    # Campo de búsqueda                                                 
     exclude = ('categoria_slug', 'slug', )  
 
 class direccionAdmin(admin.ModelAdmin):
     list_display = [
+        'user',
         'direccion_1',
         'direccion_2',
         'codigo_zip',
         'ciudad',
-        'direccion_tipo'
+        'direccion_tipo',
+        
     ]
+    fields = ['user', ('direccion_1', 'direccion_2'), ('ciudad', 'codigo_zip'), 'direccion_tipo']
 
 
 class pedidoAdmin(admin.ModelAdmin):
@@ -45,12 +46,22 @@ class pedidoAdmin(admin.ModelAdmin):
         'fecha'
     ]
 
+class itemPedidoAdmin(admin.ModelAdmin):
+    list_display = [
+        'pedido',
+        'producto',
+        'cantidad',
+        'precio_producto_cantidad',
+    ]
+
+    
+
 
 
 admin.site.register(Categorias_productos, categoriasAdministrador)
 admin.site.register(Productos, productosAdministrador)
 
 admin.site.register(Pedido, pedidoAdmin)
-admin.site.register(ItemPedido)
+admin.site.register(ItemPedido, itemPedidoAdmin)
 admin.site.register(Direccion, direccionAdmin)
 
