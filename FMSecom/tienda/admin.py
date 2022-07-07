@@ -15,11 +15,13 @@ class categoriasAdministrador(admin.ModelAdmin):
 
 class productosAdministrador(admin.ModelAdmin):
     # Orden en el que se muestran
-    list_display = ('categoria', 'categoria_slug', 'nombre', 'slug', 'precio_producto', 'id')     
+    list_display = ('categoria', 'nombre', 'precio_producto', 'id')     
     # Campo filtrado
     list_filter = ("categoria", "nombre",)  
     # Campo de búsqueda                                                 
     exclude = ('categoria_slug', 'slug', )  
+    list_editable = ['precio_producto']
+    list_per_page = 10
 
 class direccionAdmin(admin.ModelAdmin):
     list_display = [
