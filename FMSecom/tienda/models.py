@@ -63,12 +63,6 @@ class Productos(models.Model):
     def get_absolute_url(self):
         return reverse('tienda:producto-detallado', kwargs={'slug': self.slug})
 
-# ------------------------------------------------------------------------
-# Tabla para filtrar productos segun nombre, descripcion o especificaciones.
-# ------------------------------------------------------------------------
-
-
-
 
 # ------------------------------------------------------------------------
 # Tabla de los pedidos. Pueden estar o no realizados.
@@ -159,28 +153,5 @@ class Direccion(models.Model):
         verbose_name_plural = 'direcciones'
 
 
-# ------------------------------------------------------------------------
-# Clase que guarda la informacion sobre los pagos, métodos de pago, fecha, importe...
-# ------------------------------------------------------------------------
-
-class Pago(models.Model):
-    pedido = models.ForeignKey(
-        Pedido, on_delete=models.CASCADE, related_name='payments')
-    metodo_pago = models.CharField(max_length=20, choices=(
-        ('Paypal', 'Paypal'),
-    ))
-    fecha = models.DateTimeField(auto_now_add=True)
-    succesful = models.BooleanField(default=False)
-    importe = models.DecimalField(max_digits=12, decimal_places=2)
-
-    # Respuesta del procesador de pago
-    respuesta_pasarela_pago = models.TextField()
-
-    def __str__(self):
-        return self.reference_number
-
-    @property
-    def reference_number(self):
-        return f"PAGO-{self.pedido}-{self.pk}"
 
 

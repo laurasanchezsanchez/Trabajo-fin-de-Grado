@@ -11,6 +11,19 @@ db.sqlite3
 !**/migrations
 !**/migrations/__init__.py
 
+/FMSecom/__init__.py
+/FMSecom/migrations/__init__.py
+
+/core/__init__.py
+/core/migrations/__init__.py
+
+/autenticacion/__init__.py
+/autenticacion/migrations/__init__.py
+
+/tienda/__init__.py
+/tienda/migrations/__init__.py
+
+
 #idea
 /.idea/dataSources.xml
 /.idea/misc.xml

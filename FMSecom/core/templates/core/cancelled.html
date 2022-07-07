@@ -2,10 +2,26 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block tituloPagina %} 
+Pago cancelado
+{% endblock %}
+
 {% block contenido %}
 <br>
 <div class="alert alert-error">
-	El pago ha sido cancelado. Si tiene algún problema respecto al pago, póngase en contacto con nosotros vía telefónica al número <a href="tel:601190589">{{telefono.dato_1}}</a>
+	
   </div>
 
+  <br>
+<div class="alert alert-success center">
+  El pago ha sido cancelado. Si tiene algún problema respecto al pago, póngase en contacto con nosotros vía telefónica al número <a href="tel:601190589">{{telefono.dato_1}}</a>
+</div>
+
+<div class="row center">
+  <div class="col-md-12">
+      <a href="{% url 'core:index' %}" type="button" class="btn btn-outline-success">VOLVER AL INICIO</a>
+  </div>
+</div>
+
+<br>
 {% endblock %}

@@ -37,6 +37,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_interface',
     'autenticacion.apps.AutenticacionConfig',
     'tienda.apps.TiendaConfig',
     'core.apps.CoreConfig',
@@ -48,9 +49,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
     'ckeditor',
-    'jquery'
+    'jquery',
+    'colorfield',
+    
 ]
-
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 #Para el desempeño de nuestro trabajo contamos con personal cualificado, con habilitación expedida por el Ministerio del Interior.
 
 #Éstos irán uniformados con distintivos propios de la empresa.
@@ -190,7 +194,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # Es la url publica
 # Cambiar por MEDIA_URL
 MEDIA_URL = '/media/'

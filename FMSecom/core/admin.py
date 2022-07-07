@@ -11,10 +11,27 @@ from .models import Manuales
 from .models import Tutoriales
 from .models import Leyes
 
+class tutorialesAdministrador(admin.ModelAdmin):            
+    exclude = ('slug',) 
+
+class leyesAdmin(admin.ModelAdmin):
+    list_display = [
+        'titulo'
+    ]
+    list_filter = ("titulo",) 
+
+class manualesAdmin(admin.ModelAdmin):
+    list_display = [
+        'titulo',
+        'categoria'
+    ]
+    list_filter = ("categoria", "titulo",) 
+
+
 admin.site.register(Empresas_apoyo)
-admin.site.register(Manuales)
-admin.site.register(Tutoriales)
-admin.site.register(Leyes)
+admin.site.register(Manuales, manualesAdmin)
+admin.site.register(Tutoriales, tutorialesAdministrador)
+admin.site.register(Leyes, leyesAdmin)
 
 
 class readonlyAdministrador(admin.ModelAdmin):

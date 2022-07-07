@@ -1,4 +1,18 @@
-django-filter
-django-ckeditor
-django-static-jquery
-stripe==3.0.0
+asgiref==3.5.2
+certifi @ file:///C:/Windows/TEMP/abs_e9b7158a-aa56-4a5b-87b6-c00d295b01fanefpc8_o/croots/recipe/certifi_1655968940823/work/certifi
+charset-normalizer==2.1.0
+Django==4.0.5
+django-ckeditor==6.4.2
+django-crispy-forms==1.14.0
+django-jquery==3.1.0
+django-js-asset==2.0.0
+idna==3.3
+numpy==1.23.0
+Pillow==9.1.1
+requests==2.28.1
+sqlparse==0.4.2
+stripe==3.5.0
+tzdata==2022.1
+urllib3==1.26.9
+wincertstore==0.2
+django-admin-interface==4.0
