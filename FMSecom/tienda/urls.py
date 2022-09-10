@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 app_name = 'tienda'
 
@@ -20,8 +22,4 @@ urlpatterns = [
     path('cancelled/', views.CancelledView.as_view()), # new
     path('search',views.search,name='search'),
     path('detalles-pedido/<pk>',views.detallesPedido, name='detalles-pedido'),
-    
-    
-
-
 ]

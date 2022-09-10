@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+from decouple import config
 
 # ------------------- PROYECTO  -------------------
 # Para la especificacion de la carpeta estatica
@@ -25,11 +25,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'me*)^hx1#_8o4s!gkgi45h*vzt)b97vdb9i5-(wlt(4qjr)fk%'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
+EMAIL_HOST = config('EMAIL_HOST', default='localhost')
+EMAIL_PORT = config('EMAIL_PORT', default=25, cast=int)
+
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+STRIPE_PUBLISHABLE_KEY = config('STRIPE_PUBLISHABLE_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
 
 ALLOWED_HOSTS = []
 
@@ -195,10 +201,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Es la url publica
 # Cambiar por MEDIA_URL
 MEDIA_URL = '/media/'
-
 # Indicamos donde tiene que buscarlo
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -210,19 +216,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
-DEFAULT_FROM_EMAIL='laurasanchez13@correo.ugr.es'
-NOTIFY_EMAIL='laurasanchez13@correo.ugr.es'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
+
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'noreply.fmsecom@gmail.com'
-EMAIL_HOST_PASSWORD = 'jytb smsc tsyl glmy'
-# RECIPIENT_ADDRESS = 'laurasanchezsanchez.lss.13@gmail.com'
-
-# PAYPAL_SANDBOX_CLIENT_ID='AaCP9Pv4fy6gi16d2Gn_LIdWqy4uDvpgfkIxD--_jYAXCmV8NbOMPIVEydkLR5zCw4BTvjx3HPz2tXY_'
-# PAYPAL_SANDBOX_SECRET_KEY='EDWChEupFDTPtK1wZrQrZ6QsbgDfa2mWCs1wP9hVSUOY9hrRIAns8D--bzSNha3_zUZ3cEHdB8gxWaGS'
-
-STRIPE_PUBLISHABLE_KEY = 'pk_test_51L8KiTGoxA9pTzWIzuVkVS6Aj8ApVy9eQz93OygAeLa2jzmR52mTx54KAxalFzTUBo7AysLVzFyjXaqfW3UchqId00iuwiL0Xv'
-STRIPE_SECRET_KEY = 'sk_test_51L8KiTGoxA9pTzWIYBbDEpGchhaj9hA4r3nDiMEYCOVodnJdzto6VYbwTNuTnBke1mrQyHepzuOptnP62b5pAeUL00epOSUraP'
